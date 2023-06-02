@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LandingPageController {
-    @GetMapping("/landingpage")
+    @GetMapping("/home")
     public String showLandingPage() {
         return "home/landing-page";
     }
