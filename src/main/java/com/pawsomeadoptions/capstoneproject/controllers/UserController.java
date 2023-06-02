@@ -20,4 +20,13 @@ public class UserController {
         return "users/profile";
     }
 
+    @Controller
+    public class loginController {
+        @GetMapping("/login")
+        public String showLoginForm() {
+            return "users/login";
+        }
+
+    }
+
 }
