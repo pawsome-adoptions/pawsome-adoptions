@@ -34,3 +34,5 @@ build/
 
 #Applicaton properties
 src/main/resources/my.properties
+
+src/main/resources/application.properties
