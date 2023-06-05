@@ -39,7 +39,9 @@
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <textarea>Description</textarea>
+                                    <input type="text" placeholder="Title">
+                                    <br>
+                                    <textarea placeholder="Description"></textarea>
                                     <br>
                                     <label for="post-image" class="form-label"></label>
                                     <input type="file" class="form-control form-control-sm" id="post-image" name="postImage">
@@ -67,6 +69,7 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2"><a th:href="@{/visitorpost/1}">Title</a></h6>
+                        <br>
                         <p class="card-text">Description</p>
                         <img src="image.jpg" class="img-fluid" alt="Additional Image">
                     </div>
