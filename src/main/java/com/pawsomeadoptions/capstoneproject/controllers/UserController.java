@@ -48,9 +48,8 @@ public class UserController {
         return "users/profile";
     }
 
-
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String loginForm() {
         return "users/login";
     }
 
@@ -64,6 +63,18 @@ public class UserController {
         } else {
             System.out.println("login fail!");
             return "redirect:/login";
+        }
+    }
+
+
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password) {
+        User user = userDao.findByUsername(username);
+
+        if (user != null && user.getPassword().equals(password)) {
+            return "redirect:/usersposts";
+        } else {
+            return "redirect:/invalidUsernameOrPassword";
         }
     }
 
