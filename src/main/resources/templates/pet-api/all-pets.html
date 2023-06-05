@@ -3,6 +3,54 @@
 <head th:replace="partials/head.html :: head">
 <body>
 <div th:replace="partials/navbar :: nav"></div>
-<h1>All pets</h1>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="text-center">Welcome to Adopt a Pet!</h1>
+            <h3 class="text-center">Where you can browse through adorable pets in need of a loving home!</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search posts">
+                <button class="btn btn-primary" type="button">Search</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter by
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item" href="#">Option 1</a></li>
+                    <li><a class="dropdown-item" href="#">Option 2</a></li>
+                    <li><a class="dropdown-item" href="#">Option 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mt-5">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="card-body">
+                        <h5 class="card-subtitle mb-2"><a th:href="@{/adopt/1}">Id</a></h5>
+                        <img src="image.jpg" class="img-fluid" alt="Additional Image">
+                        <h6 class="card-subtitle mb-2">Title</h6>
+                        <p class="card-text">Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
