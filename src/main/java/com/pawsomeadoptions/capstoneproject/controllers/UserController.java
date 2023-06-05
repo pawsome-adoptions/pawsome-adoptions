@@ -61,7 +61,7 @@ public class UserController {
         if (user != null && user.getPassword().equals(password)) {
             return "redirect:/usersposts";
         } else {
-            return "redirect:/invalid-pass-user";
+            return "redirect:/invalidUsernameOrPassword";
         }
     }
 
