@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -47,10 +48,21 @@ public class UserController {
         return "users/profile";
     }
 
-
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String loginForm() {
         return "users/login";
+    }
+
+
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password) {
+        User user = userDao.findByUsername(username);
+
+        if (user != null && user.getPassword().equals(password)) {
+            return "redirect:/usersposts";
+        } else {
+            return "redirect:/invalidUsernameOrPassword";
+        }
     }
 
 
