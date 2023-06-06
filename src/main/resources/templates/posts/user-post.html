@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head.html :: head">
 <body>
 <div th:replace="partials/navbar :: nav"></div>
+<div th:if="${param.error}">
+    Invalid Username and Password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
 <div>
     <!--  Modal Button  -->
     <button type="button" class="btn btn-secondary btn-sm"
@@ -21,17 +27,25 @@
                     <button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="text" placeholder="Title">
-                        <br>
-                        <textarea placeholder="Description"></textarea>
-                        <br>
-                        <label for="post-image" class="form-label"></label>
-                        <input type="file" class="form-control form-control-sm" id="post-image" name="postImage">
+                <form th:action="@{/userpost}" th:method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <input type="text" placeholder="Title" name="title">
+                            <br>
+                            <textarea placeholder="Description" name="description"></textarea>
+                            <br>
+                            <select class="form-select" aria-label="Default select example" name="category" >
+                                <option selected>Type</option>
+                                <option value="Dog">Dog</option>
+                                <option value="Cat">Cat</option>
+                            </select>
+                            <br>
+                            <label for="post-image" class="form-label"></label>
+                            <input type="file" class="form-control form-control-sm" id="post-image" name="img">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn btn-primary text-center">Submit</button></div>
+                    <div class="modal-footer"><button type="submit" class="btn btn-primary text-center">Submit</button></div>
+                </form>
             </div>
         </div>
     </div>

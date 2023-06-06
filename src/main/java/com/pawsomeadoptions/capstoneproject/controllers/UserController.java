@@ -45,7 +45,6 @@ public class UserController {
         return "users/login";
     }
 
-
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password) {
         User user = userDao.findByUsername(username);
