@@ -20,6 +20,9 @@ public class Post {
     @Column(nullable = false, length = 300, name = "description")
     private String description;
 
+    @Column(nullable = false, name = "category", length = 50)
+    private String category;
+
     @Column(nullable = false, name = "img", length = 2500)
     private String img;
 
@@ -42,20 +45,29 @@ public class Post {
 
     }
 
+    public Post(Long id, String title, String description, String img, User users, String category) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.img = img;
+        this.users = users;
+        this.category = category;
+    }
+
+    public Post(String title, String description, String img, User users, String category) {
+        this.title = title;
+        this.description = description;
+        this.img = img;
+        this.users = users;
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return users;
-    }
-
-    public void setUser(User user) {
-        this.users = user;
     }
 
     public String getTitle() {
@@ -80,5 +92,21 @@ public class Post {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
