@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -43,11 +40,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/profile")
-    public String profileForm() {
-        return "users/profile";
-    }
-
     @GetMapping("/login")
     public String loginForm() {
         return "users/login";
@@ -63,6 +55,20 @@ public class UserController {
         } else {
             return "redirect:/invalidUsernameOrPassword";
         }
+    }
+
+    @GetMapping("/profile")
+    public String editProfileView(Model model){
+        User user = userDao.findById(1L).get();
+        model.addAttribute("user", user);
+        return "users/profile";
+    }
+
+//    Post method for editing the user profile
+    @PostMapping("/profile")
+    public String editProfile(@ModelAttribute User user){
+        userDao.save(user);
+        return "redirect:/profile";
     }
 
 
