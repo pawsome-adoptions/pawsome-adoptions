@@ -28,7 +28,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User users;
+    private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -50,7 +50,7 @@ public class Post {
         this.title = title;
         this.description = description;
         this.img = img;
-        this.users = users;
+        this.user = users;
         this.category = category;
     }
 
@@ -58,7 +58,7 @@ public class Post {
         this.title = title;
         this.description = description;
         this.img = img;
-        this.users = users;
+        this.user = users;
         this.category = category;
     }
 
@@ -95,11 +95,11 @@ public class Post {
     }
 
     public User getUsers() {
-        return users;
+        return user;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUsers(User user) {
+        this.user = user;
     }
 
     public String getCategory() {

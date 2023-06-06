@@ -59,6 +59,7 @@ public class UserController {
     @GetMapping("/profile")
     public String editProfileView(Model model){
         User user = userDao.findById(1L).get();
+
         model.addAttribute("user", user);
         return "users/profile";
     }
