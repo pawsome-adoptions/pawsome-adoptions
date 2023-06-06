@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head.html :: head"></head>
 <body>
 <div th:replace="partials/navbar :: nav"></div>
@@ -26,29 +26,33 @@
                         <button type="button" class="btn-close"
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form method="post" th:action="@{/profile}" th:object="${user}">
                     <div class="modal-body">
                         <div class="mb-3">
+                            <input type="hidden" th:field="*{id}" th:value="*{id}">
                             <label for="username" class="form-label">Username:</label>
-                            <input type="text" class="form-control form-control-sm" id="username" name="username">
+                            <input type="text" class="form-control form-control-sm" id="username" name="username" th:field="*{username}" th:value="*{username}">
                             <br>
                             <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control form-control-sm" id="email" name="email">
+                            <input type="email" class="form-control form-control-sm" id="email" name="email" th:field="*{email}" th:value="*{email}">
                             <br>
                             <label for="password" class="form-label">Password:</label>
-                            <input type="text" class="form-control form-control-sm" id="password" name="password">
+                            <input type="text" class="form-control form-control-sm" id="password" name="password" th:field="*{password}" th:value="*{password}">
                             <br>
                             <label for="confirm-password" class="form-label">Confirm Password:</label>
                             <input type="text" class="form-control form-control-sm" id="confirm-password" name="confirmPassword">
                             <br>
                             <label for="post-image" class="form-label">Change Profile Image:</label>
-                            <input type="file" class="form-control form-control-sm" id="post-image" name="postImage">
+                            <input type="file" class="form-control form-control-sm" id="post-image" name="postImage" th:field="*{profilePic}" th:value="*{profilePic}">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary text-center">Submit</button>
+                        <button type="submit" class="btn btn-primary text-center">Submit</button>
                         <br>
                         <button type="button" class="btn btn-primary text-center">Delete Profile</button>
+<!--                        <a th:href="@{/delete/{id}" class="btn btn-primary text-center"> Delete Profile</a>-->
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
