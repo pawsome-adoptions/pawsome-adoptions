@@ -14,17 +14,17 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
 
             if (genderType && petType && ageType) {
                 apiUrl += `&gender=${genderType}&type=${petType}&age=${ageType}`;
-            }else if (genderType && petType){
+            } else if (genderType && petType) {
                 apiUrl += `&gender=${genderType}&type=${petType}`;
-            }else if (genderType && ageType) {
+            } else if (genderType && ageType) {
                 apiUrl += `&gender=${genderType}&age=${ageType}`;
-            }else if (petType && ageType){
+            } else if (petType && ageType) {
                 apiUrl += `&type=${petType}&age=${ageType}`;
-            }else if (genderType){
+            } else if (genderType) {
                 apiUrl += `&gender=${genderType}`;
-            }else if(petType){
+            } else if (petType) {
                 apiUrl += `&type=${petType}`;
-            }else if(ageType){
+            } else if (ageType) {
                 apiUrl += `&age=${ageType}`;
             }
 
@@ -37,7 +37,7 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Handle the API response here
+                    petCards(data);
                     console.log(data);
                 })
                 .catch(error => {
@@ -132,7 +132,7 @@ petSearch.addEventListener('submit', e => {
         petType = petTypeElement.getAttribute('data-type');
     }
 
-    const genderTypeElement = document.querySelector('#gender-type .dropdown-items.active');
+    const genderTypeElement = document.querySelector('#gender-type .dropdown-item.active');
     if (genderTypeElement) {
         genderType = genderTypeElement.getAttribute('data-gender');
     }
@@ -144,9 +144,97 @@ petSearch.addEventListener('submit', e => {
 
 
 
-    searchAnimalsByLocation(postalCode, petType, genderType, ageType);
+    petsByLocation(postalCode, petType, genderType, ageType);
 });
 
 
-//
+//displaying animals
+function petCards(data) {
+    const container = document.getElementById('animalContainer');
+    container.innerHTML = '';
+
+
+    if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
+        const noResults = document.createElement('p');
+        noResults.textContent = 'No animals found.';
+        container.appendChild(noResults);
+        return;
+    }
+
+    // Extract the array of animals from the JSON data
+    const animals = data.animals;
+
+    if (!Array.isArray(animals) || animals.length === 0) {
+        const noResults = document.createElement('p');
+        noResults.textContent = 'No animals found.';
+        container.appendChild(noResults);
+        return;
+    }
+
+    animals.forEach(animal => {
+        const card = document.createElement('div');
+        card.classList.add('card', 'mx-auto', 'my-3');
+        card.style.width = '20rem';
+
+        const image = document.createElement('img');
+        image.classList.add('card-img-top', 'mt-3', 'img-dogs-api');
+        image.src = animal.photos.length > 0 ? animal.photos[0].large : '/img/img_not_found_wide.jpg';
+        image.alt = 'Animal Image';
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        const title = document.createElement('h5');
+        title.classList.add('card-title');
+        title.textContent = animal.name;
+
+        const description = document.createElement('p');
+        description.classList.add('card-text');
+
+        const ul = document.createElement('ul');
+        ul.classList.add('list-group', 'list-group-flush');
+
+        const id = document.createElement('li');
+        id.classList.add('list-group-item');
+        id.textContent = `Id: ${animal.id}`;
+
+        const species = document.createElement('li');
+        species.classList.add('list-group-item');
+        species.textContent = `Species: ${animal.species}`;
+
+        const breed = document.createElement('li');
+        breed.classList.add('list-group-item');
+        breed.textContent = `Breed: ${animal.breeds.primary}`;
+
+        const gender = document.createElement('li');
+        gender.classList.add('list-group-item');
+        gender.textContent = `Gender: ${animal.gender}`;
+
+        const age = document.createElement('li');
+        age.classList.add('list-group-item');
+        age.textContent = `Age: ${animal.age}`;
+
+        const size = document.createElement('li');
+        size.classList.add('list-group-item');
+        size.textContent = `Size: ${animal.size}`;
+
+        ul.appendChild(id);
+        ul.appendChild(species);
+        ul.appendChild(breed);
+        ul.appendChild(gender);
+        ul.appendChild(age);
+        ul.appendChild(size);
+
+        description.appendChild(ul);
+
+        cardBody.appendChild(title);
+        cardBody.appendChild(description);
+
+        card.appendChild(image);
+        card.appendChild(cardBody);
+
+        container.appendChild(card);
+    });
+}
+
 
