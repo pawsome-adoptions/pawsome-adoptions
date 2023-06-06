@@ -43,7 +43,7 @@ public class PostsController {
         postDao.save(post);
 
         System.out.println("Post Create Successful");
-        return "redirect:/posts/user-post";
+        return "redirect:/profile";
     }
 
     //single posts for users who are logged in

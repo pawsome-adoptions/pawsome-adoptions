@@ -39,9 +39,10 @@
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
                             </select>
+                            <div id="fileUploaded"></div>
                             <br>
-                            <label for="post-image" class="form-label"></label>
-                            <input type="file" class="form-control form-control-sm" id="post-image" name="img">
+                            <label for="uploadBtn" class="form-label"></label>
+                            <input type="file" class="form-control form-control-sm" id="uploadBtn" name="img">
                         </div>
                     </div>
                     <div class="modal-footer"><button type="submit" class="btn btn-primary text-center">Submit</button></div>
@@ -53,5 +54,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+    const apiKey = 'AZPViD46vTWepGB2bF1UTz'; //This key need to place in back-end.
+    const uploadBtn = document.getElementById('uploadBtn');
+    uploadBtn.addEventListener('click', function (e){
+        e.preventDefault();
+        const client = filestack.init(apiKey);
+        const options = {
+            uploadInBackground: false, // Wait for the upload to finish before triggering onUploadDone
+            onFileUploadFinished: (fileFinish) => {
+                console.log('File upload finished:', fileFinish);
+            },
+            onFileUploadFailed: (file, error) => {
+                console.error('File upload failed:', error);
+            },
+        };
+        client.picker(options).open();
+    })
+</script>
 </body>
 </html>
