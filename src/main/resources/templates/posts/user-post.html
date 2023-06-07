@@ -42,7 +42,8 @@
                                 <option value="Cat">Cat</option>
                             </select>
                             <br>
-                            <input type="file" id="fileUpload" name="img">
+                            <button id="fileUpload">Add File</button>
+                            <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" readonly>
                             <div id="fileUploaded"></div>
                         </div>
                     </div>
@@ -79,11 +80,11 @@
                 console.log(fileName);
                 console.log(fileURL);
 
+                document.getElementById("inputURL").value = fileURL;
+
                 let pushFile = '';
                 pushFile += "<ul><li>"+ fileName +"</li></ul>"
                 $("#fileUploaded").html(pushFile);
-
-                // console.log(pushFile);
 
             },
             onFileUploadFailed: (file, error) => {
