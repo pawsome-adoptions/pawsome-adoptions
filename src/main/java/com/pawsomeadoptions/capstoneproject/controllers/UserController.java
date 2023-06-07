@@ -1,6 +1,8 @@
 package com.pawsomeadoptions.capstoneproject.controllers;
 
+import com.pawsomeadoptions.capstoneproject.models.Post;
 import com.pawsomeadoptions.capstoneproject.models.User;
+import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 import com.pawsomeadoptions.capstoneproject.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
+    private final PostRepository postDao;
     private UserRepository userDao;
     private EmailService emailService;
 
-    public UserController(UserRepository userDao, EmailService emailService) {
+    public UserController(UserRepository userDao, EmailService emailService, PostRepository postDao) {
         this.userDao = userDao;
         this.emailService = emailService;
+        this.postDao = postDao;
     }
 
     @GetMapping("/register")
@@ -56,10 +62,13 @@ public class UserController {
         }
     }
 
+//    BELOW: Added way to list all the users posts to their profile.
     @GetMapping("/profile")
     public String editProfileView(Model model){
         User user = userDao.findById(1L).get();
+        List<Post> allUserPosts = postDao.findAllByUser(user);
         model.addAttribute("user", user);
+        model.addAttribute("allUserPosts", allUserPosts);
         return "users/profile";
     }
 
