@@ -24,7 +24,7 @@ public class User {
     @Column(nullable = false, name = "profile_pic", length = 2500)
     private String profilePic;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
     public User() {
@@ -32,19 +32,21 @@ public class User {
     }
 
     //constructor with id
-    public User(Long id, String username, String email, String password){
+    public User(Long id, String username, String email, String password, List<Post> posts){
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.posts = posts;
     }
 
     // Constructor without id
-    public User(String username, String email, String password, String profilePic) {
+    public User(String username, String email, String password, String profilePic, List<Post> posts) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.profilePic = profilePic;
+        this.posts = posts;
     }
 
     public User(User copy) {
@@ -94,6 +96,14 @@ public class User {
 
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
 }

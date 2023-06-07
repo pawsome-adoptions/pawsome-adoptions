@@ -1,8 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="~{partials/head :: head}"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{partials/head.html :: head}">
 <body>
 <div th:replace="~{partials/navbar :: nav}"></div>
-<h1>all users posts</h1>
+<div th:if="${param.error}">
+    Invalid Username and Password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<div>
+    <!--  Modal Button  -->
+    <button type="button" class="btn btn-secondary btn-sm"
+            data-bs-toggle="modal" data-bs-target="#createPostModal">Create Post
+    </button>
+
+    <!--  Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1"
+         aria-labelledby="createPostModalLabel" aria-hidden="true">
+        <div
+                class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPostModalLabel">
+                        Create a Post</h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/userpost}" th:method="post" th:object="${post}">
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <input type="hidden" th:field="*{id}">
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
+                            <br>
+                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}"></textarea>
+                            <br>
+                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}">
+                                <option selected value="Type">Type</option>
+                                <option value="Dog">Dog</option>
+                                <option value="Cat">Cat</option>
+                            </select>
+                            <br>
+                            <label for="post-image" class="form-label"></label>
+                            <input type="file" class="form-control form-control-sm" id="post-image" name="img" th:field="*{img}" th:value="*{img}">
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button type="submit" class="btn btn-primary text-center">Submit</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
