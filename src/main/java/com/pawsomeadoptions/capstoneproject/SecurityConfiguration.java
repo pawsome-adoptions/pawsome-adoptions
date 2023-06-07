@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 /* Logout configuration */
                 .and()
                 .logout()
-                .logoutSuccessUrl("/visitorpost") // append a query string value
+                .logoutSuccessUrl("/visitorpost") // Set the logout success URL
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
@@ -57,12 +57,12 @@ public class SecurityConfiguration {
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/home", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}", "/about", "/invalidUsernameOrPassword", "/js/**") // anyone can see home, the ads pages, and sign up
-                .permitAll()
+                .requestMatchers("/home", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}", "/about", "/invalidUsernameOrPassword", "/js/**", "/logout") // anyone can see home, the ads pages, and sign up
+                .permitAll();
 
-        ;
         return http.build();
     }
+
 
 }
 
