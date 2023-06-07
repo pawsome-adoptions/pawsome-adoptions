@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head.html :: head"></head>
+
+<head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="partials/navbar :: nav"></div>
-<h1>"Username" Profile</h1>
+<div th:replace="~{partials/navbar :: nav}"></div>
+<h1>profile</h1>
 
 <div>
     <h3>My Posts</h3>
