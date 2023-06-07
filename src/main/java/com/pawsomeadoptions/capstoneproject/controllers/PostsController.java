@@ -47,7 +47,7 @@ public class PostsController {
         model.addAttribute("myUser", myUser);
         System.out.println("Post Create Successful");
         postDao.save(post);
-        return "redirect:/posts/user-post";
+        return "redirect:/profile";
     }
 
     //single posts for users who are logged in
