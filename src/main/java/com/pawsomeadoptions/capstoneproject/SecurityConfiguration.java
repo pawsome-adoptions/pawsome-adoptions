@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/adopt") // user's home page, it can be any URL
+                .defaultSuccessUrl("/userpost") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -49,8 +49,8 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/usersposts",
-                        "/usersposts/{postID}",
+                        "/userpost",
+                        "/userpost/{postID}",
                         "/profile"
                 ) // only authenticated users can create/edit ads
                 .authenticated()
