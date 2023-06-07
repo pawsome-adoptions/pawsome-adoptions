@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head.html :: head">
+<head th:replace="~{partials/head.html :: head}">
 <body>
-<div th:replace="partials/navbar :: nav"></div>
+<div th:replace="~{partials/navbar :: nav}"></div>
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
@@ -27,19 +27,20 @@
                     <button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form th:action="@{/userpost}" th:method="post">
+                <form th:action="@{/userpost}" th:method="post" th:object="${post}">
+
                     <div class="modal-body">
                         <div class="mb-3">
-                            <input type="text" placeholder="Title" name="title">
+                            <input type="hidden" th:field="*{id}">
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
                             <br>
-                            <textarea placeholder="Description" name="description"></textarea>
+                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}"></textarea>
                             <br>
-                            <select class="form-select" aria-label="Default select example" name="category" >
-                                <option selected>Type</option>
+                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}">
+                                <option selected value="Type">Type</option>
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
                             </select>
-
                             <br>
                             <input type="file" id="fileUpload" name="img">
                             <div id="fileUploaded"></div>

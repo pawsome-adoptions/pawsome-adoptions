@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="partials/head :: head"></head>
+<head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="partials/navbar :: nav"></div>
+<div th:replace="~{partials/navbar :: nav}"></div>
 <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
@@ -66,8 +66,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!--Adopt a Pet-->
 <!-- Show from tablet size and up -->

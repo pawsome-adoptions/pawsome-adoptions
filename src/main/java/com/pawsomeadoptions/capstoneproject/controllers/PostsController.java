@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PostsController {
     private PostRepository postDao;
+    private UserRepository userDao;
 
-    public PostsController(PostRepository postDao) {
+    public PostsController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     //posts for visitors who aren't logged in
@@ -39,10 +41,12 @@ public class PostsController {
     }
 
     @PostMapping("/userpost")
-    public String userPost(@ModelAttribute Post post) {
-        postDao.save(post);
-
+    public String userPost(@ModelAttribute Post post, Model model) {
+        User myUser = userDao.getReferenceById(1L);
+        post.setUsers(myUser);
+        model.addAttribute("myUser", myUser);
         System.out.println("Post Create Successful");
+        postDao.save(post);
         return "redirect:/profile";
     }
 
