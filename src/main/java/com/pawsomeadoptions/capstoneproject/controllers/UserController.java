@@ -3,34 +3,34 @@ package com.pawsomeadoptions.capstoneproject.controllers;
 import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 import com.pawsomeadoptions.capstoneproject.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
     private UserRepository userDao;
     private EmailService emailService;
+    private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, EmailService emailService) {
+    public UserController(UserRepository userDao, EmailService emailService, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.emailService = emailService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/register")
+    @GetMapping("/sign-up")
     public String registerForm(Model model) {
         model.addAttribute("user", new User());
-        return "users/register";
+        return "users/sign-up";
     }
 
-    @PostMapping("/register")
+
+    @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
         userDao.save(user);
 
         String subject = "Thank you for joining Pawesome Adoptions!";
@@ -48,22 +48,15 @@ public class UserController {
         return "users/profile";
     }
 
-    @GetMapping("/login")
-    public String loginForm() {
-        return "users/login";
-    }
 
-
-    @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
-        User user = userDao.findByUsername(username);
-
-        if (user != null && user.getPassword().equals(password)) {
-            return "redirect:/usersposts";
-        } else {
-            return "redirect:/invalidUsernameOrPassword";
-        }
-    }
-
-
+//    @PostMapping("/login")
+//    public String login(@RequestParam String username, @RequestParam String password) {
+//        User user = userDao.findByUsername(username);
+//
+//        if (user != null && user.getPassword().equals(password)) {
+//            return "redirect:/usersposts";
+//        } else {
+//            return "redirect:/invalidUsernameOrPassword";
+//        }
+//    }
 }

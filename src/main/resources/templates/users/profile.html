@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="partials/head.html :: head">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="partials/navbar :: nav"></div>
+<div th:replace="~{partials/navbar :: nav}"></div>
 <h1>profile</h1>
 </body>
 </html>
