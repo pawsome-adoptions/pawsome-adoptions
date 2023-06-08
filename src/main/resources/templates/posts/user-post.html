@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{partials/head.html :: head}">
 <body>
+<!--HAVE TWO DIFFERENT NAV BARS ONE FOR USERS AND ONE FOR VISTORS-->
 <div th:replace="~{partials/navbar :: nav}"></div>
 <div th:if="${param.error}">
     Invalid Username and Password.
