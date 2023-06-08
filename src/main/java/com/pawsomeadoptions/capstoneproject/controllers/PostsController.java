@@ -4,6 +4,7 @@ import com.pawsomeadoptions.capstoneproject.models.Post;
 import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

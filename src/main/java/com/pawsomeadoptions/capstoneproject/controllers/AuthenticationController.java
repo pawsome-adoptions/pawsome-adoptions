@@ -8,6 +8,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -21,11 +25,13 @@ public class AuthenticationController {
         this.userDao = userDao;
         this.postDao = postDao;
     }
+
     @GetMapping("/login")
     public String loginForm() {
         return "users/login";
     }
 
+    //    BELOW: Added way to list all the users posts to their profile.
     @GetMapping("/profile")
     public String editProfileView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
