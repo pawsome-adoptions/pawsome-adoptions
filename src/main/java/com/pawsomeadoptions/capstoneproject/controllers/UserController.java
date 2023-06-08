@@ -5,9 +5,11 @@ import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 import com.pawsomeadoptions.capstoneproject.service.EmailService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -54,18 +56,8 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    BELOW: Added way to list all the users posts to their profile.
-//    @GetMapping("/profile")
-//    public String editProfileView(Model model){
-//        User user = userDao.findById(1L).get();
-//        List<Post> allUserPosts = postDao.findAllByUser(user);
-//        model.addAttribute("user", user);
-//        model.addAttribute("allUserPosts", allUserPosts);
-//        return "users/profile";
-//    }
-
 //    Post method for editing the user profile
-    @PostMapping("/profile")
+    @PostMapping("/profile/{id}")
     public String editProfile(@ModelAttribute User user){
         userDao.save(user);
         return "redirect:/profile";
