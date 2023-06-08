@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{partials/head.html :: head}">
 <body>
+<<<<<<< HEAD
 <!--HAVE TWO DIFFERENT NAV BARS ONE FOR USERS AND ONE FOR VISTORS-->
 <div th:replace="~{partials/navbar :: nav}"></div>
+=======
+<div th:replace="~{partials/navbar :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-login :: nav}"></div>
+
+>>>>>>> cc84b8967ea9f488cf9c8b64adaf433a4bb9f6f5
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
@@ -29,7 +35,6 @@
                             data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form th:action="@{/userpost}" th:method="post" th:object="${post}">
-
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">

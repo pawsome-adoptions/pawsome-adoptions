@@ -5,6 +5,10 @@ import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 import com.pawsomeadoptions.capstoneproject.service.EmailService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,18 +50,19 @@ public class UserController {
                 + "Cheers,\nPawesome Adoptions";
 
         emailService.prepareAndSend(user.getEmail(), subject, body);
+
         return "redirect:/login";
     }
 
 //    BELOW: Added way to list all the users posts to their profile.
-    @GetMapping("/profile")
-    public String editProfileView(Model model){
-        User user = userDao.findById(1L).get();
-        List<Post> allUserPosts = postDao.findAllByUser(user);
-        model.addAttribute("user", user);
-        model.addAttribute("allUserPosts", allUserPosts);
-        return "users/profile";
-    }
+//    @GetMapping("/profile")
+//    public String editProfileView(Model model){
+//        User user = userDao.findById(1L).get();
+//        List<Post> allUserPosts = postDao.findAllByUser(user);
+//        model.addAttribute("user", user);
+//        model.addAttribute("allUserPosts", allUserPosts);
+//        return "users/profile";
+//    }
 
 //    Post method for editing the user profile
     @PostMapping("/profile")
@@ -65,5 +70,22 @@ public class UserController {
         userDao.save(user);
         return "redirect:/profile";
     }
+
+    @PostMapping("/deleteUser")
+    public String deleteProfile() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Post> allUserPosts = postDao.findAllByUser(user);
+        postDao.deleteAll(allUserPosts);
+
+        System.out.println(user.getId() + " " + user.getUsername());
+
+        user = userDao.getReferenceById(user.getId());
+
+        userDao.delete(user);
+//        Need to test below: don't want to delete too many users if register is messed up
+
+        return "redirect:/logout"; // Redirect to the logout page after deleting the profile
+    }
+
 
 }

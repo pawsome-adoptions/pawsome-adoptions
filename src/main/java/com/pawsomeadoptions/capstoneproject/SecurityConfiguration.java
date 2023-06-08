@@ -32,14 +32,13 @@ public class SecurityConfiguration {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/userpost") // user's home page, it can be any URL
+                .defaultSuccessUrl("/profile") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -57,7 +56,7 @@ public class SecurityConfiguration {
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/home", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}", "/about", "/invalidUsernameOrPassword", "/js/**", "/logout") // anyone can see home, the ads pages, and sign up
+                .requestMatchers("/home", "/deleteUser", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}", "/about", "/invalidUsernameOrPassword", "/js/**", "/logout", "/css/**", "/img/**", "/static/**") // anyone can see home, the ads pages, and sign up
                 .permitAll();
 
         return http.build();

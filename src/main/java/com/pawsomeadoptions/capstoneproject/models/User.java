@@ -21,7 +21,7 @@ public class User {
     @Column(nullable = false, length = 500, name = "password")
     private String password;
 
-    @Column(nullable = false, name = "profile_pic", length = 2500)
+    @Column(name = "profile_pic", length = 2500)
     private String profilePic;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
