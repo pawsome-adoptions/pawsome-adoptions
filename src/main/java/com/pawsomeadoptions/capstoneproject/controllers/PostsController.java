@@ -4,12 +4,10 @@ import com.pawsomeadoptions.capstoneproject.models.Post;
 import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostsController {
@@ -41,18 +39,19 @@ public class PostsController {
     }
 
     @PostMapping("/userpost")
-    public String userPost(@ModelAttribute Post post, Model model) {
-        User myUser = userDao.getReferenceById(1L);
-        post.setUsers(myUser);
-        model.addAttribute("myUser", myUser);
+    public String userPost(@ModelAttribute Post post) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUsers(user);
         System.out.println("Post Create Successful");
         postDao.save(post);
         return "redirect:/profile";
     }
 
     //single posts for users who are logged in
-    @GetMapping("/usersposts/{postID}")
-    public String showSingleUsersPosts() {
+    @GetMapping("/userpost/{id}")
+    public String showSingleUsersPosts(@PathVariable Long id, Model model) {
+        Post post = postDao.findById(id).get();
+        model.addAttribute("post", post);
         return "posts/visitor-post";
     }
 }
