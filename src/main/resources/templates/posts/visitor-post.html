@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="partials/head.html :: head">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="partials/navbar :: nav"></div>
-
+<div th:replace="~{partials/navbar :: nav}"></div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
@@ -11,7 +10,7 @@
             <h2 class="text-center"> Sign up or login!</h2>
             <div class="d-flex justify-content-center">
                 <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
-                <a class="btn btn-primary m-2" th:href="@{/register}" role="button">Register</a>
+                <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
             </div>
         </div>
     </div>
