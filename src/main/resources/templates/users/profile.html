@@ -85,9 +85,9 @@
             <div class="d-flex space-evenly">
                 <div th:each="posts : ${allUserPosts}" class="card w-25 p-3 m-3">
 <!--                 Input below when authentication is working:   (id = ${post.id})-->
-                    <a href="profile.html" class="text-decoration-none"><h2 th:text="${posts.getTitle()}" class="text-primary text-center"></h2>
+                    <a th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none"><h2 th:text="${posts.title()}" class="text-primary text-center"></h2>
                     </a>
-                    <p th:text="${posts.getDescription()}" class="m-auto"/>
+                    <p th:text="${posts.description()}" class="m-auto"/>
                 </div>
             </div>
         </div>

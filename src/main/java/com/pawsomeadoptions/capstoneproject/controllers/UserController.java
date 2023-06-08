@@ -64,14 +64,6 @@ public class UserController {
 //        return "users/profile";
 //    }
 
-    @GetMapping("/profile")
-    public String editProfileView(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Post> allUserPosts = postDao.findAllByUser(user);
-        model.addAttribute("user", user);
-        model.addAttribute("allUserPosts", allUserPosts);
-        return "users/profile";
-    }
 //    Post method for editing the user profile
     @PostMapping("/profile")
     public String editProfile(@ModelAttribute User user){
@@ -90,8 +82,9 @@ public class UserController {
         user = userDao.getReferenceById(user.getId());
 
         userDao.delete(user);
+//        Need to test below: don't want to delete too many users if register is messed up
 
-        return "redirect:/login"; // Redirect to the logout page after deleting the profile
+        return "redirect:/logout"; // Redirect to the logout page after deleting the profile
     }
 
 
