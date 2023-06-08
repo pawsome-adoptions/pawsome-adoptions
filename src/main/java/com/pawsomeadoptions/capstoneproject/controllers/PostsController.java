@@ -4,6 +4,8 @@ import com.pawsomeadoptions.capstoneproject.models.Post;
 import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +21,16 @@ public class PostsController {
         this.userDao = userDao;
     }
 
-    //posts for visitors who aren't logged in
+//    posts for visitors who aren't logged in
     @GetMapping("/visitorpost")
     public String showVisitorsPosts() {
-        return "posts/visitor-post";
+            return "posts/visitor-post";
     }
 
     //signle posts for visitors who aren't logged in
     @GetMapping("/visitorpost/{postID}")
     public String showSingleVisitorPosts() {
+
         return "posts/single-visitor";
     }
 

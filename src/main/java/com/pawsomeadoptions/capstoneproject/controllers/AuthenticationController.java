@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+import java.util.List;
+
 @Controller
 public class AuthenticationController {
+
     private PostRepository postDao;
     private UserRepository userDao;
 
-    public AuthenticationController(PostRepository postDao, UserRepository userDao) {
-        this.postDao = postDao;
+    public AuthenticationController(UserRepository userDao, PostRepository postDao) {
         this.userDao = userDao;
+        this.postDao = postDao;
     }
 
     @GetMapping("/login")
@@ -32,11 +35,10 @@ public class AuthenticationController {
     @GetMapping("/profile")
     public String editProfileView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        user = userDao.getReferenceById(user.getId());
         List<Post> allUserPosts = postDao.findAllByUser(user);
         model.addAttribute("user", user);
         model.addAttribute("allUserPosts", allUserPosts);
         return "users/profile";
     }
-
 }

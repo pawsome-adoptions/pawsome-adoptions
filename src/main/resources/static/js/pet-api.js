@@ -177,7 +177,9 @@ function petCards(data) {
         card.style.width = '20rem';
 
         const image = document.createElement('img');
-        image.classList.add('card-img-top', 'mt-3', 'img-dogs-api');
+        image.classList.add('card-img-top', 'mt-3');
+        image.style.width = '295px';
+        image.style.height = '295px';
         image.src = animal.photos.length > 0 ? animal.photos[0].large : '/img/img_not_found_wide.jpg';
         image.alt = 'Animal Image';
 
