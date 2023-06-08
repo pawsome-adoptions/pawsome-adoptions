@@ -2,9 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{partials/head.html :: head}">
 <body>
-<div th:replace="~{partials/navbar :: nav}" sec:authorize="isAuthenticated()"></div>
-<div th:replace="~{partials/navbar-login :: nav}"></div>
-
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
