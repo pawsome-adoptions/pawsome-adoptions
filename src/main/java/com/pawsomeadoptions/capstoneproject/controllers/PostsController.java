@@ -4,6 +4,8 @@ import com.pawsomeadoptions.capstoneproject.models.Post;
 import com.pawsomeadoptions.capstoneproject.models.User;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +26,20 @@ public class PostsController {
     //posts for visitors who aren't logged in
     @GetMapping("/visitorpost")
     public String showVisitorsPosts() {
-        return "posts/visitor-post";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) {
+            // User is logged in, redirect to the user post
+            return "redirect:/userpost";
+        } else {
+            // User is not logged in, show the visitor post
+            return "redirect:/visitorpost";
+        }
     }
 
     //signle posts for visitors who aren't logged in
     @GetMapping("/visitorpost/{postID}")
     public String showSingleVisitorPosts() {
+
         return "posts/single-visitor";
     }
 
