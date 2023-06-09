@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head  th:replace="~{partials/head :: head}">
     <title>Login</title>
 </head>
 <body>
-<div  th:replace="~{partials/navbar :: nav}"></div>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div th:if="${param.error}">
   Invalid Username and Password.
 </div>
@@ -27,7 +28,12 @@
                         </div>
                     </div>
                     <button type="submit" value="Log In" class="btn btn-primary">Log In</button>
+<<<<<<< HEAD
                     <a th:href="@{/resetpassword}"><button value="Reset Password" class="btn btn-danger">Reset Password</button></a>
+=======
+                    <a type="button" value="Reset Password" class="btn btn-danger" th:href="@{/reset-password}">Reset Password</a>
+<!--                <a class="nav-link active" aria-current="page" href="#" th:href="@{/profile}">Profile</a>-->
+>>>>>>> 8e9b8b16a18f0999cb89d91ad5c6480f5b6ad96a
             </form>
         </div>
     </div>
