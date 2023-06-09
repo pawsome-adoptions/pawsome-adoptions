@@ -1,5 +1,7 @@
+
+petsByLocation(78245, "cat", "female", "adult");
 function petsByLocation(postalCode, petType, genderType, ageType) {
-    // Convert to Token
+    // convert to Token
     fetch(`https://api.petfinder.com/v2/oauth2/token`, {
         method: `POST`,
         headers: {
@@ -9,9 +11,10 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
     })
         .then(response => response.json())
         .then(token => {
-            // Handle the API response here
+            // handle the API response here
             let apiUrl = `https://api.petfinder.com/v2/animals?&location=${postalCode}`;
 
+            //make the url based on parameters
             if (genderType && petType && ageType) {
                 apiUrl += `&gender=${genderType}&type=${petType}&age=${ageType}`;
             } else if (genderType && petType) {
@@ -28,6 +31,8 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
                 apiUrl += `&age=${ageType}`;
             }
 
+
+            //fetch data from the api
             fetch(apiUrl, {
                 method: `GET`,
                 headers: {
@@ -37,27 +42,32 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             })
                 .then(response => response.json())
                 .then(data => {
+                    //call the cards to display them
                     petCards(data);
+                    //call the pageNums function to display page numbers
+                    pageNums(apiUrl, data);
                     console.log(data);
                 })
                 .catch(error => {
-                    // Handle any errors that occurred during the request
+                    // handle any errors that occurred during the request
                     console.error(error);
                 });
         })
         .catch(error => {
-            // Handle any errors that occurred during the request
+            // handle any errors that occurred during the request
             console.error(error);
         });
 }
 
 
-// Get user input from a search form
+// get user input from a search form
 const petSearch = document.getElementById('petSearch');
 const searchInput = document.getElementById('search-bar');
 const animalType = document.getElementById('type');
 const genderType = document.getElementById('gender-type');
 const ageType = document.getElementById('age-type');
+
+//event listener for animal type
 animalType.addEventListener('click', e => {
     e.preventDefault();
 
@@ -79,6 +89,7 @@ animalType.addEventListener('click', e => {
     }
 });
 
+//event listener for gender type
 genderType.addEventListener('click', e => {
     e.preventDefault();
 
@@ -98,6 +109,7 @@ genderType.addEventListener('click', e => {
     }
 });
 
+//event listener for age type
 ageType.addEventListener('click', e => {
     e.preventDefault();
 
@@ -117,8 +129,7 @@ ageType.addEventListener('click', e => {
     }
 });
 
-
-
+//event listener for pet search
 petSearch.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -164,6 +175,7 @@ function petCards(data) {
     // Extract the array of animals from the JSON data
     const animals = data.animals;
 
+    // make sure its an array and the length
     if (!Array.isArray(animals) || animals.length === 0) {
         const noResults = document.createElement('p');
         noResults.textContent = 'No animals found.';
@@ -171,6 +183,7 @@ function petCards(data) {
         return;
     }
 
+    //make pet cards (for each) animal and append them to the container
     animals.forEach(animal => {
         const card = document.createElement('div');
         card.classList.add('card', 'mx-auto', 'my-3');
@@ -229,8 +242,19 @@ function petCards(data) {
 
         description.appendChild(ul);
 
+        const button = document.createElement('button');
+        button.classList.add('btn', 'btn-primary');
+        button.textContent = 'View Details';
+        button.setAttribute('data-bs-toggle', 'modal');
+        button.setAttribute('data-bs-target', '#myModal');
+
+        button.addEventListener('click', () => {
+            showModal(animal);
+        });
+
         cardBody.appendChild(title);
         cardBody.appendChild(description);
+        cardBody.appendChild(button);
 
         card.appendChild(image);
         card.appendChild(cardBody);
@@ -238,5 +262,103 @@ function petCards(data) {
         container.appendChild(card);
     });
 }
+
+// Display Modal
+function showModal(animal) {
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalDescription = document.getElementById('modalDescription');
+
+    modalTitle.innerHTML = '';
+    modalImage.src = '';
+    modalDescription.textContent = '';
+
+    //make modal content
+    const title = document.createElement('h5');
+    title.classList.add('card-title');
+    title.textContent = animal.name;
+
+    const ul = document.createElement('ul');
+    ul.classList.add('list-group', 'list-group-flush');
+
+    const id = document.createElement('li');
+    id.classList.add('list-group-item');
+    id.textContent = `Id: ${animal.id}`;
+
+    const species = document.createElement('li');
+    species.classList.add('list-group-item');
+    species.textContent = `Species: ${animal.species}`;
+
+    const breed = document.createElement('li');
+    breed.classList.add('list-group-item');
+    breed.textContent = `Breed: ${animal.breeds.primary}`;
+
+    const gender = document.createElement('li');
+    gender.classList.add('list-group-item');
+    gender.textContent = `Gender: ${animal.gender}`;
+
+    const age = document.createElement('li');
+    age.classList.add('list-group-item');
+    age.textContent = `Age: ${animal.age}`;
+
+    const size = document.createElement('li');
+    size.classList.add('list-group-item');
+    size.textContent = `Size: ${animal.size}`;
+
+    ul.appendChild(id);
+    ul.appendChild(species);
+    ul.appendChild(breed);
+    ul.appendChild(gender);
+    ul.appendChild(age);
+    ul.appendChild(size);
+
+    //put the info in the modal
+    modalTitle.appendChild(title);
+    modalDescription.appendChild(ul);
+
+    //modal image source
+    modalImage.src = animal.photos.length > 0 ? animal.photos[0].large : '/img/img_not_found_wide.jpg';
+    modalImage.alt = 'Animal Image';
+
+    const myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
+
+    // hide the background and allow scrolling
+    myModal._element.addEventListener('hidden.bs.modal', function () {
+        const modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+            modalBackdrop.remove();
+        }
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = 'auto'; // restore scrolling
+    });
+
+}
+
+//function for pageNums
+function pageNums(apiUrl, data) {
+    let paginationElement = document.getElementById('pagination');
+
+
+    paginationElement.innerHTML = '';
+
+    // get the current page and the # for the rest of the pages
+    const currentPage = data.pagination.current_page;
+    const totalPages = data.pagination.total_pages;
+
+    // create new anchor tags with a for loop
+    for (let i = 1; i <= totalPages; i++) {
+        let anchorElement = document.createElement('a'); //create anchor
+        anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
+        anchorElement.textContent = i; // html text
+
+        if (i === currentPage) {
+            anchorElement.classList.add('active'); // highlight what page user is on
+        }
+
+        paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
+    }
+}
+
 
 

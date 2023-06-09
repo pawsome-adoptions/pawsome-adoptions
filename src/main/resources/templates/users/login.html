@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head  th:replace="~{partials/head :: head}">
     <title>Login</title>
 </head>
 <body>
-<div  th:replace="~{partials/navbar :: nav}"></div>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div th:if="${param.error}">
   Invalid Username and Password.
 </div>
