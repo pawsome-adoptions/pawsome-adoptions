@@ -30,12 +30,12 @@
     <div class="" >
         <div class="card m-3" id="categories">
             <div class="card__header">
-                <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="600">
+                <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="600" height="300vh">
             </div>
-            <div class="card__body">
+            <div class="card__body" style="height: 200px">
                 <span th:text="${post.getCategory()}" th:value="${post.getCategory()}" class="tag tag-blue"></span>
                 <h4 th:text="${post.getTitle()}" ></h4>
-                <p th:text="${post.getDescription()}"></p>
+                <p th:text="${post.getDescription()}" style="overflow: auto"></p>
             </div>
             <div class="card__footer">
                 <div class="user">

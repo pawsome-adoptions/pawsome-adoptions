@@ -80,14 +80,14 @@
 <!-- BELOW: Displays all cards made by the user  -->
     <div class="d-flex align-items-center justify-content-center flex-wrap">
         <div th:each="post : ${allUserPosts}" class="">
-            <div class="" >
+            <div>
                 <div class="card m-3" id="categories">
                     <div class="card__header">
                         <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="300px" height="300px">
                     </div>
-                    <div class="card__body">
+                    <div class="card__body" style="height: 200px; width: 300px">
                         <h4 th:text="${post.getTitle()}" ></h4>
-                        <p th:text="${post.description}"></p>
+                        <p th:text="${post.description}" style="overflow: auto"></p>
                     </div>
                 </div>
             </div>
