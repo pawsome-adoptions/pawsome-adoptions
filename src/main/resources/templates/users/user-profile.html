@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="${#authentication.principal ? ~{partials/navbar-signed-in :: nav} : ~{partials/navbar-signed-out :: nav}}"></div>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
 <h1>Profile</h1>
 </body>

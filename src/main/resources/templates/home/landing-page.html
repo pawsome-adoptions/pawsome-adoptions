@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="~{partials/navbar-signed-in :: nav}"></div>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
@@ -12,8 +13,8 @@
         <div class="carousel-item" data-bs-interval="2000">
             <img th:src="@{/img/walkingDogs.jpg}" class="d-block w-100" alt="A group of dogs on a walk"/>
         </div>
-        <div class="carousel-item">
-            <img th:src="@{/img/groupOfDogs.jpg}"  class="d-block w-100" alt="A group of dogs looking at a treat" />
+        <div class="carousel-item" data-bs-interval="2000">
+            <img th:src="@{/img/groupOfDogs.jpg}" class="d-block w-100" alt="A group of dogs looking at a treat" />
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -26,11 +27,15 @@
     </button>
 </div>
 
+
 <!--Adopt a Pet-->
 <!-- Show on mobile screens -->
 <div class="d-block d-sm-none mb-5">
     <div class="container mx-md-3">
-        <div class="card w-100">
+        <div>
+            <h2>Make a life changing connection with a pet!</h2>
+        </div>
+        <div class="card w-100 light-purple-bg hvr-grow">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
                 <h2 class="card-title">Adopt a Pet</h2>
@@ -49,10 +54,12 @@
 
 <!--Adoption Stories-->
 <!-- Show on mobile screens -->
-<div class="d-block d-sm-none mb-5">
+<div class="d-block d-sm-none mb-5 w-100 h-100">
     <div class="container mx-md-3">
-        <div class="card w-100">
-            <img src="..." class="card-img-top" alt="...">
+        <div>
+            <h2>Share your moving story in Adoption Stories!</h2>
+        </div>
+        <div class="card w-100 light-purple-bg hvr-grow">
             <div class="card-body">
                 <h2 class="card-title">Adoption Stories</h2>
                 <p class="card-text">
@@ -63,58 +70,102 @@
                 </p>
                 <a class="btn btn-primary" href="#" role="button">Adoption Stories</a>
             </div>
+            <img src="..." class="card-img-top" alt="...">
         </div>
     </div>
 </div>
 
 <!--Adopt a Pet-->
 <!-- Show from tablet size and up -->
-<div class="d-none d-sm-flex align-items-center justify-content-center vh-50">
-    <div class="card mb-5" style="max-width: 750px;">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title">Adoption a Pet</h2>
-                    <p class="card-text">
-                        Welcome to Adopt a Pet at Pawesome Adoptions! Find your perfect furry companion with our
-                        user-friendly platform powered by the Petfinder API. Search pets in your area by zipcode and discover
-                        playful pups, cuddly kittens, and gentle senior companions. Start your search today!
-                    </p>
-                    <a class="btn btn-primary" href="#" role="button">Adopt a Pet</a>
+
+    <div class="d-none d-sm-flex align-items-center justify-content-center vh-50">
+        <div class="card mb-5 light-purple-bg hvr-grow" style="max-width: 750px;">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Adoption a Pet</h2>
+                        <p class="card-text">
+                            Welcome to Adopt a Pet at Pawesome Adoptions! Find your perfect furry companion with our
+                            user-friendly platform powered by the Petfinder API. Search pets in your area by zipcode and discover
+                            playful pups, cuddly kittens, and gentle senior companions. Start your search today!
+                        </p>
+                        <a class="btn btn-primary" href="#" role="button">Adopt a Pet</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 
 
 <!--Adoption Stories-->
 <!-- Show from tablet size and up -->
-<div class="d-none d-sm-flex align-items-center justify-content-center">
-    <div class="card mb-5" style="max-width: 750px;">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title">Adoption Stories</h2>
-                    <p class="card-text">
-                        Welcome to Adoption Stories at Pawesome Adoptions! Share the incredible journey of pet adoption
-                        to our community. Whether you've recently adopted or have heartwarming stories, this is the perfect
-                        platform to connect. Sign up to engage with others, leave comments, and celebrate the power of adoption.
-                        Inspire others to embark on life-changing journeys!
-                    </p>
-                    <a class="btn btn-primary" href="#" role="button">Adoption Stories</a>
+    <div class="d-none d-sm-flex align-items-center justify-content-center">
+        <div class="card mb-5 light-purple-bg hvr-grow" style="max-width: 750px;">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Adoption Stories</h2>
+                        <p class="card-text">
+                            Welcome to Adoption Stories at Pawesome Adoptions! Share the incredible journey of pet adoption
+                            to our community. Whether you've recently adopted or have heartwarming stories, this is the perfect
+                            platform to connect. Sign up to engage with others, leave comments, and celebrate the power of adoption.
+                            Inspire others to embark on life-changing journeys!
+                        </p>
+                        <a class="btn btn-primary" href="#" role="button">Adoption Stories</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
                 </div>
             </div>
         </div>
     </div>
+<div class="vh-100 vw-50 m-5">
+    <div>
+        <h2 class="faqs">FAQs</h2>
+    </div>
+    <div>
+        <div class="list-group" id="faqList">
+            <a href="#faqItem1" class="list-group-item list-group-item-action col-md-6" data-bs-toggle="collapse">
+                Why Adoption?
+            </a>
+            <div class="collapse" id="faqItem1" data-bs-parent="#faqList">
+                <div class="list-group-item">
+                   1
+                </div>
+            </div>
+            <a href="#faqItem2" class="list-group-item list-group-item-action col-md-12" data-bs-toggle="collapse">
+                Why use Adoption Stories?
+            </a>
+            <div class="collapse" id="faqItem2" data-bs-parent="#faqList">
+                <div class="list-group-item">
+                    2
+                </div>
+            </div>
+            <a href="#faqItem3" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                Where do we get our information from?
+            </a>
+            <div class="collapse" id="faqItem3" data-bs-parent="#faqList">
+                <div class="list-group-item">
+                    3
+                </div>
+            </div>
+            <a href="#faqItem4" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                Our mission.
+            </a>
+            <div class="collapse" id="faqItem4" data-bs-parent="#faqList">
+                <div class="list-group-item">
+                    4
+                </div>
+            </div>
+            <!-- Add more list group items for additional questions -->
+        </div>
+    </div>
 </div>
-
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
