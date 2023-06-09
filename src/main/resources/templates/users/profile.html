@@ -12,11 +12,11 @@
 
     <div>
         <!--  Modal Button  -->
-        <button type="button" class="btn btn-success btn-sm"><a class="nav-link active" aria-current="page" href="#" th:href="@{/userpost}">View Community Post</a></button>
+        <button type="button" class="btn btn-success btn-sm"><a class="nav-link active" aria-current="page" href="#"
+                                                                th:href="@{/userpost}">View Community Post</a></button>
         <button type="button" class="btn btn-success btn-sm"
                 data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile Information
         </button>
-
 
 
         <!--  Modal -->
@@ -29,35 +29,43 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="post" th:action="@{/profile}" th:object="${user}">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <input type="hidden" th:field="*{id}" th:value="*{id}">
-                            <label for="username" class="form-label">Username:</label>
-                            <input type="text" class="form-control form-control-sm" id="username" name="username" th:field="*{username}" th:value="*{username}">
-                            <br>
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control form-control-sm" id="email" name="email" th:field="*{email}" th:value="*{email}">
-                            <br>
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="text" class="form-control form-control-sm" id="password" name="password" th:field="*{password}" th:value="*{password}">
-                            <br>
-                            <label for="confirm-password" class="form-label">Confirm Password:</label>
-                            <input type="text" class="form-control form-control-sm" id="confirm-password" name="confirmPassword">
-                            <br>
-                            <label for="post-image" class="form-label">Change Profile Image:</label>
-                            <input type="file" class="form-control form-control-sm" id="post-image" name="postImage" th:field="*{profilePic}" th:value="*{profilePic}">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="hidden" th:field="*{id}" th:value="*{id}">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" class="form-control form-control-sm" id="username" name="username"
+                                       th:field="*{username}" th:value="*{username}">
+                                <br>
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control form-control-sm" id="email" name="email"
+                                       th:field="*{email}" th:value="*{email}">
+                                <br>
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="text" class="form-control form-control-sm" id="password" name="password"
+                                       th:field="*{password}" th:value="*{password}">
+                                <br>
+                                <label for="confirm-password" class="form-label">Confirm Password:</label>
+                                <input type="text" class="form-control form-control-sm" id="confirm-password"
+                                       name="confirmPassword">
+                                <br>
+                                <label for="profile-image" class="form-label">Change Profile Image:</label>
+                                <input type="file" class="form-control form-control-sm" id="profile-image"
+                                       name="profileImage" th:field="*{profilePic}" th:value="*{profilePic}">
+                            </div>
                         </div>
-                    </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary text-center">Submit</button>
-                            <button type="button" class="btn btn-danger text-center" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">Delete</button>
+                            <button type="button" class="btn btn-danger text-center" data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirmationModal">Delete
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1"
+             aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -69,7 +77,7 @@
                     </div>
                     <div class="modal-footer">
                         <form id="deleteProfileForm" th:action="@{/deleteUser}" th:method="post">
-<!--                            <input type="hidden" name="_method" value="DELETE">-->
+                            <!--                            <input type="hidden" name="_method" value="DELETE">-->
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
@@ -78,20 +86,32 @@
         </div>
 
     </div>
-<!-- BELOW: Displays all cards made by the user  -->
-    <div class="container4">
-        <div class="container-fluid">
-            <div class="d-flex space-evenly">
-                <div th:each="post : ${allUserPosts}" class="card w-25 p-3 m-3">
 
-                    <a th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none"><h2 th:text="${post.title}" class="text-primary text-center"></h2>
+<!-- BELOW: Displays all cards made by the user  -->
+    <div class="d-flex align-items-center justify-content-center flex-wrap">
+        <div th:each="post : ${allUserPosts}" class="">
+            <div>
+                <div class="card m-3" id="categories">
+                    <div class="card__header">
+                        <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="300px" height="300px">
+                    </div>
+                    <div class="card__body" style="height: 200px; width: 300px">
+                        <a th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none"><h2
+                            th:text="${post.title}" class="text-primary text-center"></h2>
                     </a>
-                    <p th:text="${post.description}" class="m-auto"/>
+                        <p th:text="${post.description}" style="overflow: auto"></p>
+                    </div>
+                  <!--  EDIT POST BUTTON  -->
+                    <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-info text-center mt-2">Edit Post</a>
+                    <br>
+                    <a class="text-decoration-none btn btn-danger text-center" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
 
                 </div>
             </div>
         </div>
-   </div>
+    </div>
+
+</div>
 
 
 </div>

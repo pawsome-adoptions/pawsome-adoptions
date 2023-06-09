@@ -57,7 +57,7 @@ public class UserController {
     }
 
 //    Post method for editing the user profile
-    @PostMapping("/profile")
+    @PostMapping("/profile/{id}")
     public String editProfile(@ModelAttribute User user){
         userDao.save(user);
         return "redirect:/profile";
@@ -79,5 +79,11 @@ public class UserController {
         return "redirect:/logout"; // Redirect to the logout page after deleting the profile
     }
 
+    @GetMapping("/resetpassword")
+    public String resetPassword() {
+        System.out.println("hello");
+        return "users/reset-password";
+
+    }
 
 }

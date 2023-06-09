@@ -48,15 +48,14 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/userpost",
                         "/userpost/{postID}",
-                        "/profile"
+                        "/profile","/userpost/{id}/edit", "/posts/submitEdit", "/userpost/{id}/delete"
                 ) // only authenticated users can create/edit ads
                 .authenticated()
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/home", "/deleteUser", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}", "/about", "/invalidUsernameOrPassword", "/js/**", "/logout", "/css/**", "/img/**", "/static/**") // anyone can see home, the ads pages, and sign up
+                .requestMatchers("/visitorsinglepost", "/home","/userpost", "/deleteUser", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}","/reset-password", "/about", "/invalidUsernameOrPassword", "/js/**", "/logout", "/css/**", "/img/**", "/static/**") // anyone can see home, the ads pages, and sign up
                 .permitAll();
 
         return http.build();
@@ -64,5 +63,3 @@ public class SecurityConfiguration {
 
 
 }
-
-

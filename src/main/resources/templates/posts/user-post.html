@@ -32,12 +32,12 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">
-                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}" required>
                             <br>
-                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}"></textarea>
+                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" required></textarea>
                             <br>
-                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}">
-                                <option selected value="Type">Type</option>
+                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" required>
+                                <option selected value="All" >Please select Type</option>
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
                             </select>
@@ -49,6 +49,32 @@
                     </div>
                     <div class="modal-footer"><button type="submit" class="btn btn-primary text-center">Submit</button></div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div th:each="post : ${posts}">
+        <div>
+            <div class="card m-3">
+                <div class="card__header">
+                    <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="600" height="300vh">
+                </div>
+                <div class="card__body" style="height: 200px">
+                    <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
+                    <h4 th:text="${post.getTitle()}" ></h4>
+                    <p th:text="${post.getDescription()}" style="overflow: auto"></p>
+                </div>
+                <div class="card__footer">
+                    <div class="user">
+                        <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image">
+                        <div class="user__info">
+                            <h5 th:text="${post.users.getUsername()}"></h5>
+                            <small th:text="${post.users.getEmail()}"></small>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a th:href="@{/visitorsinglepost}"><button>See Full Post</button></a>
+                </div>
             </div>
         </div>
     </div>
