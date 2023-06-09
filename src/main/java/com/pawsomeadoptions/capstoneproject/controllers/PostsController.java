@@ -21,10 +21,10 @@ public class PostsController {
         this.userDao = userDao;
     }
 
-//    posts for visitors who aren't logged in
+    //    posts for visitors who aren't logged in
     @GetMapping("/visitorpost")
     public String showVisitorsPosts() {
-            return "posts/visitor-post";
+        return "posts/visitor-post";
     }
 
     //signle posts for visitors who aren't logged in
@@ -60,7 +60,7 @@ public class PostsController {
 
     //post edit for users logged in
     @GetMapping("/userpost/{id}/edit")
-    public String editUsersSinglePost(@PathVariable Long id, Model model){
+    public String editUsersSinglePost(@PathVariable Long id, Model model) {
         Post postToEdit = postDao.getReferenceById(id);
 
         model.addAttribute("postToViewLayer", postToEdit);
@@ -69,9 +69,12 @@ public class PostsController {
     }
 
     @PostMapping("/posts/submitEdit")
-    public String submitPostEdit(@ModelAttribute Post post){
-        post.setCategory("dog");
-        post.setImg("urlHere");
+    public String submitPostEdit(@ModelAttribute Post post) {
+
+        //Note: we are hardcoding here, need to have this functionality implemented
+//        post.setImg("urlHere");
+
+        //This code is good to go
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById(user.getId());
         post.setUsers(user);
@@ -79,24 +82,12 @@ public class PostsController {
         return "redirect:/profile";
     }
 
-//    @PostMapping("/userpost/{id}/edit")
-//    public String editUsersSinglePost(@ModelAttribute("postToViewLayer") Post post){
-//        Post postToEdit = postDao.getReferenceById(id);
-//
-////        model.addAttribute("postToViewLayer", postToEdit);
-//        postDao.save(postToEdit);
-//        return "posts/edit-post";
-//    }
+    @GetMapping("/userpost/{id}/delete")
+    public String deletePost(@PathVariable Long id){
+        Post postToDelete = postDao.getReferenceById(id);
+        postDao.delete(postToDelete);
 
+        return "redirect:/profile";
+    }
 
-//    @PostMapping("/profile")
-//    public String editPost(@RequestParam(name = "title") String title,
-//                              @RequestParam(name = "description") String description, @RequestParam(name = "postImg") String postImg){
-//        Post post = new Post();
-//        post.setTitle(title);
-//        post.setDescription(description);
-//        post.getImg();
-//        postDao.save(post);
-//        return "redirect:/profile";
-//    }
 }

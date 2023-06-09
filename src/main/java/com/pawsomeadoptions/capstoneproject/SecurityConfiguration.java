@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                 .requestMatchers(
                         "/userpost",
                         "/userpost/{postID}",
-                        "/profile","/userpost/{id}/edit", "/posts/submitEdit"
+                        "/profile","/userpost/{id}/edit", "/posts/submitEdit", "/userpost/{id}/delete"
                 ) // only authenticated users can create/edit ads
                 .authenticated()
                 /* Pages that require authentication */
