@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/sign-up")
-    public String registerForm(Model model) {
+    public String showSignupForm(Model model){
         model.addAttribute("user", new User());
         return "users/sign-up";
     }
@@ -77,6 +77,10 @@ public class UserController {
 //        Need to test below: don't want to delete too many users if register is messed up
 
         return "redirect:/logout"; // Redirect to the logout page after deleting the profile
+    }
+    @GetMapping("/reset-password")
+    public String resetPassword() {
+        return "users/reset-password";
     }
 
 

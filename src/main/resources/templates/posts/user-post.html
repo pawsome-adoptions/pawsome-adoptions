@@ -3,6 +3,7 @@
 <head th:replace="~{partials/head.html :: head}">
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 =======
@@ -15,6 +16,10 @@
 
 >>>>>>> cc84b8967ea9f488cf9c8b64adaf433a4bb9f6f5
 >>>>>>> 72277b194bf502e60a187f59c90193882be36026
+=======
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+>>>>>>> 8e9b8b16a18f0999cb89d91ad5c6480f5b6ad96a
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
