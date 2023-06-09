@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="~{partials/navbar :: nav}"></div>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <h1>profile</h1>
 
 <div>
@@ -85,35 +86,33 @@
         </div>
 
     </div>
-    <!-- BELOW: Displays all cards made by the user  -->
-    <div class="container4">
-        <div class="container-fluid">
-            <div class="d-flex space-evenly">
-                <div th:each="post : ${allUserPosts}" class="card w-25 p-3 m-3">
 
-                    <a th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none"><h2
+<!-- BELOW: Displays all cards made by the user  -->
+    <div class="d-flex align-items-center justify-content-center flex-wrap">
+        <div th:each="post : ${allUserPosts}" class="">
+            <div>
+                <div class="card m-3" id="categories">
+                    <div class="card__header">
+                        <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="300px" height="300px">
+                    </div>
+                    <div class="card__body" style="height: 200px; width: 300px">
+                        <a th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none"><h2
                             th:text="${post.title}" class="text-primary text-center"></h2>
                     </a>
-                    <p th:text="${post.description}" class="m-auto"/>
-                    <p th:text="${post.category}" class="m-auto"/>
-                    <!--                    <p th:src="${post.img}" class="m-auto"/>-->
-
-
-                    <!--                    <button type="button" class="btn btn-info text-center" data-bs-toggle="modal" data-bs-target="#editPostModal">Edit Post</button>-->
-
-                    <!--  EDIT POST BUTTON  -->
+                        <p th:text="${post.description}" style="overflow: auto"></p>
+                    </div>
+                  <!--  EDIT POST BUTTON  -->
                     <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-info text-center mt-2">Edit Post</a>
                     <br>
                     <a class="text-decoration-none btn btn-danger text-center" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
+
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-</div>
-</div>
-</div>
+
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

@@ -23,7 +23,10 @@ public class PostsController {
 
     //    posts for visitors who aren't logged in
     @GetMapping("/visitorpost")
-    public String showVisitorsPosts() {
+
+    public String showVisitorsPosts(Model model) {
+        model.addAttribute("posts", postDao.findAll());
+
         return "posts/visitor-post";
     }
 
