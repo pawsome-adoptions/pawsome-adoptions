@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+</head>
+<body>
+<form th:method="post" th:action="@{/posts/submitEdit}" th:object="${postToViewLayer}">
+    <div class="modal-body">
+        <div class="mb-3">
+            <input type="hidden" th:field="*{id}" th:value="*{id}">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" class="form-control form-control-sm" id="title" name="title" th:field="*{title}" th:value="*{title}">
+            <br>
+            <label for="description" class="form-label">Description:</label>
+            <input type="text" class="form-control form-control-sm" id="description" name="description" th:value="*{description}" th:field="*{description}">
+            <br>
+<!--            <label for="postImg" class="form-label">Change Post Image:</label>-->
+<!--            <input type="file" class="form-control form-control-sm" id="postImg" name="postImg">-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success text-center">Submit Edit</button>
+        <br>
+        <button type="button" class="btn btn-danger text-center">Delete Post</button>
+        <!--                        <a th:href="@{/delete/{id}" class="btn btn-primary text-center"> Delete Profile</a>-->
+    </div>
+</form>
+</body>
+</html>

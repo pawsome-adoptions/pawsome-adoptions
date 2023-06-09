@@ -28,25 +28,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="post" th:action="@{/profile}" th:object="${user}">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <input type="hidden" th:field="*{id}" th:value="*{id}">
-                            <label for="username" class="form-label">Username:</label>
-                            <input type="text" class="form-control form-control-sm" id="username" name="username" th:field="*{username}" th:value="*{username}">
-                            <br>
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control form-control-sm" id="email" name="email" th:field="*{email}" th:value="*{email}">
-                            <br>
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="text" class="form-control form-control-sm" id="password" name="password" th:field="*{password}" th:value="*{password}">
-                            <br>
-                            <label for="confirm-password" class="form-label">Confirm Password:</label>
-                            <input type="text" class="form-control form-control-sm" id="confirm-password" name="confirmPassword">
-                            <br>
-                            <label for="post-image" class="form-label">Change Profile Image:</label>
-                            <input type="file" class="form-control form-control-sm" id="post-image" name="postImage" th:field="*{profilePic}" th:value="*{profilePic}">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="hidden" th:field="*{id}" th:value="*{id}">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" class="form-control form-control-sm" id="username" name="username" th:field="*{username}" th:value="*{username}">
+                                <br>
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control form-control-sm" id="email" name="email" th:field="*{email}" th:value="*{email}">
+                                <br>
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="text" class="form-control form-control-sm" id="password" name="password" th:field="*{password}" th:value="*{password}">
+                                <br>
+                                <label for="confirm-password" class="form-label">Confirm Password:</label>
+                                <input type="text" class="form-control form-control-sm" id="confirm-password" name="confirmPassword">
+                                <br>
+                                <label for="profile-image" class="form-label">Change Profile Image:</label>
+                                <input type="file" class="form-control form-control-sm" id="profile-image" name="profileImage" th:field="*{profilePic}" th:value="*{profilePic}">
+                            </div>
                         </div>
-                    </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary text-center">Submit</button>
                             <button type="button" class="btn btn-danger text-center" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">Delete</button>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="modal-footer">
                         <form id="deleteProfileForm" th:action="@{/deleteUser}" th:method="post">
-<!--                            <input type="hidden" name="_method" value="DELETE">-->
+                            <!--                            <input type="hidden" name="_method" value="DELETE">-->
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
@@ -77,7 +77,7 @@
         </div>
 
     </div>
-<!-- BELOW: Displays all cards made by the user  -->
+    <!-- BELOW: Displays all cards made by the user  -->
     <div class="container4">
         <div class="container-fluid">
             <div class="d-flex space-evenly">
@@ -86,12 +86,52 @@
                     <a th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none"><h2 th:text="${post.title}" class="text-primary text-center"></h2>
                     </a>
                     <p th:text="${post.description}" class="m-auto"/>
+<!--                    <button type="button" class="btn btn-info text-center" data-bs-toggle="modal" data-bs-target="#editPostModal">Edit Post</button>-->
 
+                    <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none">Edit Post</a>
+
+                    <!-- Edit Post Modal -->
+                    <div class="modal fade" id="editPostModal" tabindex="-1"
+                         aria-labelledby="editPostModalLabel" aria-hidden="true">
+                        <div
+                                class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editPostModalLabel">
+                                        Edit Post Information</h5>
+                                    <button type="button" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+<!--                                <form method="post" action="/profile">-->
+<!--                                    <div class="modal-body">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <input type="hidden" field="id" value="id">-->
+<!--                                            <label for="title" class="form-label">Title:</label>-->
+<!--                                            <input type="text" class="form-control form-control-sm" id="title" name="title" value="title">-->
+<!--                                            <br>-->
+<!--                                            <label for="description" class="form-label">Description:</label>-->
+<!--                                            <input type="text" class="form-control form-control-sm" id="description" name="description" value="description">-->
+<!--                                            <br>-->
+<!--                                            <label for="postImg" class="form-label">Change Post Image:</label>-->
+<!--                                            <input type="file" class="form-control form-control-sm" id="postImg" name="postImg">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-footer">-->
+<!--                                        <button type="submit" class="btn btn-success text-center">Submit Edit</button>-->
+<!--                                        <br>-->
+<!--                                        <button type="button" class="btn btn-danger text-center">Delete Post</button>-->
+<!--                                        &lt;!&ndash;                        <a th:href="@{/delete/{id}" class="btn btn-primary text-center"> Delete Profile</a>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </form>-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-   </div>
-
+    </div>
+</div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
