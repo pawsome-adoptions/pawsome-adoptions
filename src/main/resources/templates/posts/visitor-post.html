@@ -18,22 +18,22 @@
     </div>
 </div>
 <hr>
-<div class="col-4 col-md-7 col-lg-3 mx-auto">
-    <h6>I loved to see <span><select id="selectbox" data-selected="">
-    <option value="all" selected="selected">All</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-</select></span> stories!</h6>
-</div>
+<!--<div class="col-4 col-md-7 col-lg-3 mx-auto">-->
+<!--    <h6>I loved to see <span><select id="animalTypeSelect" data-selected="">-->
+<!--    <option value="all" selected="selected">All</option>-->
+<!--    <option value="dog">Dog</option>-->
+<!--    <option value="cat">Cat</option>-->
+<!--</select></span> stories!</h6>-->
+<!--</div>-->
 <div class="d-flex align-items-center justify-content-center flex-wrap">
-<div th:each="post : ${posts}" class="">
-    <div class="" >
-        <div class="card m-3" id="categories">
+<div th:each="post : ${posts}">
+    <div>
+        <div class="card m-3">
             <div class="card__header">
                 <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="600" height="300vh">
             </div>
             <div class="card__body" style="height: 200px">
-                <span th:text="${post.getCategory()}" th:value="${post.getCategory()}" class="tag tag-blue"></span>
+                <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 <h4 th:text="${post.getTitle()}" ></h4>
                 <p th:text="${post.getDescription()}" style="overflow: auto"></p>
             </div>
