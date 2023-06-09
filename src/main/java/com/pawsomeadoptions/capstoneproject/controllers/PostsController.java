@@ -29,9 +29,8 @@ public class PostsController {
     }
 
     //signle posts for visitors who aren't logged in
-    @GetMapping("/visitorpost/{postID}")
+    @GetMapping("/visitorsinglepost")
     public String showSingleVisitorPosts() {
-
         return "posts/single-visitor";
     }
 
