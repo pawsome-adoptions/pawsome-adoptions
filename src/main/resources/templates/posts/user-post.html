@@ -33,12 +33,12 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">
-                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}" required>
                             <br>
-                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}"></textarea>
+                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" required></textarea>
                             <br>
-                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}">
-                                <option selected value="Type">Type</option>
+                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" required>
+                                <option selected value="All" >Please select Type</option>
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
                             </select>
