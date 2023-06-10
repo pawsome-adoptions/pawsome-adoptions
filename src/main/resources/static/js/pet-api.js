@@ -193,7 +193,7 @@ function petCards(data) {
     //make pet cards (for each) animal and append them to the container
     animals.forEach(animal => {
         const card = document.createElement('div');
-        card.classList.add('card', 'mx-auto', 'my-3');
+        card.classList.add('card', 'mx-auto', 'my-3', 'col-lg-4');
         card.style.width = '20rem';
 
         const image = document.createElement('img');
