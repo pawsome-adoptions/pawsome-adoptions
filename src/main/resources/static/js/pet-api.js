@@ -3,7 +3,12 @@ petsByLocation(78245, "cat", "female", "adult");
 function petsByLocation(postalCode, petType, genderType, ageType) {
     // Show loading GIF
     const container = document.getElementById('animalContainer');
-    container.innerHTML = '<img src="/gifs/spinner-2.gif" alt="Loading" class="loading-gif">';
+    container.innerHTML = '<div class="d-flex justify-content-center text-light">\n' +
+        '  <div class="spinner-border" role="status">\n' +
+        '    <span class="visually-hidden">Loading...</span>\n' +
+        '  </div>\n' +
+        '</div>';
+    // container.innerHTML = '<img src="/gifs/spinner-2.gif" alt="Loading" class="loading-gif">';
     // convert to Token
     fetch(`https://api.petfinder.com/v2/oauth2/token`, {
         method: `POST`,
@@ -279,7 +284,6 @@ function showModal(animal) {
     modalTitle.innerHTML = '';
     modalImage.src = '';
     modalDescription.textContent = '';
-
     //make modal content
     const title = document.createElement('h5');
     title.classList.add('card-title');
@@ -339,7 +343,6 @@ function showModal(animal) {
         document.body.classList.remove('modal-open');
         document.body.style.overflow = 'auto'; // restore scrolling
     });
-
 }
 
 //function for pageNums

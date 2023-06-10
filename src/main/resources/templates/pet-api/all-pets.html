@@ -21,47 +21,51 @@
     <div class="row">
         <div class="col-md-6">
             <form id="petSearch">
-                <input type="text" id="search-bar" placeholder="Enter postal code" required value="78234">
-                <button type="submit">Search</button>
+                <div class="input-group">
+                    <input type="text" id="search-bar" placeholder="Enter location (e.g., zipcode...)" class="form-control" required>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
             </form>
         </div>
-        <div class="col-md-3">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter by Animal type
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="Animal Type" id="type">
-                    <li><a class="dropdown-item" href="#" data-type="dog">Dog</a></li>
-                    <li><a class="dropdown-item" href="#" data-type="cat">Cat</a></li>
-                </ul>
+            <div class="dropdown-container">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter by Animal Type
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="Animal Type" id="type">
+                        <li><a class="dropdown-item" href="#" data-type="dog">Dog</a></li>
+                        <li><a class="dropdown-item" href="#" data-type="cat">Cat</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter by Gender
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="Gender Type" id="gender-type">
-                    <li><a class="dropdown-item" href="#" data-gender="female">Female</a></li>
-                    <li><a class="dropdown-item" href="#" data-gender="male">Male</a></li>
-                </ul>
+            <div class="dropdown-container">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter by Gender
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="Gender Type" id="gender-type">
+                        <li><a class="dropdown-item" href="#" data-gender="female">Female</a></li>
+                        <li><a class="dropdown-item" href="#" data-gender="male">Male</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter by Age
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="Age Type" id="age-type">
-                    <li><a class="dropdown-item" href="#" data-age="baby">baby</a></li>
-                    <li><a class="dropdown-item" href="#" data-age="young">young</a></li>
-                    <li><a class="dropdown-item" href="#" data-age="adult">adult</a></li>
-                    <li><a class="dropdown-item" href="#" data-age="senior">senior</a></li>
-                </ul>
+            <div class="dropdown-container">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter by Age
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="Age Type" id="age-type">
+                        <li><a class="dropdown-item" href="#" data-age="baby">Baby</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="young">Young</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="adult">Adult</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="senior">Senior</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div id="animalContainer" class="row mx-auto mt-5"></div>

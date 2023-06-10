@@ -5,11 +5,11 @@
 }
 
 body{
-    background-color: #efeae1;
+    background-color: #9ea2c2;
 }
 
-.light-purple-bg {
-    background-color: #9297c4 !important;
+.light-beige-bg {
+    background-color: #efeae1 !important;
 }
 
 .bg-boxshadow{
@@ -26,9 +26,8 @@ body{
 @media (min-width: 768px) {
     /*carousel image in landing page/home*/
     .carousel-item img {
-        height: auto; /* Reset the height to auto */
-        max-height: 400px; /* Adjust the maximum height as desired */
-        object-fit: cover; /* Prevent stretching and maintain aspect ratio */
+        height: 100%;
+        object-fit: cover;
     }
 }
 
@@ -43,5 +42,28 @@ body{
     margin: 0 auto;
     height: 250px;
     width: 250px;
+}
+
+.navbar-logo{
+    width: 60px; /* Adjust the width as needed */
+    height: 54px; /* Adjust the height as needed */
+}
+
+.navbar{
+    background-color: #efeae1 !important;
+}
+
+/*font*/
+.font-roboto{
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-roboto-serif{
+    font-family: 'Roboto Serif', serif;
+}
+
+p {
+    line-height: 1.5;
+    letter-spacing: 1px;
 }
 
