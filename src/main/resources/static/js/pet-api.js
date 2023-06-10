@@ -55,12 +55,14 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
                 })
                 .catch(error => {
                     // handle any errors that occurred during the request
-                    console.error(error);
+                    console.error(error)
+                    window.location.href = 'error-page2.html';
                 });
         })
         .catch(error => {
             // handle any errors that occurred during the request
             console.error(error);
+            window.location.href = '/error-page2.html';
         });
 }
 
