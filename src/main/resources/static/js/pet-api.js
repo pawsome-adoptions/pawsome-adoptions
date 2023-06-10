@@ -193,7 +193,7 @@ function petCards(data) {
     //make pet cards (for each) animal and append them to the container
     animals.forEach(animal => {
         const card = document.createElement('div');
-        card.classList.add('card', 'mx-auto', 'my-3', 'col-lg-4');
+        card.classList.add('card', 'mx-auto', 'my-4', 'col-lg-4', 'hvr-grow', 'bg-boxshadow');
         card.style.width = '20rem';
 
         const image = document.createElement('img');
@@ -250,7 +250,7 @@ function petCards(data) {
         description.appendChild(ul);
 
         const button = document.createElement('button');
-        button.classList.add('btn', 'btn-primary');
+        button.classList.add('btn', 'btn-primary', 'hvr-pulse-shrink');
         button.textContent = 'View Details';
         button.setAttribute('data-bs-toggle', 'modal');
         button.setAttribute('data-bs-target', '#myModal');
