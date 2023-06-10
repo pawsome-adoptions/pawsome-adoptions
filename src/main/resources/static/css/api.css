@@ -34,3 +34,10 @@ body{
 .hvr-underline-from-left:before{
     background-color: #62466b!important; /* Change the background color on hover */
 }
+
+.loading-gif {
+    display: block;
+    margin: 0 auto;
+    height: 250px;
+    width: 250px;
+}

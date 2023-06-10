@@ -1,6 +1,9 @@
 
 petsByLocation(78245, "cat", "female", "adult");
 function petsByLocation(postalCode, petType, genderType, ageType) {
+    // Show loading GIF
+    const container = document.getElementById('animalContainer');
+    container.innerHTML = '<img src="/gifs/spinner-2.gif" alt="Loading" class="loading-gif">';
     // convert to Token
     fetch(`https://api.petfinder.com/v2/oauth2/token`, {
         method: `POST`,
@@ -31,7 +34,6 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
                 apiUrl += `&age=${ageType}`;
             }
 
-
             //fetch data from the api
             fetch(apiUrl, {
                 method: `GET`,
@@ -42,10 +44,13 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             })
                 .then(response => response.json())
                 .then(data => {
+                    container.innerHTML = '';
                     //call the cards to display them
                     petCards(data);
                     //call the pageNums function to display page numbers
                     pageNums(apiUrl, data);
+                    // remove loading GIF
+
                     console.log(data);
                 })
                 .catch(error => {
