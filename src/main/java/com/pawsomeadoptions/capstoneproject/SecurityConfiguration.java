@@ -38,24 +38,24 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/profile") // user's home page, it can be any URL
+                .defaultSuccessUrl("/profile", true) // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
                 .logout()
-                .logoutSuccessUrl("/visitorpost") // Set the logout success URL
+                .logoutSuccessUrl("/login") // Set the logout success URL
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/userpost/{postID}",
-                        "/profile","/userpost/{id}/edit", "/posts/submitEdit", "/userpost/{id}/delete"
+                        "/userpost/{id}",
+                        "/userpost/{id}/edit", "/posts/submitEdit", "/userpost/{id}/delete", "/profile"
                 ) // only authenticated users can create/edit ads
                 .authenticated()
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/visitorsinglepost", "/home","/userpost", "/deleteUser", "/visitorpost", "/visitorpost/{postID}", "/sign-up", "/adopt", "/adopt/{petID}","/reset-password", "/about", "/invalidUsernameOrPassword", "/js/**", "/logout", "/css/**", "/img/**", "/static/**") // anyone can see home, the ads pages, and sign up
+                .requestMatchers("/visitorsinglepost", "/home","/userpost", "/deleteUser", "/visitorpost", "/visitorpost/{id}", "/sign-up", "/adopt", "/adopt/{id}","/reset-password", "/about", "/invalidUsernameOrPassword", "/js/**", "/css/**", "/img/**", "/static/**") // anyone can see home, the ads pages, and sign up
                 .permitAll();
 
         return http.build();

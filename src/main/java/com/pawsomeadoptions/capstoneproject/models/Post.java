@@ -23,7 +23,7 @@ public class Post {
     @Column(nullable = false, name = "category", length = 50)
     private String category;
 
-    @Column(name = "img", length = 2500)
+    @Column(nullable = true , name = "img", length = 2500)
     private String img;
 
     @ManyToOne
