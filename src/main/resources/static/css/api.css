@@ -22,6 +22,11 @@ body{
 .faqs{
     text-align: center;
 }
+
+.icon-small{
+    width: 30px;
+    height: 30px;
+}
 /* Media query for tablets and larger screens */
 @media (min-width: 768px) {
     /*carousel image in landing page/home*/
@@ -29,6 +34,17 @@ body{
         height: 100%;
         object-fit: cover;
     }
+
+    .container-purple{
+        background-color: #85718c;
+        margin: 15%;
+        border-radius: 10px;
+    }
+
+    .about-us-margin{
+        padding: 2%;
+    }
+
 }
 
 
@@ -66,4 +82,13 @@ p {
     line-height: 1.5;
     letter-spacing: 1px;
 }
+
+.shadow-drop-center {
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+
+
+
 
