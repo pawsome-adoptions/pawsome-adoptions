@@ -2,6 +2,7 @@ package com.pawsomeadoptions.capstoneproject.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PetApiController {
@@ -10,8 +11,13 @@ public class PetApiController {
         return "pet-api/all-pets";
     }
 
-    @GetMapping("/adopt/{petID}") //This is for the pet all the ads from pet API
-    public String showSinglePetApi() {
-        return "pet-api/single-pet";
+    @GetMapping("/adopt/{page}") //This is for the pet all the ads from pet API
+    public String showPetPage(@PathVariable int page) {
+        return "pet-api/all-pets";
     }
+
+//    @GetMapping("/adopt/{petID}") //This is for the pet all the ads from pet API
+//    public String showSinglePetApi() {
+//        return "pet-api/single-pet";
+//    }
 }

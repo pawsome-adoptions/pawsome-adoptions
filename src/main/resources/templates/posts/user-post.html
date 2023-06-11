@@ -4,6 +4,7 @@
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
@@ -82,6 +83,7 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<link   th:href="@{/css/visitorPost.css}" rel="stylesheet">
 <script>
     const apiKey = 'AZPViD46vTWepGB2bF1UTz'; //This key need to place in back-end.
 

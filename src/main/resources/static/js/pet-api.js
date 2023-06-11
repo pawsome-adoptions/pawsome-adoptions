@@ -20,7 +20,7 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
         .then(response => response.json())
         .then(token => {
             // handle the API response here
-            let apiUrl = `https://api.petfinder.com/v2/animals?&location=${postalCode}`;
+            let apiUrl = `https://api.petfinder.com/v2/animals?location=${postalCode}`;
 
             //make the url based on parameters
             if (genderType && petType && ageType) {
@@ -164,7 +164,6 @@ petSearch.addEventListener('submit', e => {
     if (ageTypeElement) {
         ageType = ageTypeElement.getAttribute('data-age');
     }
-
 
 
     petsByLocation(postalCode, petType, genderType, ageType);
@@ -349,7 +348,6 @@ function showModal(animal) {
 function pageNums(apiUrl, data) {
     let paginationElement = document.getElementById('pagination');
 
-
     paginationElement.innerHTML = '';
 
     // get the current page and the # for the rest of the pages
@@ -361,6 +359,7 @@ function pageNums(apiUrl, data) {
         let anchorElement = document.createElement('a'); //create anchor
         anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
         anchorElement.textContent = i; // html text
+        console
 
         if (i === currentPage) {
             anchorElement.classList.add('active'); // highlight what page user is on
