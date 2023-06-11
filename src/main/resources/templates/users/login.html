@@ -7,12 +7,6 @@
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
-<div th:if="${param.error}">
-  Invalid Username and Password.
-</div>
-<div th:if="${param.logout}">
-  You have been logged out.
-</div>
 <div class="container">
     <div class="row justify-content-center align-items-center mt-5">
         <div class="col-md-6">
@@ -25,6 +19,12 @@
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type='password' class="form-control form-control-sm" id="password" placeholder="Enter your password" name="password">
+                        </div>
+                        <div th:if="${param.error}">
+                            Invalid Username and Password.
+                        </div>
+                        <div th:if="${param.logout}">
+                            You have been logged out.
                         </div>
                     </div>
                     <button type="submit" value="Log In" class="btn btn-primary">Log In</button>

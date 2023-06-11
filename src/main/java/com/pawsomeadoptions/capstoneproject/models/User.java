@@ -21,7 +21,7 @@ public class User {
     @Column(nullable = false, length = 500, name = "password")
     private String password;
 
-    @Column(name = "profile_pic", length = 2500)
+    @Column(nullable = true , name = "profile_pic", length = 2500)
     private String profilePic;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -32,15 +32,17 @@ public class User {
     }
 
     //constructor with id
-    public User(Long id, String username, String email, String password, List<Post> posts){
+
+
+    public User(Long id, String username, String email, String password, String profilePic, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.profilePic = profilePic;
         this.posts = posts;
     }
 
-    // Constructor without id
     public User(String username, String email, String password, String profilePic, List<Post> posts) {
         this.username = username;
         this.email = email;
@@ -105,5 +107,7 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
+
 
 }
