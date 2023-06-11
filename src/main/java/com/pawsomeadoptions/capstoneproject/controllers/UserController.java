@@ -56,6 +56,16 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/profile")
+    public String editProfileView(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById(user.getId());
+        List<Post> allUserPosts = postDao.findAllByUser(user);
+        model.addAttribute("user", user);
+        model.addAttribute("allUserPosts", allUserPosts);
+        return "users/profile";
+    }
+
 //    Post method for editing the user profile
     @PostMapping("/profile/{id}")
     public String editProfile(@ModelAttribute User user){
