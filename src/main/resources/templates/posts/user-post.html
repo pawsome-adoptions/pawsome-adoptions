@@ -52,28 +52,26 @@
             </div>
         </div>
     </div>
-    <div th:each="post : ${posts}">
-        <div>
-            <div class="card m-3">
-                <div class="card__header">
-                    <img th:src="${post.getImg()}" alt="card__image" class="card__image" width="600" height="300vh">
-                </div>
-                <div class="card__body" style="height: 200px">
-                    <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
-                    <h4 th:text="${post.getTitle()}" ></h4>
-                    <p th:text="${post.getDescription()}" style="overflow: auto"></p>
-                </div>
-                <div class="card__footer">
-                    <div class="user">
-                        <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image">
+    <div class="d-flex align-items-center justify-content-center flex-wrap">
+        <div th:each="post : ${posts}">
+            <div class="card m-3 bg-boxshadow" style="width: 24rem;">
+                <div class="card-body">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
                         <div class="user__info">
-                            <h5 th:text="${post.users.getUsername()}"></h5>
-                            <small th:text="${post.users.getEmail()}"></small>
+                            <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
+                            <small th:text="${post.users.getEmail()}" class="text-muted"></small>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <a th:href="@{/visitorsinglepost}"><button>See Full Post</button></a>
+                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh">
+                    <h4 th:text="${post.getTitle()}" class="card-title"></h4>
+                    <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
+                    <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/visitorsinglepost}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
