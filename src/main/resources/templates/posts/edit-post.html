@@ -13,8 +13,7 @@
             <label for="description" class="form-label">Description:</label>
             <input type="text" class="form-control form-control-sm" id="description" name="description" th:value="*{description}" th:field="*{description}">
             <br>
-            <label for="postImg" class="form-label">Change Post Image:</label>
-            <input type="file" class="form-control form-control-sm" id="postImg" name="postImg" th:value="*{img}" th:field="*{img}">
+            <input style="display: none" type="text" class="form-control form-control-sm" id="postImg" name="postImg" th:value="*{img}" th:field="*{img}" readonly>
             <br>
             <label for="category" class="form-label">Change Category:</label>
             <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" id="category">

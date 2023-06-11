@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String registerForm(Model model) {
         model.addAttribute("user", new User());
         return "users/sign-up";
     }
@@ -56,8 +56,18 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/profile")
+    public String editProfileView(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById(user.getId());
+        List<Post> allUserPosts = postDao.findAllByUser(user);
+        model.addAttribute("user", user);
+        model.addAttribute("allUserPosts", allUserPosts);
+        return "users/profile";
+    }
+
 //    Post method for editing the user profile
-    @PostMapping("/profile")
+    @PostMapping("/profile/{id}")
     public String editProfile(@ModelAttribute User user){
         userDao.save(user);
         return "redirect:/profile";
@@ -78,10 +88,12 @@ public class UserController {
 
         return "redirect:/logout"; // Redirect to the logout page after deleting the profile
     }
-    @GetMapping("/reset-password")
-    public String resetPassword() {
-        return "users/reset-password";
-    }
 
+    @GetMapping("/resetpassword")
+    public String resetPassword() {
+        System.out.println("hello");
+        return "users/reset-password";
+
+    }
 
 }

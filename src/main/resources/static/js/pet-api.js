@@ -1,6 +1,14 @@
 
 petsByLocation(78245, "cat", "female", "adult");
 function petsByLocation(postalCode, petType, genderType, ageType) {
+    // Show loading GIF
+    const container = document.getElementById('animalContainer');
+    container.innerHTML = '<div class="d-flex justify-content-center text-light">\n' +
+        '  <div class="spinner-border" role="status">\n' +
+        '    <span class="visually-hidden">Loading...</span>\n' +
+        '  </div>\n' +
+        '</div>';
+    // container.innerHTML = '<img src="/gifs/spinner-2.gif" alt="Loading" class="loading-gif">';
     // convert to Token
     fetch(`https://api.petfinder.com/v2/oauth2/token`, {
         method: `POST`,
@@ -41,20 +49,25 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             })
                 .then(response => response.json())
                 .then(data => {
+                    container.innerHTML = '';
                     //call the cards to display them
                     petCards(data);
                     //call the pageNums function to display page numbers
                     pageNums(apiUrl, data);
+                    // remove loading GIF
+
                     console.log(data);
                 })
                 .catch(error => {
                     // handle any errors that occurred during the request
-                    console.error(error);
+                    console.error(error)
+                    window.location.href = 'error-page2.html';
                 });
         })
         .catch(error => {
             // handle any errors that occurred during the request
             console.error(error);
+            window.location.href = '/error-page2.html';
         });
 }
 
@@ -184,7 +197,7 @@ function petCards(data) {
     //make pet cards (for each) animal and append them to the container
     animals.forEach(animal => {
         const card = document.createElement('div');
-        card.classList.add('card', 'mx-auto', 'my-3');
+        card.classList.add('card', 'mx-auto', 'my-4', 'col-lg-4', 'hvr-grow', 'bg-boxshadow');
         card.style.width = '20rem';
 
         const image = document.createElement('img');
@@ -241,7 +254,7 @@ function petCards(data) {
         description.appendChild(ul);
 
         const button = document.createElement('button');
-        button.classList.add('btn', 'btn-primary');
+        button.classList.add('btn', 'btn-primary', 'hvr-pulse-shrink');
         button.textContent = 'View Details';
         button.setAttribute('data-bs-toggle', 'modal');
         button.setAttribute('data-bs-target', '#myModal');
@@ -270,7 +283,6 @@ function showModal(animal) {
     modalTitle.innerHTML = '';
     modalImage.src = '';
     modalDescription.textContent = '';
-
     //make modal content
     const title = document.createElement('h5');
     title.classList.add('card-title');
@@ -330,7 +342,6 @@ function showModal(animal) {
         document.body.classList.remove('modal-open');
         document.body.style.overflow = 'auto'; // restore scrolling
     });
-
 }
 
 //function for pageNums
