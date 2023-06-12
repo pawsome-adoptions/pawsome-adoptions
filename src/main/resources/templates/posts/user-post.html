@@ -33,9 +33,11 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">
-                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}" required>
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
+                            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
                             <br>
                             <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" required></textarea>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
                             <br>
                             <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" required>
                                 <option selected value="All" >Please select Type</option>
@@ -66,7 +68,10 @@
                         </div>
                     </div>
                 </div>
-                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh">
+                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh"><img th:if="${post.getImg() != null}" th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh" />
+                    <p th:text="${post.getImg()}" />
+                    <p th:text="${post.getImg() != null}" />
+
                     <h4 th:text="${post.getTitle()}" class="card-title"></h4>
                     <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>

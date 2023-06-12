@@ -43,7 +43,13 @@ public class UserController {
 
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user, Model model){
+//        if (userDao.findByUsername(user.getUsername()) != null) {
+//            model.addAttribute("error", "Username already exists.");
+//            return "redirect:sign-up";
+//        }
+
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
