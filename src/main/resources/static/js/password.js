@@ -35,3 +35,11 @@ passwordInput.addEventListener("input", function() {
         lowercase.classList.remove("green");
     }
 });
+
+//hide buttons when user is in visitor post
+var currentURL = window.location.href;
+console.log(currentURL);
+if (currentURL.indexOf("/visitorpost") !== -1) {
+    console.log(currentURL);
+    document.getElementById("navbar-buttons").style.display = "none";
+}
