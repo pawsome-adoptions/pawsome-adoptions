@@ -1,120 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{partials/head :: head}"></head>
 <body>
-<div th:replace="~{partials/navbar :: nav}"></div>
-<div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-            <img th:src="@{/img/dogGlasses.jpg}" class="d-block w-100" alt="A dog wearing glasses"/>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-            <img th:src="@{/img/walkingDogs.jpg}" class="d-block w-100" alt="A group of dogs on a walk"/>
-        </div>
-        <div class="carousel-item">
-            <img th:src="@{/img/groupOfDogs.jpg}"  class="d-block w-100" alt="A group of dogs looking at a treat" />
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
-<!--Adopt a Pet-->
-<!-- Show on mobile screens -->
-<div class="d-block d-sm-none mb-5">
-    <div class="container mx-md-3">
-        <div class="card w-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h2 class="card-title">Adopt a Pet</h2>
-                <p class="card-text">
-                    Welcome to Adopt a Pet at Pawesome Adoptions! Find your perfect furry companion with our
-                    user-friendly platform powered by the Petfinder API. Search pets in your area by zipcode and discover
-                    playful pups, cuddly kittens, and gentle senior companions. Start your search today!
-                </p>
-                <a class="btn btn-primary" href="#" role="button">Adopt a Pet</a>
+<div class="container-fluid vh-100">
+    <div class="row vh-100 align-items-center justify-content-center">
+        <div class="col-md-6 col-12"> <!-- Update the column class here -->
+            <div class="p-3">
+                <h2 class="animate__backInLeft display-4 mb-3 font-roboto">Welcome to Pawesome Adoption!</h2>
+                <p class="animate__backInLeft lead font-roboto-serif">Where you can find pets in need of homes and be a part of an online community where you can share heartwarming adoption/pet stories.</p>
             </div>
         </div>
-    </div>
-</div>
-
-
-
-<!--Adoption Stories-->
-<!-- Show on mobile screens -->
-<div class="d-block d-sm-none mb-5">
-    <div class="container mx-md-3">
-        <div class="card w-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h2 class="card-title">Adoption Stories</h2>
-                <p class="card-text">
-                    Welcome to Adoption Stories at Pawesome Adoptions! Share the incredible journey of pet adoption
-                    to our community. Whether you've recently adopted or have heartwarming stories, this is the perfect
-                    platform to connect. Sign up to engage with others, leave comments, and celebrate the power of adoption.
-                    Inspire others to embark on life-changing journeys!
-                </p>
-                <a class="btn btn-primary" href="#" role="button">Adoption Stories</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--Adopt a Pet-->
-<!-- Show from tablet size and up -->
-<div class="d-none d-sm-flex align-items-center justify-content-center vh-50">
-    <div class="card mb-5" style="max-width: 750px;">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title">Adoption a Pet</h2>
-                    <p class="card-text">
-                        Welcome to Adopt a Pet at Pawesome Adoptions! Find your perfect furry companion with our
-                        user-friendly platform powered by the Petfinder API. Search pets in your area by zipcode and discover
-                        playful pups, cuddly kittens, and gentle senior companions. Start your search today!
-                    </p>
-                    <a class="btn btn-primary" href="#" role="button">Adopt a Pet</a>
+        <div class="col-md-6 col-12"> <!-- Update the column class here -->
+            <div class="carousel-overlay bg-boxshadow">
+                <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="/img/dogGlasses.jpg" class="d-block w-100" alt="A dog wearing glasses">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/img/walkingDogs.jpg" class="d-block w-100" alt="A group of dogs on a walk">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/img/groupOfDogs.jpg" class="d-block w-100" alt="A group of dogs looking at a treat">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<!--Adoption Stories-->
-<!-- Show from tablet size and up -->
-<div class="d-none d-sm-flex align-items-center justify-content-center">
-    <div class="card mb-5" style="max-width: 750px;">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <img src="..." class="img-fluid rounded-start" alt="...">
+<div class="">
+    <div class="container-purple vh-75 ml-lg-5 border-box">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center">
+                <div class="p-3">
+                    <h2 class="display-4 mb-3 font-roboto">Adopt a Pet</h2>
+                    <p class="font-roboto-serif">
+                        Find your perfect furry companion with our user-friendly platform powered by the Petfinder API.
+                        Search pets in your area and discover playful pups, cuddly kittens, and gentle senior companions.<br>
+                        Start your search today!
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary m-2" th:href="@{/adopt}" role="button">View pets!</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title">Adoption Stories</h2>
-                    <p class="card-text">
-                        Welcome to Adoption Stories at Pawesome Adoptions! Share the incredible journey of pet adoption
-                        to our community. Whether you've recently adopted or have heartwarming stories, this is the perfect
-                        platform to connect. Sign up to engage with others, leave comments, and celebrate the power of adoption.
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="/img/dog-polaroid.png" class="w-75 m-sm-5" alt="Image 1">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-purple vh-75 ml-lg-5 border-box">
+        <div class="row">
+            <div class="col-md-6 col-12 text-center">
+                <div class="p-3">
+                    <h2 class="display-4 mb-3 font-roboto">Adoption Stories</h2>
+                    <p class="font-roboto-serif">
+                        Share the incredible journey of pet adoption with our community. Whether you've recently adopted or have heartwarming stories,
+                        this is the perfect platform to connect. Join us to engage with others, leave comments, and celebrate the power of adoption.<br>
                         Inspire others to embark on life-changing journeys!
                     </p>
-                    <a class="btn btn-primary" href="#" role="button">Adoption Stories</a>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
+                        <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="/img/polaroid-dog.png" class="w-100" alt="Image 1">
             </div>
         </div>
     </div>
 </div>
 
-<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" crossorigin="anonymous"></script>
 </body>
 </html>

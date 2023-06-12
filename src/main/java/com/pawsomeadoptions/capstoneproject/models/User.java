@@ -1,6 +1,7 @@
 package com.pawsomeadoptions.capstoneproject.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -13,34 +14,40 @@ public class User {
     private Long id;
 
     @Column(nullable = false, length = 50, unique = true, name = "username")
+    @Size(min = 1, message = "Username must have at least 1 character.")
     private String username;
 
     @Column(nullable = false, length = 200, unique = true, name = "email")
     private String email;
 
     @Column(nullable = false, length = 500, name = "password")
+    @Size(min = 8, message = "Password must have at least 8 character.")
     private String password;
 
-    @Column(name = "profile_pic", length = 2500)
+    @Column(nullable = true , name = "profile_pic", length = 2500)
     private String profilePic;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
+
+
 
     public User() {
         // Default constructor required by JPA
     }
 
     //constructor with id
-    public User(Long id, String username, String email, String password, List<Post> posts){
+
+
+    public User(Long id, String username, String email, String password, String profilePic, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.profilePic = profilePic;
         this.posts = posts;
     }
 
-    // Constructor without id
     public User(String username, String email, String password, String profilePic, List<Post> posts) {
         this.username = username;
         this.email = email;
@@ -105,5 +112,7 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
+
 
 }

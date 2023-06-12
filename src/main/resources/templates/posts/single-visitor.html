@@ -1,8 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<<<<<<< HEAD
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{partials/head :: head}"></head>
 <body>
 <div th:replace="~{partials/navbar :: nav}"></div>
+<h1>hello world</h1>
+=======
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{partials/head :: head}"></head>
+<body>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6 mt-5">
@@ -24,5 +32,6 @@
         </div>
     </div>
 </div>
+>>>>>>> 8e9b8b16a18f0999cb89d91ad5c6480f5b6ad96a
 </body>
 </html>

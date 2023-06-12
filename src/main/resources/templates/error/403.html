@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Ooops, ' + ${error}"></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #62466B;
+            text-align: center;
+            padding: 100px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            color: white;
+        }
+
+        .error-code {
+            font-size: 72px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        #dog-image {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+
+<th:block th:switch="${error}">
+    <div th:case="'Not Found'">
+        <h1>Sorry, the page you're looking for could not be found.</h1>
+    </div>
+    <div th:case="'Forbidden'">
+        <h1>You don't have permission to view this page.</h1>
+    </div>
+</th:block>
+
+<p>Here's a random dog</p>
+
+<!-- RANDOM DOG IMAGE -->
+<img id="dog-image" alt="Random Dog Image"/>
+
+<!-- JavaScript code to fetch random dog image -->
+<script>
+    fetch('https://random.dog/woof.json')
+        .then(response => response.json())
+        .then(data => {
+            const imageUrl = data.url;
+            const dogImageElement = document.getElementById('dog-image');
+            dogImageElement.src = imageUrl;
+        })
+        .catch(error => {
+            console.error('Error fetching dog image:', error);
+        });
+</script>
+</body>
+</html>
+
