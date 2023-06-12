@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Error Page</title>
+    <meta charset="UTF-8"/>
+    <title th:text="'Ooops, ' + ${error}"></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,8 +35,18 @@
     </style>
 </head>
 <body>
-<h1>Oops, something went wrong!</h1>
-<p>Sorry, the page you're looking for could not be found.</p>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+
+<th:block th:switch="${error}">
+    <div th:case="'Not Found'">
+        <h1>Sorry, the page you're looking for could not be found.</h1>
+    </div>
+    <div th:case="'Forbidden'">
+        <h1>You don't have permission to view this page.</h1>
+    </div>
+</th:block>
+
 <p>Here's a random dog</p>
 
 <!-- RANDOM DOG IMAGE -->

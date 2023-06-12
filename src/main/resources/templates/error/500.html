@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Oops, Internal Server Error</title>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+
+<h1>Internal Server Error!</h1>
+
+<p>Here's a random dog</p>
+
+<!-- RANDOM DOG IMAGE -->
+<img id="dog-image" alt="Random Dog Image"/>
+
+<!-- JavaScript code to fetch random dog image -->
+<script>
+    fetch('https://random.dog/woof.json')
+        .then(response => response.json())
+        .then(data => {
+            const imageUrl = data.url;
+            const dogImageElement = document.getElementById('dog-image');
+            dogImageElement.src = imageUrl;
+        })
+        .catch(error => {
+            console.error('Error fetching dog image:', error);
+        });
+</script>
+</body>
+</html>
