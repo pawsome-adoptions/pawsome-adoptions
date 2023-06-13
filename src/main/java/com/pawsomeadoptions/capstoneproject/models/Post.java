@@ -46,11 +46,6 @@ public class Post {
     )
     private List<Category> categories;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<Comment> comments;
-
-
-
     // Constructors, getters, and setters
 
     public Post() {
