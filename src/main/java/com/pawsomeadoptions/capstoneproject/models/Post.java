@@ -34,7 +34,7 @@ public class Post {
     private String img;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -43,13 +43,13 @@ public class Post {
             joinColumns={@JoinColumn(name="posts_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
-
     private List<Category> categories;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
 
+//    private List<Category> categories;
 
     // Constructors, getters, and setters
 
@@ -120,5 +120,13 @@ public class Post {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

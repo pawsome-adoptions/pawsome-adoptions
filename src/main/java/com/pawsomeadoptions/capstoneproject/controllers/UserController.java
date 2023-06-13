@@ -6,6 +6,7 @@ import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 import com.pawsomeadoptions.capstoneproject.service.EmailService;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,21 +36,23 @@ public class UserController {
 
     }
 
+    @Value("${filestack.api}")
+    private String apiKeyFilestack;
+
     @GetMapping("/sign-up")
     public String registerForm(Model model) {
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         model.addAttribute("user", new User());
         return "users/sign-up";
     }
 
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user, Model model){
+    public String saveUser(@ModelAttribute User user){
 //        if (userDao.findByUsername(user.getUsername()) != null) {
 //            model.addAttribute("error", "Username already exists.");
 //            return "redirect:sign-up";
 //        }
-
-
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
@@ -67,6 +70,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public String editProfileView(Model model){
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById(user.getId());
         List<Post> allUserPosts = postDao.findAllByUser(user);
