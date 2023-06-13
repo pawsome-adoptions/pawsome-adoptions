@@ -2,6 +2,8 @@ package com.pawsomeadoptions.capstoneproject.models;
 
 import com.pawsomeadoptions.capstoneproject.repositories.CategoriesRepository;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -13,10 +15,13 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
+    @NotBlank(message = "Posts must have a title.")
+    @Size(min = 3, message = "A title must be at least 3 characters.")
     @Column(nullable = false, length = 100, name = "title" )
     private String title;
 
+    @NotBlank(message = "Posts must have a description.")
+    @Size(min = 3, message = "A title must be at least 3 characters.")
     @Column(nullable = false, length = 300, name = "description")
     private String description;
 
@@ -39,9 +44,11 @@ public class Post {
             joinColumns={@JoinColumn(name="posts_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
-
-
     private List<Category> categories;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Comment> comments;
+
 
 
     // Constructors, getters, and setters

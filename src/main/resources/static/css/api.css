@@ -106,3 +106,16 @@ p {
 .password-indicators p.green {
     color: green;
 }
+
+.border-box{
+
+    border: red 2px solid;
+}
+
+.border-pink{
+    border: solid 2px green;
+}
+
+.background-blob-1{
+    background-image: url("../img/blob-1.svg");
+}

@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.SecureRandom;
 import java.util.List;
 
 @Controller
@@ -23,6 +25,7 @@ public class UserController {
     private UserRepository userDao;
     private EmailService emailService;
     private PasswordEncoder passwordEncoder;
+
 
     public UserController(PostRepository postDao, UserRepository userDao, EmailService emailService, PasswordEncoder passwordEncoder) {
         this.postDao = postDao;
@@ -40,7 +43,13 @@ public class UserController {
 
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user, Model model){
+//        if (userDao.findByUsername(user.getUsername()) != null) {
+//            model.addAttribute("error", "Username already exists.");
+//            return "redirect:sign-up";
+//        }
+
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
@@ -89,11 +98,56 @@ public class UserController {
         return "redirect:/logout"; // Redirect to the logout page after deleting the profile
     }
 
-    @GetMapping("/resetpassword")
-    public String resetPassword() {
-        System.out.println("hello");
-        return "users/reset-password";
+    // method to generate a random password
+    public static String randomPassword(int len) {
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";// ASCII range
 
+        SecureRandom random = new SecureRandom(); //used SecureRandom() class to create a random number
+        StringBuilder sb = new StringBuilder(); //used StringBuilder() class to append characters
+
+        for (int i = 0; i < len; i++)
+        {
+            int randomIndex = random.nextInt(chars.length()); //makes a random number within the range of chars
+            sb.append(chars.charAt(randomIndex)); //appends the character at the random index
+        }
+
+        return sb.toString(); //convert it to string
     }
+
+    @GetMapping("/resetpassword")
+    public String resetPassword(Model model) {
+        model.addAttribute("user", new User());
+        return "users/reset-password";
+    }
+
+    @PostMapping("/resetpassword")
+    public String handleResetPassword(@ModelAttribute User user) {
+        String username = user.getUsername();
+        User existingUser = userDao.findByUsername(username);
+
+        if (existingUser != null) {
+            String newPassword = randomPassword(8);
+            String hashedPassword = passwordEncoder.encode(newPassword);
+
+            existingUser.setPassword(hashedPassword);
+            userDao.save(existingUser);
+
+            String subject = "Password Reset Successful";
+            String body = "Dear " + existingUser.getUsername() + ",\n\n"
+                    + "Your password has been successfully reset. Your new password is: " + newPassword + "\n\n"
+                    + "Please login using your new password.\n\n"
+                    + "Regards,\nPawesome Adoptions";
+
+            emailService.prepareAndSend(existingUser.getEmail(), subject, body);
+
+            System.out.println("Password Reset Successful");
+        } else {
+            // username not found
+        }
+
+        return "users/login";
+    }
+
+
 
 }
