@@ -35,19 +35,16 @@ public class Post {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Comment> comments;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="posts_categories",
             joinColumns={@JoinColumn(name="posts_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
-
     private List<Category> categories;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<Comment> comments;
-
-
 
     // Constructors, getters, and setters
 

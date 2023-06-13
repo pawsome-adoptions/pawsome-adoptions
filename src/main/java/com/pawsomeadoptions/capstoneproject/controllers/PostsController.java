@@ -1,7 +1,9 @@
 package com.pawsomeadoptions.capstoneproject.controllers;
 
+import com.pawsomeadoptions.capstoneproject.models.Comment;
 import com.pawsomeadoptions.capstoneproject.models.Post;
 import com.pawsomeadoptions.capstoneproject.models.User;
+import com.pawsomeadoptions.capstoneproject.repositories.CommentRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 
@@ -17,9 +19,13 @@ public class PostsController {
     private PostRepository postDao;
     private UserRepository userDao;
 
-    public PostsController(PostRepository postDao, UserRepository userDao) {
+
+    private CommentRepository commentDao;
+
+    public PostsController(PostRepository postDao, UserRepository userDao, CommentRepository commentDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.commentDao = commentDao;
     }
 
     @Value("${filestack.api}")
@@ -54,9 +60,24 @@ public class PostsController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById(user.getId());
         post.setUsers(user);
-        System.out.println("Post Create Successful");
         postDao.save(post);
         return "redirect:/profile";
+    }
+
+    @GetMapping("/singlepost/{id}")
+    public String showSinglePostWithID(@PathVariable Long id, Model model){
+        model.addAttribute("currentPost", postDao.getReferenceById(id));
+        model.addAttribute("post", new Post());
+        model.addAttribute("newComment", new Comment());
+        return "posts/singlepost";
+    }
+
+    @PostMapping("/comment")
+    public String postComment(@ModelAttribute Comment newComment) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        newComment.setUser(user);
+        commentDao.save(newComment);
+        return "posts/singlepost";
     }
 
     //single posts for users who are logged in
