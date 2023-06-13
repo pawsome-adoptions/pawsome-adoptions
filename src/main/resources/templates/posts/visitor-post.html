@@ -41,7 +41,7 @@
                 <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
             </div>
             <div class="card-footer">
-                <a th:href="@{/visitorsinglepost}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
+                <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

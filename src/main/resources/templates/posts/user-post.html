@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<<<<<<< HEAD
 <head th:replace="~{partials/posts-header :: head}"></head>
+=======
+<head th:replace="~{partials/head.html :: head}">
+</head>
+>>>>>>> 582c15a33079e175c29dbda9b9410ad2c987bdee
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
@@ -76,7 +81,7 @@
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
                 <div class="card-footer">
-                    <a th:href="@{/visitorsinglepost}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
+                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -105,11 +110,16 @@
             onUploadDone: (fileFinish) => {
                 // console.log('File upload finished:', fileFinish);
 
+<<<<<<< HEAD
                 console.log(fileFinish);
                 let fileName = fileFinish.filesUploaded[0].filename;
                 let fileURL = fileFinish.filesUploaded[0].url;
                 console.log(fileName);
                 console.log(fileURL);
+=======
+                let fileName = fileFinish.filename;
+                let fileURL = fileFinish.url;
+>>>>>>> 582c15a33079e175c29dbda9b9410ad2c987bdee
 
                 document.getElementById("inputURL").value = fileURL;
 
