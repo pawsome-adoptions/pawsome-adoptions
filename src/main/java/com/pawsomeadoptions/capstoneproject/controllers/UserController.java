@@ -80,8 +80,9 @@ public class UserController {
     }
 
 //    Post method for editing the user profile
-    @PostMapping("/profile/{id}")
+    @PostMapping("/profile")
     public String editProfile(@ModelAttribute User user){
+        System.out.println("this user" + user.getEmail());
         userDao.save(user);
         return "redirect:/profile";
     }
