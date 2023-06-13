@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <meta charset="UTF-8">
     <title>Single Post</title>
-</head>
-<body>
+    <head th:replace="~{partials/head :: head}">
+    </head>
+    <body>
+    <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+    <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
-<!--Single post page - why a loop vs a single post?-->
 
     <h1 th:text="${currentPost.getTitle()}"></h1>
     <img th:src="${currentPost.getImg()}" alt="postImg" style="width: 500px; height: 300px">
     <p th:text="${currentPost.getDescription()}"></p>
 
 <hr>
+
+<!--Display comments-->
+<div th:each="comment : ${currentPost.getComments()}" class="my-3 mx-3">
+    <div class="card">
+        <img th:src="${comment.user.getProfilePic()}" alt="profile_img" class="user__image me-2">
+        <h5 th:text="${comment.user.getUsername()}"></h5>
+        <div class="card__body">
+            <p th:text="${comment.getCommentText()}"></p>
+        </div>
+
+    </div>
+</div>
+<hr>
 <div>
-    <h3>Comments.....</h3>
     <form th:action="@{/comment}" method="post" th:object="${newComment}">
-        <input type="hidden" th:field="*{post}" name="postId" th:value="${currentPost.id}">
-        <textarea th:field="*{comment}" name="commentText" id="commentText" cols="100" rows="10" placeholder="Enter your comment here..."></textarea>
+        <input type="hidden" name="postId" th:value="${currentPost.id}">
+        <textarea placeholder="Comment here" name="commentText" th:field="*{commentText}" required></textarea>
         <div><button type="submit" class="btn btn-primary text-center">Post Submit</button></div>
     </form>
 </div>

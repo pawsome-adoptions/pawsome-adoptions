@@ -9,15 +9,16 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne()
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
 
-    @Column(name = "comment_text", length = 250)
+
+    @Column(nullable = false, length = 255, name = "commentText")
     private String commentText;
 
     // Constructors
@@ -25,17 +26,17 @@ public class Comment {
 
     }
 
-    public Comment(Long id, User user, Post post, String comment) {
+    public Comment(Long id, User user, Post post, String commentText) {
         this.id = id;
         this.user = user;
         this.post = post;
-        this.commentText = comment;
+        this.commentText = commentText;
     }
 
-    public Comment(User user, Post post, String comment) {
+    public Comment(User user, Post post, String commentText) {
         this.user = user;
         this.post = post;
-        this.commentText = comment;
+        this.commentText = commentText;
     }
 
     public Long getId() {
@@ -62,13 +63,12 @@ public class Comment {
         this.post = post;
     }
 
-    public String getComment() {
+    public String getCommentText() {
         return commentText;
     }
 
-    public void setComment(String comment) {
-        this.commentText = comment;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 }
-
 

@@ -56,19 +56,24 @@ public class PostsController {
         return "redirect:/profile";
     }
 
+    @PostMapping("/comment")
+    public String postComment(@ModelAttribute Comment newComment, @RequestParam Post postId) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById(user.getId());
+        newComment.setUser(user);
+        newComment.setPost(postId);
+        commentDao.save(newComment);
+        return "redirect:/profile";
+    }
+
     @GetMapping("/singlepost/{id}")
     public String showSinglePostWithID(@PathVariable Long id, Model model){
         model.addAttribute("currentPost", postDao.getReferenceById(id));
-        model.addAttribute("post", new Post());
-        model.addAttribute("newComment", new Comment());
-        return "posts/singlepost";
-    }
+        System.out.println("username: "+ postDao.getReferenceById(id).getUsers().getUsername());
+//        model.addAttribute("post", new Post());
 
-    @PostMapping("/comment")
-    public String postComment(@ModelAttribute Comment newComment) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        newComment.setUser(user);
-        commentDao.save(newComment);
+        model.addAttribute("newComment", new Comment());
+
         return "posts/singlepost";
     }
 

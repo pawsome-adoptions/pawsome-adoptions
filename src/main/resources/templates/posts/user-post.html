@@ -69,10 +69,7 @@
                         </div>
                     </div>
                 </div>
-                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh"><img th:if="${post.getImg() != null}" th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh" />
-                    <p th:text="${post.getImg()}" />
-                    <p th:text="${post.getImg() != null}" />
-
+                    <img th:if="${post.getImg() != null}" th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh" />
                     <h4 th:text="${post.getTitle()}" class="card-title"></h4>
                     <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
