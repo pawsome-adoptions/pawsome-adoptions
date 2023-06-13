@@ -3,6 +3,7 @@ petsByLocation(78245, "cat", "female", "adult");
 function petsByLocation(postalCode, petType, genderType, ageType) {
     // Show loading GIF
     const container = document.getElementById('animalContainer');
+
     container.innerHTML = '<div class="d-flex justify-content-center text-light">\n' +
         '  <div class="spinner-border" role="status">\n' +
         '    <span class="visually-hidden">Loading...</span>\n' +
@@ -49,12 +50,14 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             })
                 .then(response => response.json())
                 .then(data => {
+                    // remove loading GIF
                     container.innerHTML = '';
+
                     //call the cards to display them
                     petCards(data);
+
                     //call the pageNums function to display page numbers
                     pageNums(apiUrl, data);
-                    // remove loading GIF
 
                     console.log(data);
                 })
@@ -197,11 +200,11 @@ function petCards(data) {
     //make pet cards (for each) animal and append them to the container
     animals.forEach(animal => {
         const card = document.createElement('div');
-        card.classList.add('card', 'mx-auto', 'my-4', 'col-lg-4', 'hvr-grow', 'bg-boxshadow');
+        card.classList.add('card', 'mx-auto', 'my-4', 'col-12', 'col-sm-6', 'col-md-4', 'col-lg-3', 'col-xl-3', 'col-xxl-screens', 'hvr-grow', 'bg-boxshadow');
         card.style.width = '20rem';
 
         const image = document.createElement('img');
-        image.classList.add('card-img-top', 'mt-3');
+        image.classList.add('card-img-top', 'mt-3', 'd-flex', 'justify-content-center' , 'align-items-center');
         image.style.width = '295px';
         image.style.height = '295px';
         image.src = animal.photos.length > 0 ? animal.photos[0].large : '/img/img_not_found_wide.jpg';

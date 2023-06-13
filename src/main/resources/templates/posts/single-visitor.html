@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{partials/head :: head}"></head>
-<body>
-<div th:replace="~{partials/navbar :: nav}"></div>
-<h1>hello world</h1>
-=======
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{partials/head :: head}"></head>
 <body>
@@ -32,6 +25,8 @@
         </div>
     </div>
 </div>
->>>>>>> 8e9b8b16a18f0999cb89d91ad5c6480f5b6ad96a
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/filestack-api.js}"> </script>
 </body>
 </html>

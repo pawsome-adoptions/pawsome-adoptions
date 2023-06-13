@@ -30,19 +30,21 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="profile-pic" class="form-label">Profile Picture</label>
-                    <input type="file" class="form-control form-control-sm" id="profile-pic" name="profilePic" th:field="*{profilePic}">
-                    <div class="invalid-feedback">Please select a profile picture.</div>
+                    <button id="fileUpload">Add File</button>
+                    <input style="display: none" type="text" id="inputURL" name="img" th:field="*{profilePic}" readonly>
+                    <div id="fileUploaded"></div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 </div>
 <!--tablets and up -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
 <script src="/js/password.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/js/filestack-api.js}"> </script>
+<script th:src="@{/js/password.js}"></script>
 </body>
 </html>
