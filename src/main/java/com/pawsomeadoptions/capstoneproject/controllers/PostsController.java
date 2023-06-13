@@ -95,20 +95,16 @@ public class PostsController {
         Post postToEdit = postDao.getReferenceById(id);
 
         model.addAttribute("postToViewLayer", postToEdit);
-        postDao.save(postToEdit);
+//        postDao.save(postToEdit);
         return "posts/edit-post";
     }
 
     @PostMapping("/posts/submitEdit")
-    public String submitPostEdit(@ModelAttribute Post post, Model model) {
-        model.addAttribute("apiKeyToView", apiKeyFilestack);
-
-        //Note: we are hardcoding here, need to have this functionality implemented
-//        post.setImg("urlHere");
-
-        //This code is good to go
+    public String submitPostEdit(@ModelAttribute Post post, @RequestParam String img ) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById(user.getId());
+        post.setImg("");
+        post.setImg(img);
         post.setUsers(user);
         postDao.save(post);
         return "redirect:/profile";
