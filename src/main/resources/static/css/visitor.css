@@ -1,0 +1,97 @@
+body{
+    background-image: url("../img/adoption-stories.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-wrapper {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.user__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.user__image {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.icon-small{
+    width: 30px;
+    height: 30px;
+}
+
+.tag {
+    align-self: flex-start;
+    padding: .25em .75em;
+    border-radius: 1em;
+    font-size: .75rem;
+}
+
+/*tags*/
+.tag + .tag {
+    margin-left: .5em;
+}
+
+.tag-blue {
+    background: #56CCF2;
+    background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+    color: #fafafa;
+}
+
+/*user*/
+.user {
+    display: flex;
+    gap: .5rem;
+}
+
+.user__image {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.user__info > small {
+    color: #666;
+}
+
+@media (max-width: 767.98px) {
+    .card {
+        width: 20rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .card {
+        max-width: 30rem !important;
+        max-height: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .card {
+        max-width: 40rem !important;
+        max-height: none !important;
+    }
+}
+
+
+/**/
+
+

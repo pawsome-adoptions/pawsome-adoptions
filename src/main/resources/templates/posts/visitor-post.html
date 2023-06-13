@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="~{partials/head :: head}"></head>
+<head th:replace="~{partials/posts-header :: head}"></head>
+
+</head>
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 text-center">
-            <h1 class="text-center">Want to share your adoption story?</h1>
-            <h2 class="text-center"> Sign up or login!</h2>
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
-                <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
-            </div>
+<div class="border-blue">
+    <div class="container-fluid mt-5">
+        <h1 class="text-center">Want to share your adoption story?</h1>
+        <h2 class="text-center">Sign up or login!</h2>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
+            <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
         </div>
     </div>
 </div>
-<hr>
 
-<div class="d-flex align-items-center justify-content-center flex-wrap">
-    <div th:each="post : ${posts}">
-        <div class="card m-3 bg-boxshadow" style="width: 24rem;">
+
+
+<div class="d-flex flex-wrap justify-content-center align-items-center">
+    <div th:each="post : ${posts}" class="col-sm-12 col-md-12 col-lg-12">
+        <div class="card mx-auto my-4 bg-boxshadow">
             <div class="card-body">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
@@ -32,7 +33,9 @@
                         </div>
                     </div>
                 </div>
-                <img th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh">
+                <div class="card-img-wrapper">
+                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top">
+                </div>
                 <h4 th:text="${post.getTitle()}" class="card-title"></h4>
                 <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
                 <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
@@ -44,8 +47,46 @@
     </div>
 </div>
 
-<!--<script th:src="@{https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=}" crossorigin="anonymous"></script>-->
+
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-<link   th:href="@{/css/visitorPost.css}" rel="stylesheet">
+<script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    const apiKey = [[${fileStackApi}]]; //This key need to place in back-end.
+
+    const uploadBtn = document.getElementById('fileUpload');
+
+    let fileName = $("#fileUploaded").val();
+
+    console.log(fileName);
+
+    uploadBtn.addEventListener('click', function (e){
+        e.preventDefault();
+        const client = filestack.init(apiKey);
+        const options = {
+            uploadInBackground: false, // Wait for the upload to finish before triggering onUploadDone
+            onFileUploadFinished: (fileFinish) => {
+                // console.log('File upload finished:', fileFinish);
+
+                let fileName = fileFinish.filename;
+                let fileURL = fileFinish.url;
+                console.log(fileName);
+                console.log(fileURL);
+
+                document.getElementById("inputURL").value = fileURL;
+
+                let pushFile = '';
+                pushFile += "<ul><li>"+ fileName +"</li></ul>"
+                $("#fileUploaded").html(pushFile);
+
+            },
+            onFileUploadFailed: (file, error) => {
+                console.error('File upload failed:', error);
+            },
+        };
+        client.picker(options).open();
+
+    })
+</script>
 </body>
 </html>

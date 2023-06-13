@@ -7,6 +7,7 @@ import com.pawsomeadoptions.capstoneproject.repositories.CommentRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.PostRepository;
 import com.pawsomeadoptions.capstoneproject.repositories.UserRepository;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,9 +28,13 @@ public class PostsController {
         this.commentDao = commentDao;
     }
 
+    @Value("${filestack.api}")
+    private String apiKeyFilestack;
+
     //    posts for visitors who aren't logged in
     @GetMapping("/visitorpost")
     public String showVisitorsPosts(Model model) {
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         model.addAttribute("posts", postDao.findAll());
         return "posts/visitor-post";
     }
@@ -43,6 +48,7 @@ public class PostsController {
     //posts for users who are logged in
     @GetMapping("/userpost")
     public String userPostForm(Model model) {
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         model.addAttribute("posts", postDao.findAll());
         model.addAttribute("post", new Post());
         return "posts/user-post";
@@ -51,6 +57,7 @@ public class PostsController {
     @PostMapping("/userpost")
     public String userPost(@ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById(user.getId());
         post.setUsers(user);
         postDao.save(post);
         return "redirect:/profile";
@@ -80,6 +87,7 @@ public class PostsController {
     //single posts for users who are logged in
     @GetMapping("/userpost/{id}")
     public String showSingleUsersPosts(@PathVariable Long id, Model model) {
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         Post post = postDao.findById(id).get();
         model.addAttribute("post", post);
         return "posts/visitor-post";
@@ -88,6 +96,7 @@ public class PostsController {
     //post edit for users logged in
     @GetMapping("/userpost/{id}/edit")
     public String editUsersSinglePost(@PathVariable Long id, Model model) {
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         Post postToEdit = postDao.getReferenceById(id);
 
         model.addAttribute("postToViewLayer", postToEdit);
@@ -96,7 +105,8 @@ public class PostsController {
     }
 
     @PostMapping("/posts/submitEdit")
-    public String submitPostEdit(@ModelAttribute Post post) {
+    public String submitPostEdit(@ModelAttribute Post post, Model model) {
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
 
         //Note: we are hardcoding here, need to have this functionality implemented
 //        post.setImg("urlHere");
@@ -110,7 +120,8 @@ public class PostsController {
     }
 
     @GetMapping("/userpost/{id}/delete")
-    public String deletePost(@PathVariable Long id){
+    public String deletePost(@PathVariable Long id, Model model){
+        model.addAttribute("apiKeyToView", apiKeyFilestack);
         Post postToDelete = postDao.getReferenceById(id);
         postDao.delete(postToDelete);
 
