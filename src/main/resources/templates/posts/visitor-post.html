@@ -48,10 +48,45 @@
 </div>
 
 
-<script th:src="@{js/pet-api.js}"></script>
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
 <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/filestack-api.js}"> </script>
+<script th:inline="javascript">
+    const apiKey = [[${fileStackApi}]]; //This key need to place in back-end.
+
+    const uploadBtn = document.getElementById('fileUpload');
+
+    let fileName = $("#fileUploaded").val();
+
+    console.log(fileName);
+
+    uploadBtn.addEventListener('click', function (e){
+        e.preventDefault();
+        const client = filestack.init(apiKey);
+        const options = {
+            uploadInBackground: false, // Wait for the upload to finish before triggering onUploadDone
+            onFileUploadFinished: (fileFinish) => {
+                // console.log('File upload finished:', fileFinish);
+
+                let fileName = fileFinish.filename;
+                let fileURL = fileFinish.url;
+                console.log(fileName);
+                console.log(fileURL);
+
+                document.getElementById("inputURL").value = fileURL;
+
+                let pushFile = '';
+                pushFile += "<ul><li>"+ fileName +"</li></ul>"
+                $("#fileUploaded").html(pushFile);
+
+            },
+            onFileUploadFailed: (file, error) => {
+                console.error('File upload failed:', error);
+            },
+        };
+        client.picker(options).open();
+
+    })
+</script>
 </body>
 </html>

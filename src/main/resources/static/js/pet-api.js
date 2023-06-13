@@ -1,3 +1,8 @@
+const clientId = [[${clientIDView}]];
+
+const secret = [[${secretView}]];
+
+
 
 petsByLocation(78245, "cat", "female", "adult");
 function petsByLocation(postalCode, petType, genderType, ageType) {
@@ -16,7 +21,7 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `grant_type=client_credentials&client_id=hp67Thxs2NKYZJ7ZKxS2Azz2ZyAQTodIMNFajy7Qx30iIQ2xZ7&client_secret=XzC8A2nHtHm20r4Up4G5G4dCOZUp7ZBDN6eQDmnc`
+        body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${secret}`,
     })
         .then(response => response.json())
         .then(token => {

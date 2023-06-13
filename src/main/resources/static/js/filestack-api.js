@@ -1,4 +1,4 @@
-const apiKey = 'AZPViD46vTWepGB2bF1UTz'; //This key need to place in back-end.
+const apiKey = [[${fileStackApi}]]; //This key need to place in back-end.
 
 const uploadBtn = document.getElementById('fileUpload');
 
