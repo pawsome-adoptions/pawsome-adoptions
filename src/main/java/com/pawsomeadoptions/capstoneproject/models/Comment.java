@@ -3,28 +3,39 @@ package com.pawsomeadoptions.capstoneproject.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne()
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
 
-    @Column(name = "comment_text", length = 250)
+
+    @Column(nullable = false, length = 255, name = "commentText")
     private String commentText;
 
     // Constructors
     public Comment() {
+
     }
 
-    public Comment(String commentText) {
+    public Comment(Long id, User user, Post post, String commentText) {
+        this.id = id;
+        this.user = user;
+        this.post = post;
+        this.commentText = commentText;
+    }
+
+    public Comment(User user, Post post, String commentText) {
+        this.user = user;
+        this.post = post;
         this.commentText = commentText;
     }
 
@@ -34,14 +45,6 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCommentText() {
-        return commentText;
-    }
-
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
     }
 
     public User getUser() {
@@ -59,4 +62,13 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
+
+    public String getCommentText() {
+        return commentText;
+    }
+
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
 }
+

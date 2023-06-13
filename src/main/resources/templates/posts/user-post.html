@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{partials/head.html :: head}">
+<head th:replace="~{partials/posts-header :: head}"></head>
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
@@ -46,7 +46,7 @@
                             </select>
                             <br>
                             <button id="fileUpload">Add File</button>
-                            <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" readonly>
+                            <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" value="">
                             <div id="fileUploaded"></div>
                         </div>
                     </div>
@@ -55,42 +55,41 @@
             </div>
         </div>
     </div>
-    <div class="d-flex align-items-center justify-content-center flex-wrap">
-        <div th:each="post : ${posts}">
-            <div class="card m-3 bg-boxshadow" style="width: 24rem;">
+    <div class="d-flex flex-wrap justify-content-center align-items-center">
+        <div th:each="post : ${posts}" class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card mx-auto my-4 bg-boxshadow">
                 <div class="card-body">
-                <div class="card-header">
-                    <div class="d-flex align-items-center">
-                        <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
-                        <div class="user__info">
-                            <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
-                            <small th:text="${post.users.getEmail()}" class="text-muted"></small>
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
+                            <div class="user__info">
+                                <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
+                                <small th:text="${post.users.getEmail()}" class="text-muted"></small>
+                            </div>
                         </div>
                     </div>
                 </div>
-                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh"><img th:if="${post.getImg() != null}" th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh" />
-                    <p th:text="${post.getImg()}" />
-                    <p th:text="${post.getImg() != null}" />
+                    <img th:if="${post.getImg() != null}" th:src="${post.getImg()}" alt="card__image" class="card-img-top" width="600" height="300vh" />
 
                     <h4 th:text="${post.getTitle()}" class="card-title"></h4>
                     <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
                 <div class="card-footer">
-                    <a th:href="@{/visitorsinglepost}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
+                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<link   th:href="@{/css/visitorPost.css}" rel="stylesheet">
-<script>
-    const apiKey = 'AZPViD46vTWepGB2bF1UTz'; //This key need to place in back-end.
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    const apiKey = [[${apiKeyToView}]]; //This key need to place in back-end.
 
     const uploadBtn = document.getElementById('fileUpload');
 
@@ -103,14 +102,14 @@
         const client = filestack.init(apiKey);
         const options = {
             uploadInBackground: false, // Wait for the upload to finish before triggering onUploadDone
-            onFileUploadFinished: (fileFinish) => {
+            onUploadDone: (fileFinish) => {
                 // console.log('File upload finished:', fileFinish);
 
-                let fileName = fileFinish.filename;
-                let fileURL = fileFinish.url;
+                console.log(fileFinish);
+                let fileName = fileFinish.filesUploaded[0].filename;
+                let fileURL = fileFinish.filesUploaded[0].url;
                 console.log(fileName);
                 console.log(fileURL);
-
                 document.getElementById("inputURL").value = fileURL;
 
                 let pushFile = '';
@@ -125,7 +124,6 @@
         client.picker(options).open();
 
     })
-
 </script>
 </body>
 </html>

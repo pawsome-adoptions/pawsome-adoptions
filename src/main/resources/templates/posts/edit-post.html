@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{partials/head :: head}"></head>
 
 <body>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <form th:method="post" th:action="@{/posts/submitEdit}" th:object="${postToViewLayer}">
     <div class="modal-body">
         <div class="mb-3">
@@ -27,5 +29,44 @@
         <button type="submit" class="btn btn-success text-center">Submit Edit</button>
     </div>
 </form>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    const apiKey = [[${fileStackApi}]]; //This key need to place in back-end.
+
+    const uploadBtn = document.getElementById('fileUpload');
+
+    let fileName = $("#fileUploaded").val();
+
+    console.log(fileName);
+
+    uploadBtn.addEventListener('click', function (e){
+        e.preventDefault();
+        const client = filestack.init(apiKey);
+        const options = {
+            uploadInBackground: false, // Wait for the upload to finish before triggering onUploadDone
+            onFileUploadFinished: (fileFinish) => {
+                // console.log('File upload finished:', fileFinish);
+
+                let fileName = fileFinish.filename;
+                let fileURL = fileFinish.url;
+                console.log(fileName);
+                console.log(fileURL);
+
+                document.getElementById("inputURL").value = fileURL;
+
+                let pushFile = '';
+                pushFile += "<ul><li>"+ fileName +"</li></ul>"
+                $("#fileUploaded").html(pushFile);
+
+            },
+            onFileUploadFailed: (file, error) => {
+                console.error('File upload failed:', error);
+            },
+        };
+        client.picker(options).open();
+
+    })
+</script>
 </body>
 </html>
