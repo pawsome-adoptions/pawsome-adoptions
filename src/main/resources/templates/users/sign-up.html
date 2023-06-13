@@ -30,57 +30,51 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button id="fileUpload">Add File</button>
-                    <input style="display: none" type="text" id="inputURL" name="img" th:field="*{profilePic}" readonly>
-                    <div id="fileUploaded"></div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <label for="profile-pic" class="form-label">Profile Picture</label>
+                    <input type="file" class="form-control form-control-sm" id="profile-pic" name="profilePic" th:field="*{profilePic}">
+                    <div class="invalid-feedback">Please select a profile picture.</div>
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 </div>
 <!--tablets and up -->
 <script src="/js/password.js"></script>
+<sc<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
-<script th:src="@{/js/password.js}"></script>
+
 <script th:inline="javascript">
-    const apiKey = [[${fileStackApi}]]; //This key need to place in back-end.
+    $(document).ready(function() {
+        const apiKey = "[YOUR_FILESTACK_API_KEY]"; // Replace with your Filestack API key
 
-    const uploadBtn = document.getElementById('fileUpload');
+        const uploadBtn = document.getElementById('fileUpload');
+        const inputURL = document.getElementById('inputURL');
+        const fileUploaded = document.getElementById('fileUploaded');
 
-    let fileName = $("#fileUploaded").val();
+        uploadBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const client = filestack.init(apiKey);
+            const options = {
+                onUploadDone: function (file) {
+                    const fileName = file.filename;
+                    const fileURL = file.url;
+                    console.log(fileName);
+                    console.log(fileURL);
 
-    console.log(fileName);
+                    inputURL.value = fileURL;
 
-    uploadBtn.addEventListener('click', function (e){
-        e.preventDefault();
-        const client = filestack.init(apiKey);
-        const options = {
-            uploadInBackground: false, // Wait for the upload to finish before triggering onUploadDone
-            onFileUploadFinished: (fileFinish) => {
-                // console.log('File upload finished:', fileFinish);
-
-                let fileName = fileFinish.filename;
-                let fileURL = fileFinish.url;
-                console.log(fileName);
-                console.log(fileURL);
-
-                document.getElementById("inputURL").value = fileURL;
-
-                let pushFile = '';
-                pushFile += "<ul><li>"+ fileName +"</li></ul>"
-                $("#fileUploaded").html(pushFile);
-
-            },
-            onFileUploadFailed: (file, error) => {
-                console.error('File upload failed:', error);
-            },
-        };
-        client.picker(options).open();
-
-    })
+                    const pushFile = '<ul><li>' + fileName + '</li></ul>';
+                    fileUploaded.innerHTML = pushFile;
+                },
+                onUploadFailed: function (file, error) {
+                    console.error('File upload failed:', error);
+                },
+            };
+            client.picker(options).open();
+        });
+    });
 </script>
 </body>
 </html>
