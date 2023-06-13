@@ -30,8 +30,6 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
-
-
     public User() {
         // Default constructor required by JPA
     }

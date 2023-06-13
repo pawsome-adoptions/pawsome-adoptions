@@ -3,7 +3,7 @@ package com.pawsomeadoptions.capstoneproject.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,20 @@ public class Comment {
 
     // Constructors
     public Comment() {
+
     }
 
-    public Comment(String commentText) {
-        this.commentText = commentText;
+    public Comment(Long id, User user, Post post, String comment) {
+        this.id = id;
+        this.user = user;
+        this.post = post;
+        this.commentText = comment;
+    }
+
+    public Comment(User user, Post post, String comment) {
+        this.user = user;
+        this.post = post;
+        this.commentText = comment;
     }
 
     public Long getId() {
@@ -34,14 +44,6 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCommentText() {
-        return commentText;
-    }
-
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
     }
 
     public User getUser() {
@@ -59,4 +61,14 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
+
+    public String getComment() {
+        return commentText;
+    }
+
+    public void setComment(String comment) {
+        this.commentText = comment;
+    }
 }
+
+
