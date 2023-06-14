@@ -7,14 +7,19 @@
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
-<div class="container mt-5">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
-            <h1 class="text-center">Welcome to Adopt a Pet!</h1>
-            <h3 class="text-center">Where you can browse through adorable pets in need of a loving home!</h3>
+            <div class="card adopt-a-pet-bg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center font-roboto mb-4">Welcome to Adopt a Pet!</h1>
+                    <h3 class="card-subtitle text-center font-roboto-serif">Where you can browse through adorable pets in need of a loving home!</h3>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <div class="container">
@@ -22,7 +27,7 @@
         <div class="col-md-6">
             <form id="petSearch">
                 <div class="input-group">
-                    <input type="text" id="search-bar" placeholder="Enter location (e.g., zipcode...)" class="form-control" required>
+                    <input type="text" id="search-bar" placeholder="Enter location (e.g., zipcode...)" class="form-control small-input" required>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
             </form>
@@ -85,7 +90,7 @@
     </div>
 </div>
 
-<div id="pagination"></div>
+<!--<div id="pagination"></div>-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script  th:inline="javascript">
     const clientId = [[${clientIDView}]];
@@ -150,7 +155,7 @@
                         petCards(data);
 
                         //call the pageNums function to display page numbers
-                        pageNums(apiUrl, data);
+                        // pageNums(apiUrl, data);
 
                         console.log(data);
                     })
@@ -441,29 +446,29 @@
     }
 
     //function for pageNums
-    function pageNums(apiUrl, data) {
-        let paginationElement = document.getElementById('pagination');
-
-        paginationElement.innerHTML = '';
-
-        // get the current page and the # for the rest of the pages
-        const currentPage = data.pagination.current_page;
-        const totalPages = data.pagination.total_pages;
-
-        // create new anchor tags with a for loop
-        for (let i = 1; i <= totalPages; i++) {
-            let anchorElement = document.createElement('a'); //create anchor
-            anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
-            anchorElement.textContent = i; // html text
-            console
-
-            if (i === currentPage) {
-                anchorElement.classList.add('active'); // highlight what page user is on
-            }
-
-            paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
-        }
-    }
+    // function pageNums(apiUrl, data) {
+    //     let paginationElement = document.getElementById('pagination');
+    //
+    //     paginationElement.innerHTML = '';
+    //
+    //     // get the current page and the # for the rest of the pages
+    //     const currentPage = data.pagination.current_page;
+    //     const totalPages = data.pagination.total_pages;
+    //
+    //     // create new anchor tags with a for loop
+    //     for (let i = 1; i <= totalPages; i++) {
+    //         let anchorElement = document.createElement('a'); //create anchor
+    //         anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
+    //         anchorElement.textContent = i; // html text
+    //         console
+    //
+    //         if (i === currentPage) {
+    //             anchorElement.classList.add('active'); // highlight what page user is on
+    //         }
+    //
+    //         paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
+    //     }
+    // }
 </script>
 
 

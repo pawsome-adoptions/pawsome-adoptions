@@ -70,7 +70,7 @@ public class PostsController {
         newComment.setUser(user);
         newComment.setPost(postId);
         commentDao.save(newComment);
-        return "redirect:/profile";
+        return "redirect:/singlepost/" + postId;
     }
 
     @GetMapping("/singlepost/{id}")

@@ -4,7 +4,7 @@ body{
     background-repeat: no-repeat;
 }
 
-@media (min-width: 768px) {
+
     /*carousel image in landing page/home*/
     .carousel-item img {
         height: 100%;
@@ -27,4 +27,4 @@ body{
     .card {
         max-width: 20rem;
     }
-}
+
