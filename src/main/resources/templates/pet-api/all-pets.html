@@ -38,8 +38,8 @@
                         Filter by Animal Type
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Animal Type" id="type">
-                        <li><a class="dropdown-item" href="#" data-type="dog">Dog</a></li>
-                        <li><a class="dropdown-item" href="#" data-type="cat">Cat</a></li>
+                        <li><a class="dropdown-item" href="#" data-type="Dog">Dog</a></li>
+                        <li><a class="dropdown-item" href="#" data-type="Cat">Cat</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                         Filter by Gender
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Gender Type" id="gender-type">
-                        <li><a class="dropdown-item" href="#" data-gender="female">Female</a></li>
-                        <li><a class="dropdown-item" href="#" data-gender="male">Male</a></li>
+                        <li><a class="dropdown-item" href="#" data-gender="Female">Female</a></li>
+                        <li><a class="dropdown-item" href="#" data-gender="Male">Male</a></li>
                     </ul>
                 </div>
             </div>
@@ -60,10 +60,10 @@
                         Filter by Age
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Age Type" id="age-type">
-                        <li><a class="dropdown-item" href="#" data-age="baby">Baby</a></li>
-                        <li><a class="dropdown-item" href="#" data-age="young">Young</a></li>
-                        <li><a class="dropdown-item" href="#" data-age="adult">Adult</a></li>
-                        <li><a class="dropdown-item" href="#" data-age="senior">Senior</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="Baby">Baby</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="Young">Young</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="Adult">Adult</a></li>
+                        <li><a class="dropdown-item" href="#" data-age="Senior">Senior</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,7 +98,7 @@
     const dropdownMenu1 = document.querySelector("#type");
     dropdownMenu1.addEventListener("click", function (event) {
         const selectedValue = event.target.getAttribute("data-type");
-        dropdownButton1.textContent = selectedValue.toUpperCase() + " Selected";
+        dropdownButton1.textContent = selectedValue + " selected";
     });
 
     // Gender Type selection
@@ -106,7 +106,7 @@
     const dropdownMenu2 = document.querySelector("#gender-type");
     dropdownMenu2.addEventListener("click", function (event) {
         const selectedValue = event.target.getAttribute("data-gender");
-        dropdownButton2.textContent = selectedValue.toUpperCase() + " Selected";
+        dropdownButton2.textContent = selectedValue + " selected";
     });
 
     //Age selection
@@ -114,11 +114,8 @@
     const dropdownMenu3 = document.querySelector("#age-type");
     dropdownMenu3.addEventListener("click", function (event) {
         const selectedValue = event.target.getAttribute("data-age");
-        dropdownButton3.textContent = selectedValue.toUpperCase() + " Selected";
+        dropdownButton3.textContent = selectedValue + " selected";
     });
-
-
-
 
 
     const clientId = [[${clientIDView}]];
@@ -150,19 +147,19 @@
                 let apiUrl = `https://api.petfinder.com/v2/animals?location=${postalCode}`;
 
                 //make the url based on parameters
-                if (genderType && petType && ageType) {
+                if (genderType.toLowerCase() && petType.toLowerCase() && ageType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}&type=${petType}&age=${ageType}`;
-                } else if (genderType && petType) {
+                } else if (genderType.toLowerCase() && petType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}&type=${petType}`;
-                } else if (genderType && ageType) {
+                } else if (genderType.toLowerCase() && ageType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}&age=${ageType}`;
-                } else if (petType && ageType) {
+                } else if (petType.toLowerCase() && ageType.toLowerCase()) {
                     apiUrl += `&type=${petType}&age=${ageType}`;
-                } else if (genderType) {
+                } else if (genderType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}`;
-                } else if (petType) {
+                } else if (petType.toLowerCase()) {
                     apiUrl += `&type=${petType}`;
-                } else if (ageType) {
+                } else if (ageType.toLowerCase()) {
                     apiUrl += `&age=${ageType}`;
                 }
 
@@ -551,7 +548,5 @@
     //     }
     // }
 </script>
-
-
 </body>
 </html>
