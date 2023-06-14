@@ -74,7 +74,7 @@ public class PostsController {
         newComment.setUser(user);
         newComment.setPost(postId);
         commentDao.save(newComment);
-        return "redirect:/singlepost/" + postId;
+        return "redirect:/singlepost/" + postId.getId();
     }
 
     @GetMapping("/singlepost/{id}")
