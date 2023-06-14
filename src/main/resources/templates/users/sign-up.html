@@ -13,12 +13,15 @@
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control form-control-sm" id="username" placeholder="Enter your username" name="username" th:field="*{username}" required>
                         <div class="invalid-feedback">Please enter a username.</div>
-                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" />
+                        <p class="text-danger" th:if="${usernameError}" th:text="${usernameError}"></p>
+                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
                         <input type="email" class="form-control form-control-sm" id="email" placeholder="Enter your email" name="email" th:field="*{email}" required>
                         <div class="invalid-feedback">Please enter a valid email address.</div>
+                        <p class="text-danger" th:if="${emailError}" th:text="${emailError}"></p>
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>

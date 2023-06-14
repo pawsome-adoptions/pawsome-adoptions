@@ -48,11 +48,22 @@ public class UserController {
 
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
-//        if (userDao.findByUsername(user.getUsername()) != null) {
-//            model.addAttribute("error", "Username already exists.");
-//            return "redirect:sign-up";
-//        }
+    public String saveUser(@ModelAttribute User user, Model model){
+        boolean usernameExists = userDao.findByUsername(user.getUsername()) != null;
+        boolean emailExists = userDao.findByEmail(user.getEmail()) != null;
+
+        if (usernameExists) {
+            model.addAttribute("usernameError", "Username already exists.");
+        }
+
+        if (emailExists) {
+            model.addAttribute("emailError", "Email already exists.");
+        }
+
+        if (usernameExists || emailExists) {
+            return "users/sign-up";
+        }
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
