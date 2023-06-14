@@ -55,7 +55,9 @@ public class SecurityConfiguration {
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
+
                 .requestMatchers("/comment", "/singlepost/{id}", "/visitorsinglepost", "/home","/userpost", "/deleteUser", "/visitorpost", "/visitorpost/{id}", "/sign-up", "/adopt", "/adopt/{id}","/reset-password", "/about", "/invalidUsernameOrPassword", "/js/**", "/css/**", "/img/**", "/static/**", "/resetpassword", "/uri", "/error") // anyone can see home, the ads pages, and sign up
+
                 .permitAll();
 
         return http.build();
