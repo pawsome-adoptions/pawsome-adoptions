@@ -3,7 +3,7 @@ body {
     /*background-color: #f1f1f1;*/
     background-color: #62466B;
     text-align: center;
-    padding: 100px;
+    width: 100%;
 }
 
 h1 {
@@ -27,6 +27,6 @@ p {
 }
 
 #dog-image{
-    width: 300px;
+    width: 50%;
     height: auto;
 }
