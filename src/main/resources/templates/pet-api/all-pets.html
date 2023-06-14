@@ -34,7 +34,7 @@
         </div>
             <div class="dropdown-container">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" id="filterDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
                         Filter by Animal Type
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Animal Type" id="type">
@@ -45,7 +45,7 @@
             </div>
             <div class="dropdown-container">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" id="filterDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
                         Filter by Gender
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Gender Type" id="gender-type">
@@ -56,7 +56,7 @@
             </div>
             <div class="dropdown-container">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" id="filterDropdown3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Filter by Age
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Age Type" id="age-type">
@@ -93,6 +93,34 @@
 <!--<div id="pagination"></div>-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script  th:inline="javascript">
+    // Animal Type selection
+    const dropdownButton1 = document.querySelector("#filterDropdown1");
+    const dropdownMenu1 = document.querySelector("#type");
+    dropdownMenu1.addEventListener("click", function (event) {
+        const selectedValue = event.target.getAttribute("data-type");
+        dropdownButton1.textContent = selectedValue.toUpperCase() + " Selected";
+    });
+
+    // Gender Type selection
+    const dropdownButton2 = document.querySelector("#filterDropdown2");
+    const dropdownMenu2 = document.querySelector("#gender-type");
+    dropdownMenu2.addEventListener("click", function (event) {
+        const selectedValue = event.target.getAttribute("data-gender");
+        dropdownButton2.textContent = selectedValue.toUpperCase() + " Selected";
+    });
+
+    //Age selection
+    const dropdownButton3 = document.querySelector("#filterDropdown3");
+    const dropdownMenu3 = document.querySelector("#age-type");
+    dropdownMenu3.addEventListener("click", function (event) {
+        const selectedValue = event.target.getAttribute("data-age");
+        dropdownButton3.textContent = selectedValue.toUpperCase() + " Selected";
+    });
+
+
+
+
+
     const clientId = [[${clientIDView}]];
 
     const secret = [[${secretView}]];
@@ -450,7 +478,10 @@
 
         const url = document.createElement('li');
         url.classList.add('list-group-item');
-        url.textContent = `More info: ${animal.url}`;
+        const anchor = document.createElement('a');
+        anchor.href = animal.url;
+        anchor.textContent = 'More Information';
+        url.appendChild(anchor);
 
         const published_at = document.createElement('a');
         published_at.classList.add('list-group-item', 'text-muted');
