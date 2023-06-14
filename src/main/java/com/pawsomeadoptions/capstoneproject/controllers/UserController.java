@@ -64,6 +64,11 @@ public class UserController {
             return "users/sign-up";
         }
 
+        if(user.getProfilePic().equals("")){
+            user.setProfilePic("/img/dog.png");
+        }
+
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);

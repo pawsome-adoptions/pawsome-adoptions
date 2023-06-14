@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <img th:src="${post.users.getProfilePic() != null ? post.users.getProfilePic() : '/static/img/dog.png'}" alt="user__image" class="user__image me-2">
+                      <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
                         <div class="user__info">
                             <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
                             <small th:text="${post.users.getEmail()}" class="text-muted"></small>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="card-img-wrapper">
-                    <img th:src="${post.getImg()}" alt="card__image" class="card-img-top">
+                    <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
                 </div>
                 <h4 th:text="${post.getTitle()}" class="card-title"></h4>
                 <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>

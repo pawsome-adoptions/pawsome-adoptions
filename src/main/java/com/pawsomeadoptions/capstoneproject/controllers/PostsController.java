@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @Controller
 public class PostsController {
     private PostRepository postDao;
@@ -36,6 +38,7 @@ public class PostsController {
     public String showVisitorsPosts(Model model) {
         model.addAttribute("apiKeyToView", apiKeyFilestack);
         model.addAttribute("posts", postDao.findAll());
+
         return "posts/visitor-post";
     }
 
@@ -58,6 +61,7 @@ public class PostsController {
     public String userPost(@ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById(user.getId());
+
         post.setUsers(user);
         postDao.save(post);
         return "redirect:/profile";
@@ -108,8 +112,8 @@ public class PostsController {
     public String submitPostEdit(@ModelAttribute Post post, @RequestParam String img ) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById(user.getId());
-        post.setImg("");
-        post.setImg(img);
+//        post.setImg("");
+//        post.setImg(img);
         post.setUsers(user);
         postDao.save(post);
         return "redirect:/profile";
