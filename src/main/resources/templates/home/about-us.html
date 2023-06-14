@@ -4,183 +4,6 @@
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
-
-<!--&lt;!&ndash; About us - mobile screens &ndash;&gt;-->
-<!--<div class="d-block d-sm-none mb-5 mt-5">-->
-<!--    <div class="container mx-md-3">-->
-<!--        <div class="card w-100 light-beige-bg">-->
-<!--            <img src="..." class="card-img-top" alt="...">-->
-<!--            <div class="card-body">-->
-<!--                <h2 class="card-title">Person 1</h2>-->
-<!--                <p class="card-text">-->
-<!--                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                    laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                    explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                    Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                </p>-->
-<!--                <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; About us - mobile screens &ndash;&gt;-->
-<!--<div class="d-block d-sm-none mb-5">-->
-<!--    <div class="container mx-md-3">-->
-<!--        <div class="card w-100 light-beige-bg">-->
-<!--            <img src="..." class="card-img-top" alt="...">-->
-<!--            <div class="card-body">-->
-<!--                <h2 class="card-title">Person 2</h2>-->
-<!--                <p class="card-text">-->
-<!--                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                    laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                    explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                    Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                </p>-->
-<!--                <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; About us - mobile screens &ndash;&gt;-->
-<!--<div class="d-block d-sm-none mb-5">-->
-<!--    <div class="container mx-md-3">-->
-<!--        <div class="card w-100 light-beige-bg">-->
-<!--            <img src="..." class="card-img-top" alt="...">-->
-<!--            <div class="card-body">-->
-<!--                <h2 class="card-title">Person 3</h2>-->
-<!--                <p class="card-text">-->
-<!--                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                    laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                    explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                    Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                </p>-->
-<!--                <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; About us - mobile screens &ndash;&gt;-->
-<!--<div class="d-block d-sm-none mb-5">-->
-<!--    <div class="container mx-md-3">-->
-<!--        <div class="card w-100 light-beige-bg">-->
-<!--            <img src="..." class="card-img-top" alt="...">-->
-<!--            <div class="card-body">-->
-<!--                <h2 class="card-title">Person 4</h2>-->
-<!--                <p class="card-text">-->
-<!--                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                    laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                    explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                    Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                </p>-->
-<!--                <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!--&lt;!&ndash; About us - tablet size and up &ndash;&gt;-->
-<!--<div class="d-none d-sm-flex align-items-center justify-content-center vh-50 mt-5">-->
-<!--    <div class="card mb-5 light-beige-bg" style="max-width: 750px;">-->
-<!--        <div class="row g-0">-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="card-body ">-->
-<!--                    <h2 class="card-title">Person 1</h2>-->
-<!--                    <p class="card-text">-->
-<!--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                        laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                        explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                        Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                    </p>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <img src="..." class="img-fluid rounded-start" alt="...">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; About us - tablet size and up &ndash;&gt;-->
-<!--<div class="d-none d-sm-flex align-items-center justify-content-center vh-50">-->
-<!--    <div class="card mb-5 light-beige-bg" style="max-width: 750px;">-->
-<!--        <div class="row g-0">-->
-<!--            <div class="col-md-6">-->
-<!--                <img src="..." class="img-fluid rounded-start" alt="...">-->
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="card-body">-->
-<!--                    <h2 class="card-title">Person 2</h2>-->
-<!--                    <p class="card-text">-->
-<!--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                        laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                        explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                        Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                    </p>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; About us - tablet size and up &ndash;&gt;-->
-<!--<div class="d-none d-sm-flex align-items-center justify-content-center vh-50">-->
-<!--    <div class="card mb-5" style="max-width: 750px;">-->
-<!--        <div class="row g-0">-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="card-body">-->
-<!--                    <h2 class="card-title">Person 3</h2>-->
-<!--                    <p class="card-text">-->
-<!--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                        laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                        explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                        Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                    </p>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <img src="..." class="img-fluid rounded-start" alt="...">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; About us - tablet size and up &ndash;&gt;-->
-<!--<div class="d-none d-sm-flex align-items-center justify-content-center vh-50">-->
-<!--    <div class="card mb-5" style="max-width: 750px;">-->
-<!--        <div class="row g-0">-->
-<!--            <div class="col-md-6">-->
-<!--                <img src="..." class="img-fluid rounded-start" alt="...">-->
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="card-body">-->
-<!--                    <h2 class="card-title">Person 4</h2>-->
-<!--                    <p class="card-text">-->
-<!--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste-->
-<!--                        laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse-->
-<!--                        explicabo facilis fuga fugiat ipsam laudantium magni nihil odio quas quasi rem sint unde, ut vel veritatis.-->
-<!--                        Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.-->
-<!--                    </p>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">LinkedIn</a>-->
-<!--                    <a class="btn btn-primary" href="#" role="button">Github</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="container col-xxl-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6 shadow-drop-center">
@@ -197,7 +20,7 @@
 </div>
 
 <div class="container mt-5 mb-5">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6 mb-4">
             <div class="card mb-3 light-beige-bg bg-boxshadow">
                 <div class="row g-0 about-us-margin">
@@ -227,11 +50,11 @@
             <div class="card mb-3 light-beige-bg bg-boxshadow">
                 <div class="row g-0 about-us-margin">
                     <div class="col-md-4 d-flex align-items-center justify-content-center about-us-margin">
-                        <img src="/img/user-pic.png" class="img-fluid rounded-start" alt="Person 1">
+                        <img src="/img/Profile-Photo.jpeg" class="img-fluid rounded-start" alt="Person 1">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title">Person 4</h2>
+                            <h2 class="card-title">Minh Nguyen</h2>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa enim ex exercitationem iste
                                 laboriosam praesentium quidem, veniam voluptates voluptatum. Animi asperiores corporis deserunt esse
@@ -239,9 +62,9 @@
                                 Alias aliquid, deleniti necessitatibus perferendis quibusdam sit voluptatibus.
                             </p>
                             <div class="d-flex justify-content-center">
-                                <a href="https://example.com" class="hvr-icon-grow"><img src="/img/icons/linked.png" alt="linkedin icon" class="icon-small hvr-icon"></a>
-                                <a href="https://example.com" class="hvr-icon-grow" style="margin-left: 10px;"><img src="/img/icons/github.png" alt="github icon" class="icon-small hvr-icon"></a>
-                                <a href="https://example.com" class="hvr-icon-grow" style="margin-left: 10px;"><img src="/img/icons/website.png" alt="website icon" class="icon-small hvr-icon"></a>
+                                <a href="https://www.linkedin.com/in/minh-nguyen-723046263/" target="_blank" class="hvr-icon-grow"><img src="/img/icons/linked.png" alt="linkedin icon" class="icon-small hvr-icon"></a>
+                                <a href="https://github.com/minhnguyen8989" target="_blank" class="hvr-icon-grow" style="margin-left: 10px;"><img src="/img/icons/github.png" alt="github icon" class="icon-small hvr-icon"></a>
+                                <a href="https://minhnguyen8989.github.io/myPortfolio/" target="_blank" class="hvr-icon-grow" style="margin-left: 10px;"><img src="/img/icons/website.png" alt="website icon" class="icon-small hvr-icon"></a>
                             </div>
                         </div>
                     </div>
@@ -249,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6 mb-4">
             <div class="card mb-3 light-beige-bg bg-boxshadow">
                 <div class="row g-0 about-us-margin">
@@ -302,7 +125,6 @@
         </div>
     </div>
 </div>
-
 
 
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

@@ -7,65 +7,79 @@
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
-<div class="container mt-5">
+<div class="container mt-2">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
-            <h1 class="text-center">Welcome to Adopt a Pet!</h1>
-            <h3 class="text-center">Where you can browse through adorable pets in need of a loving home!</h3>
+            <div class="card adopt-a-pet-bg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center font-roboto mb-4">Welcome to Adopt a Pet!</h1>
+                    <h3 class="card-subtitle text-center font-roboto-serif">Where you can browse through adorable pets
+                        in need of a loving home!</h3>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
+<!--    <div class="row">-->
+        <div class="d-flex justify-content-md-center myrow">
             <form id="petSearch">
-                <div class="input-group">
-                    <input type="text" id="search-bar" placeholder="Enter location (e.g., zipcode...)" class="form-control" required>
-                    <button type="submit" class="btn btn-primary">Search</button>
+                <div class="d-flex mb-1">
+                    <div class="dropdown-container">
+                        <div class="dropdown me-1 ms-1">
+                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn me-1" type="button"
+                                    id="filterDropdown1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Animal Type
+                            </button>
+                            <ul class="dropdown-menu bg-petcards" aria-labelledby="Animal Type" id="type">
+                                <li><a class="dropdown-item" href="#" data-type="Dog">Dog</a></li>
+                                <li><a class="dropdown-item" href="#" data-type="Cat">Cat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-container">
+                        <div class="dropdown me-1 ms-1">
+                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn" type="button"
+                                    id="filterDropdown2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Gender
+                            </button>
+                            <ul class="dropdown-menu bg-petcards" aria-labelledby="Gender Type" id="gender-type">
+                                <li><a class="dropdown-item" href="#" data-gender="Female">Female</a></li>
+                                <li><a class="dropdown-item" href="#" data-gender="Male">Male</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-container">
+                        <div class="dropdown me-1 ms-1">
+                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn" id="filterDropdown3"
+                                    type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Age
+                            </button>
+                            <ul class="dropdown-menu bg-petcards" aria-labelledby="Age Type" id="age-type">
+                                <li><a class="dropdown-item" href="#" data-age="Baby">Baby</a></li>
+                                <li><a class="dropdown-item" href="#" data-age="Young">Young</a></li>
+                                <li><a class="dropdown-item" href="#" data-age="Adult">Adult</a></li>
+                                <li><a class="dropdown-item" href="#" data-age="Senior">Senior</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mt-3">
+                    <input type="text" id="search-bar" placeholder="Enter location (e.g., zipcode...)"
+                           class="form-control small-input me-1" required>
+                    <button type="submit" class="btn btn-default">Search</button>
                 </div>
             </form>
         </div>
-            <div class="dropdown-container">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter by Animal Type
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="Animal Type" id="type">
-                        <li><a class="dropdown-item" href="#" data-type="dog">Dog</a></li>
-                        <li><a class="dropdown-item" href="#" data-type="cat">Cat</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="dropdown-container">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter by Gender
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="Gender Type" id="gender-type">
-                        <li><a class="dropdown-item" href="#" data-gender="female">Female</a></li>
-                        <li><a class="dropdown-item" href="#" data-gender="male">Male</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="dropdown-container">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter by Age
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="Age Type" id="age-type">
-                        <li><a class="dropdown-item" href="#" data-age="baby">Baby</a></li>
-                        <li><a class="dropdown-item" href="#" data-age="young">Young</a></li>
-                        <li><a class="dropdown-item" href="#" data-age="adult">Adult</a></li>
-                        <li><a class="dropdown-item" href="#" data-age="senior">Senior</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
+<!--    </div>-->
+</div>
+</div>
 
 
 <div id="animalContainer" class="row mx-auto mt-5"></div>
@@ -73,11 +87,11 @@
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header single-card-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-petcards">
                 <img id="modalImage" class="img-fluid" alt="Animal Image">
                 <p id="modalDescription"></p>
             </div>
@@ -85,14 +99,42 @@
     </div>
 </div>
 
-<div id="pagination"></div>
-<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-<script  th:inline="javascript">
+<!--<div id="pagination"></div>-->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    // Animal Type selection
+    const dropdownButton1 = document.querySelector("#filterDropdown1");
+    const dropdownMenu1 = document.querySelector("#type");
+    dropdownMenu1.addEventListener("click", function (event) {
+        const selectedValue = event.target.getAttribute("data-type");
+        dropdownButton1.textContent = selectedValue + " selected";
+    });
+
+    // Gender Type selection
+    const dropdownButton2 = document.querySelector("#filterDropdown2");
+    const dropdownMenu2 = document.querySelector("#gender-type");
+    dropdownMenu2.addEventListener("click", function (event) {
+        const selectedValue = event.target.getAttribute("data-gender");
+        dropdownButton2.textContent = selectedValue + " selected";
+    });
+
+    //Age selection
+    const dropdownButton3 = document.querySelector("#filterDropdown3");
+    const dropdownMenu3 = document.querySelector("#age-type");
+    dropdownMenu3.addEventListener("click", function (event) {
+        const selectedValue = event.target.getAttribute("data-age");
+        dropdownButton3.textContent = selectedValue + " selected";
+    });
+
+
     const clientId = [[${clientIDView}]];
 
     const secret = [[${secretView}]];
 
     petsByLocation(78245, "cat", "female", "adult");
+
     function petsByLocation(postalCode, petType, genderType, ageType) {
         // Show loading GIF
         const container = document.getElementById('animalContainer');
@@ -117,19 +159,19 @@
                 let apiUrl = `https://api.petfinder.com/v2/animals?location=${postalCode}`;
 
                 //make the url based on parameters
-                if (genderType && petType && ageType) {
+                if (genderType.toLowerCase() && petType.toLowerCase() && ageType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}&type=${petType}&age=${ageType}`;
-                } else if (genderType && petType) {
+                } else if (genderType.toLowerCase() && petType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}&type=${petType}`;
-                } else if (genderType && ageType) {
+                } else if (genderType.toLowerCase() && ageType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}&age=${ageType}`;
-                } else if (petType && ageType) {
+                } else if (petType.toLowerCase() && ageType.toLowerCase()) {
                     apiUrl += `&type=${petType}&age=${ageType}`;
-                } else if (genderType) {
+                } else if (genderType.toLowerCase()) {
                     apiUrl += `&gender=${genderType}`;
-                } else if (petType) {
+                } else if (petType.toLowerCase()) {
                     apiUrl += `&type=${petType}`;
-                } else if (ageType) {
+                } else if (ageType.toLowerCase()) {
                     apiUrl += `&age=${ageType}`;
                 }
 
@@ -150,7 +192,7 @@
                         petCards(data);
 
                         //call the pageNums function to display page numbers
-                        pageNums(apiUrl, data);
+                        // pageNums(apiUrl, data);
 
                         console.log(data);
                     })
@@ -293,11 +335,11 @@
         //make pet cards (for each) animal and append them to the container
         animals.forEach(animal => {
             const card = document.createElement('div');
-            card.classList.add('card', 'mx-auto', 'my-4', 'col-12', 'col-sm-6', 'col-md-4', 'col-lg-3', 'col-xl-3', 'col-xxl-screens', 'hvr-grow', 'bg-boxshadow');
+            card.classList.add('card', 'mx-auto', 'my-4', 'col-12', 'col-sm-6', 'col-md-4', 'col-lg-3', 'col-xl-3', 'col-xxl-screens', 'hvr-grow', 'bg-boxshadow', 'bg-petcards');
             card.style.width = '20rem';
 
             const image = document.createElement('img');
-            image.classList.add('card-img-top', 'mt-3', 'd-flex', 'justify-content-center' , 'align-items-center');
+            image.classList.add('card-img-top', 'mt-3', 'd-flex', 'justify-content-center', 'align-items-center', 'mx-auto');
             image.style.width = '295px';
             image.style.height = '295px';
             image.src = animal.photos.length > 0 ? animal.photos[0].large : '/img/img_not_found_wide.jpg';
@@ -350,7 +392,7 @@
             description.appendChild(ul);
 
             const button = document.createElement('button');
-            button.classList.add('btn', 'btn-primary', 'hvr-pulse-shrink');
+            button.classList.add('btn', 'btn-default', 'hvr-pulse-shrink');
             button.textContent = 'View Details';
             button.setAttribute('data-bs-toggle', 'modal');
             button.setAttribute('data-bs-target', '#myModal');
@@ -411,12 +453,65 @@
         size.classList.add('list-group-item');
         size.textContent = `Size: ${animal.size}`;
 
+        const declawed = document.createElement('li');
+        declawed.classList.add('list-group-item');
+        declawed.textContent = `Declawed: ${animal.attributes.declawed}`;
+
+        const house_trained = document.createElement('li');
+        house_trained.classList.add('list-group-item');
+        house_trained.textContent = `House Trained: ${animal.attributes.house_trained}`;
+
+        const shots_current = document.createElement('li');
+        shots_current.classList.add('list-group-item');
+        shots_current.textContent = `Shots Current: ${animal.attributes.shots_current}`;
+
+        const spayed_neutered = document.createElement('li');
+        spayed_neutered.classList.add('list-group-item');
+        spayed_neutered.textContent = `Spayed/Neutered: ${animal.attributes.spayed_neutered}`;
+
+        const special_needs = document.createElement('li');
+        special_needs.classList.add('list-group-item');
+        special_needs.textContent = `Special Needs: ${animal.attributes.special_needs}`;
+
+        const phone = document.createElement('li');
+        phone.classList.add('list-group-item');
+        phone.textContent = `Phone number: ${animal.contact.phone}`;
+
+        const email = document.createElement('li');
+        email.classList.add('list-group-item');
+        email.textContent = `Email: ${animal.contact.email}`;
+
+        const address = document.createElement('li');
+        address.classList.add('list-group-item');
+        address.textContent = `Address: ${animal.contact.address.address1} ${animal.contact.address.city}, ${animal.contact.address.state} ${animal.contact.address.postcode} ${animal.contact.address.country}`;
+
+        const url = document.createElement('li');
+        url.classList.add('list-group-item');
+        const anchor = document.createElement('a');
+        anchor.href = animal.url;
+        anchor.textContent = 'More Information';
+        url.appendChild(anchor);
+
+        const published_at = document.createElement('a');
+        published_at.classList.add('list-group-item', 'text-muted');
+        published_at.textContent = `${animal.published_at}`;
+
         ul.appendChild(id);
         ul.appendChild(species);
         ul.appendChild(breed);
         ul.appendChild(gender);
         ul.appendChild(age);
         ul.appendChild(size);
+        ul.appendChild(declawed);
+        ul.appendChild(house_trained);
+        ul.appendChild(shots_current);
+        ul.appendChild(spayed_neutered);
+        ul.appendChild(special_needs);
+        ul.appendChild(phone);
+        ul.appendChild(email);
+        ul.appendChild(address);
+        ul.appendChild(url);
+        ul.appendChild(published_at);
 
         //put the info in the modal
         modalTitle.appendChild(title);
@@ -441,31 +536,29 @@
     }
 
     //function for pageNums
-    function pageNums(apiUrl, data) {
-        let paginationElement = document.getElementById('pagination');
-
-        paginationElement.innerHTML = '';
-
-        // get the current page and the # for the rest of the pages
-        const currentPage = data.pagination.current_page;
-        const totalPages = data.pagination.total_pages;
-
-        // create new anchor tags with a for loop
-        for (let i = 1; i <= totalPages; i++) {
-            let anchorElement = document.createElement('a'); //create anchor
-            anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
-            anchorElement.textContent = i; // html text
-            console
-
-            if (i === currentPage) {
-                anchorElement.classList.add('active'); // highlight what page user is on
-            }
-
-            paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
-        }
-    }
+    // function pageNums(apiUrl, data) {
+    //     let paginationElement = document.getElementById('pagination');
+    //
+    //     paginationElement.innerHTML = '';
+    //
+    //     // get the current page and the # for the rest of the pages
+    //     const currentPage = data.pagination.current_page;
+    //     const totalPages = data.pagination.total_pages;
+    //
+    //     // create new anchor tags with a for loop
+    //     for (let i = 1; i <= totalPages; i++) {
+    //         let anchorElement = document.createElement('a'); //create anchor
+    //         anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
+    //         anchorElement.textContent = i; // html text
+    //         console
+    //
+    //         if (i === currentPage) {
+    //             anchorElement.classList.add('active'); // highlight what page user is on
+    //         }
+    //
+    //         paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
+    //     }
+    // }
 </script>
-
-
 </body>
 </html>

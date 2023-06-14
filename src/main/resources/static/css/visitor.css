@@ -63,21 +63,59 @@ body{
 }
 
 .user__image {
-    width: 60px;
     border-radius: 50%;
+    object-fit: cover;
+    margin: 0.5rem;
 }
 
-.user__info > small {
-    color: #666;
-}
-
-@media (max-width: 767.98px) {
-    .card {
-        width: 20rem !important;
+@media (max-width: 767px) {
+    .user__image {
+        width: 40px; /* Adjust the desired width for smaller screens */
+        height: 40px; /* Adjust the desired height for smaller screens */
     }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
+@media (min-width: 768px) {
+    .user__image {
+        width: 75px; /* Adjust the desired width for larger screens */
+        height: 75px; /* Adjust the desired height for larger screens */
+    }
+}
+
+
+@media (min-width: 320px) and (max-width: 375.99px) {
+    .card {
+        width: 18rem !important;
+    }
+
+    .card-size-comment{
+        width: 13rem !important;
+    }
+}
+
+@media (min-width: 376.99px) and (max-width: 425.99px) {
+    .card {
+        width: 20rem !important;
+    }
+
+    .card-size-comment{
+        width: 15rem !important;
+    }
+}
+
+@media (min-width: 426.99px) and (max-width: 767.99px) {
+    .card {
+        width: 27rem !important;
+        max-height: none !important;
+    }
+
+    .card-size-comment{
+        width: 22rem !important;
+        max-height: none !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.99px) {
     .card {
         max-width: 30rem !important;
         max-height: none !important;
