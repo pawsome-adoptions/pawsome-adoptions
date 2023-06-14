@@ -3,51 +3,22 @@
 <head th:replace="~{partials/head :: head}">
     <meta charset="UTF-8"/>
     <title th:text="'Ooops, ' + ${error}"></title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #62466B;
-            text-align: center;
-            padding: 100px;
-        }
-
-        h1 {
-            font-size: 36px;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        p {
-            font-size: 18px;
-            color: white;
-        }
-
-        .error-code {
-            font-size: 72px;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        #dog-image {
-            width: 300px;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
+
 <th:block th:switch="${error}">
     <div th:case="'Not Found'">
-        <h1>Sorry, the page you're looking for could not be found.</h1>
+        <h1 class="font-roboto mt-3">Sorry, the page you're looking for could not be found.</h1>
     </div>
     <div th:case="'Forbidden'">
-        <h1>You don't have permission to view this page.</h1>
+        <h1 class="font-roboto mt-3">You don't have permission to view this page.</h1>
     </div>
 </th:block>
 
-<p>Here's a random dog</p>
+<p class="font-roboto-serif">Dog(s) below (:</p>
 
 <!-- RANDOM DOG IMAGE -->
 <img id="dog-image" alt="Random Dog Image"/>
