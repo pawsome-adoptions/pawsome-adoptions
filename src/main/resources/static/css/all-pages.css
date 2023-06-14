@@ -49,3 +49,9 @@ p {
 footer{
     background-color: #efeae1 !important;
 }
+
+.about-us-bg{
+    background-color: #babbd2;
+    border: 1rem;
+    border-radius: 10px;
+}
