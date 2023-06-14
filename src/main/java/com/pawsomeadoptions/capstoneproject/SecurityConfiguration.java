@@ -55,8 +55,12 @@ public class SecurityConfiguration {
                 /* Pages that require authentication */
                 .and()
                 .authorizeHttpRequests()
+<<<<<<< HEAD
 
                 .requestMatchers("/comment", "/singlepost/{id}", "/visitorsinglepost", "/home","/userpost", "/deleteUser", "/visitorpost", "/visitorpost/{id}", "/sign-up", "/adopt", "/adopt/{id}","/reset-password", "/about", "/invalidUsernameOrPassword", "/js/**", "/css/**", "/img/**", "/static/**", "/resetpassword", "/uri", "/error") // anyone can see home, the ads pages, and sign up
+=======
+                .requestMatchers("/visitorsinglepost", "/home","/userpost", "/deleteUser", "/visitorpost", "/visitorpost/{id}", "/sign-up", "/adopt", "/adopt/{id}","/reset-password", "/about", "/invalidUsernameOrPassword", "/js/**", "/css/**", "/img/**", "/static/**", "/resetpassword", "/uri") // anyone can see home, the ads pages, and sign up
+>>>>>>> 819eb15be0ce36e536ca63cd51f3d6701caf2a2b
 
                 .permitAll();
 
