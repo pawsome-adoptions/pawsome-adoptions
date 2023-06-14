@@ -7,13 +7,19 @@
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
-<div class="border-blue">
-    <div class="container-fluid mt-5">
-        <h1 class="text-center">Want to share your adoption story?</h1>
-        <h2 class="text-center">Sign up or login!</h2>
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
-            <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <div class="card adopt-a-pet-bg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center font-roboto mb-4">Want to share your adoption story?</h1>
+                    <h4 class="card-subtitle text-center font-roboto-serif">Make an account to start posting and commenting in our <italic>pawesome</italic> community!</h4>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
+                        <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

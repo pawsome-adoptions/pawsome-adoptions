@@ -22,3 +22,12 @@ body{
     }
 
 }
+
+.adopt-a-pet-bg{
+    background-color: #9ea2c2;
+    margin: 10%;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 62px 1px rgba(110,108,110,1);
+    -moz-box-shadow: 10px 10px 62px 1px rgba(110,108,110,1);
+    box-shadow: 10px 10px 62px 1px rgba(110,108,110,1);
+}

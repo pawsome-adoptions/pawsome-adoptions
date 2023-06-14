@@ -64,9 +64,12 @@
 
     <div class="container-purple vh-75 ml-lg-5">
         <div class="row">
+            <div class="col-md-6 d-none d-md-flex justify-content-center">
+                <img src="/img/polaroid-dog.png" class="w-100" alt="Image 1">
+            </div>
             <div class="col-md-6 col-12 text-center">
-                <div class="p-3">
-                    <h2 class="display-4 mb-3 font-roboto">Adoption Stories</h2>
+                <div class="p-3 mx-auto">
+                    <h2 class="display-4 mb-3 mt-5 font-roboto">Adoption Stories</h2>
                     <p class="font-roboto-serif">
                         Share the incredible journey of pet adoption with our community. Whether you've recently adopted or have heartwarming stories,
                         this is the perfect platform to connect. Join us to engage with others, leave comments, and celebrate the power of adoption.<br>
@@ -78,11 +81,36 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center d-md-none">
                 <img src="/img/polaroid-dog.png" class="w-100" alt="Image 1">
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="container-purple vh-75 ml-lg-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-12 text-center">
+                <div class="p-3">
+                    <h2 class="display-4 mb-3 font-roboto">Meet the team</h2>
+                    <p class="font-roboto-serif">
+                        Want to meet the faces behind Pawesome Adoptions? Click the link below for an introduction.
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary m-2" th:href="@{/about}" role="button">About us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="/img/cat-polaroid.png" class="w-100 my-3" alt="Image 1">
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
 <div th:replace="partials/footer :: footer"></div>
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" crossorigin="anonymous"></script>
