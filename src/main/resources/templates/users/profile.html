@@ -68,7 +68,7 @@
                                 <div id="fileUploaded"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary text-center">Submit</button>
+                            <button type="submit" class="btn btn-default text-center">Submit</button>
                             <button type="button" class="btn btn-danger text-center" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">Delete</button>
                         </div>
                         </div>
@@ -124,7 +124,7 @@
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
                     <div class="card-footer d-flex justify-content-center">
-                        <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-default text-center my-4">Edit Post</a>
+                        <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-secondary text-center my-4">Edit Post</a>
                         <br>
                         <a class="text-decoration-none btn btn-danger text-center my-4 ms-2" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
                     </div>
