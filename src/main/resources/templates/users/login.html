@@ -13,21 +13,21 @@
             <form th:action="@{/login}" th:method="post">
                     <div class='input-fields'>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label font-size-20px font-roboto">Username</label>
                             <input type="text" class="form-control form-control-sm" id="username" placeholder="Enter your username" name="username">
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label font-size-20px font-roboto">Password</label>
                             <input type='password' class="form-control form-control-sm" id="password" placeholder="Enter your password" name="password">
                         </div>
                         <div th:if="${param.error}">
-                            <p class="text-danger error">Invalid Username and Password.</p>
+                            <p class="text-danger error font-roboto">Invalid Username and Password.</p>
                         </div>
                         <div th:if="${param.logout}">
-                            <p class="text-danger error">You have been logged out.</p>
+                            <p class="text-danger error font-roboto">You have been logged out.</p>
                         </div>
                     </div>
-                    <button type="submit" value="Log In" class="btn btn-default">Log In</button>
+                    <button type="submit" value="Log In" class="btn btn-default font-roboto">Log In</button>
                     <a class="btn btn-default m-2" th:href="@{/resetpassword}" role="button">Reset Password</a>
             </form>
         </div>
