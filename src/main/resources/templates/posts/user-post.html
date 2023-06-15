@@ -41,26 +41,28 @@
                     <h5 class="modal-title" id="createPostModalLabel">
                         Create a Post</h5>
                     <button type="button" class="btn-close"
+
+
                             data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form th:action="@{/userpost}" th:method="post" th:object="${post}">
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">
-                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
-                            <p class="text-danger error font-roboto" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}" class="w-100">
+                            <p class="form-control form-control-sm" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
                             <br>
-                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" required></textarea>
-                            <p class="text-danger error font-roboto" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" class="w-100 mt-3" style="height: 150px" required></textarea>
+                            <p class="form-control form-control-sm" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
                             <br>
 
-                            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" required>
+                            <select class="form-select mt-3" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" required>
                                 <option selected value="All" >Please select Type</option>
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
                             </select>
                             <br>
-                            <button id="fileUpload">Add File</button>
+                            <button id="fileUpload" class="m-5 btn btn-default">Add File</button>
                             <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" value="">
                             <div id="fileUploaded"></div>
                         </div>
