@@ -22,30 +22,34 @@
 </div>
 
 
-
 <div class="d-flex flex-wrap justify-content-center align-items-center">
     <div th:each="post : ${posts}" class="col-sm-12 col-md-12 col-lg-12">
         <div class="card mx-auto my-4 bg-boxshadow">
-            <div class="card-body">
-                <div class="card-header">
-                    <div class="d-flex align-items-center">
-                      <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
-                        <div class="user__info">
-                            <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
-                            <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
-                        </div>
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
+                    <div class="user__info">
+                        <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
+                        <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
                     </div>
                 </div>
-                <div class="card-img-wrapper">
-                    <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
+            </div>
+            <section class="card-body">
+                <div class="card-img-wrapper d-flex justify-content-center">
+                    <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image"
+                         class="card-img-top petImgProfile">
                 </div>
-                <h4 th:text="${post.getTitle()}" class="card-title font-roboto"></h4>
-                <p th:text="${post.getDescription()}" class="card-text font-roboto-serif" style="overflow: auto"></p>
-                <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
-            </div>
-            <div class="card-footer">
-                <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
-            </div>
+                <h4 th:text="${post.getTitle()}" class="card-title font-roboto text-center mt-3"></h4>
+                <p th:text="${post.getDescription()}" class="card-text font-roboto-serif text-center"
+                   style="overflow: auto"></p>
+                <div class="d-flex justify-content-center mb-2">
+                    <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
+                </div>
+                <div class="card-footer d-flex justify-content-center">
+                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm mt-2">Comments<i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </section>
         </div>
     </div>
 </div>

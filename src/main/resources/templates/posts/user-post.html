@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{partials/posts-header :: head}">
     <title>User Post</title>
 </head>
@@ -19,7 +19,8 @@
             <div class="card-body d-flex flex-column align-items-center">
                 <h1 class="card-title text-center font-roboto mb-4">Hello!</h1>
                 <div>
-                    <h4 class="card-subtitle text-center font-roboto-serif">Want to create a post? Click the button down below.</h4>
+                    <h4 class="card-subtitle text-center font-roboto-serif">Want to create a post? Click the button down
+                        below.</h4>
                 </div>
                 <div>
                     <button type="button" class="btn btn-lg create-btn mt-4"
@@ -49,25 +50,34 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">
-                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}" class="w-100">
-                            <p class="form-control form-control-sm" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}"
+                                   class="w-100">
+                            <p class="form-control form-control-sm" th:if="${#fields.hasErrors('title')}"
+                               th:errors="*{title}"></p>
                             <br>
-                            <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" class="w-100 mt-3" style="height: 150px" required></textarea>
-                            <p class="form-control form-control-sm" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                            <textarea placeholder="Description" name="description" th:field="*{description}"
+                                      th:value="*{description}" class="w-100 mt-3" style="height: 150px"
+                                      required></textarea>
+                            <p class="form-control form-control-sm" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></p>
                             <br>
 
-                            <select class="form-select mt-3" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" required>
-                                <option selected value="All" >Please select Type</option>
+                            <select class="form-select mt-3" aria-label="Default select example" name="category"
+                                    th:field="*{category}" th:value="*{category}" required>
+                                <option selected value="All">Please select Type</option>
                                 <option value="Dog">Dog</option>
                                 <option value="Cat">Cat</option>
                             </select>
                             <br>
                             <button id="fileUpload" class="m-5 btn btn-default">Add File</button>
-                            <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" value="">
+                            <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}"
+                                   value="">
                             <div id="fileUploaded"></div>
                         </div>
                     </div>
-                    <div class="modal-footer"><button type="submit" class="btn btn-default text-center">Submit</button></div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default text-center">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -77,34 +87,46 @@
     <div class="d-flex flex-wrap justify-content-center align-items-center">
         <div th:each="post : ${posts}" class="col-sm-12 col-md-12 col-lg-12">
             <div class="card mx-auto my-4 bg-boxshadow">
-                <div class="card-body">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center">
-                            <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
-                            <div class="user__info">
-                                <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
-                                <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
-                            </div>
+                <!--                <div class="card-body">-->
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
+                        <div class="user__info">
+                            <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
+                            <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
                         </div>
                     </div>
-                    <div class="card-img-wrapper">
-                        <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
+                </div>
+                <section class="card-body">
+<!--                    <div class="card-img-wrapper col-3">-->
+                        <div class="d-flex justify-content-center">
+                        <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image"
+                             class="card-img-top petImgProfile">
+<!--                    </div> -->
                     </div>
-                    <h4 th:text="${post.getTitle()}" class="card-title font-roboto mt-2"></h4>
-                    <p th:text="${post.getDescription()}" class="card-text font-roboto-serif" style="overflow: auto"></p>
-                    <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center">
-                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
-                </div>
+                    <div class="col">
+                        <h4 th:text="${post.getTitle()}" class="card-title font-roboto mt-2"></h4>
+                        <p th:text="${post.getDescription()}" class="card-text font-roboto-serif"
+                           style="overflow: auto"></p>
+                        <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
+                    </div>
+                </section>
+<!--            </div>-->
+
+            <div class="card-footer">
+                <div class="d-flex justify-content-center">
+                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm">View more
+                        details <i class="fas fa-arrow-right"></i></a>
+                    <!--                </div>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div th:replace="partials/footer :: footer"></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 <script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
 <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
 <script th:inline="javascript">
@@ -116,7 +138,7 @@
 
     console.log(fileName);
 
-    uploadBtn.addEventListener('click', function (e){
+    uploadBtn.addEventListener('click', function (e) {
         e.preventDefault();
         const client = filestack.init(apiKey);
         const options = {
@@ -133,7 +155,7 @@
                 document.getElementById("inputURL").value = fileURL;
 
                 let pushFile = '';
-                pushFile += "<ul><li>"+ fileName +"</li></ul>"
+                pushFile += "<ul><li>" + fileName + "</li></ul>"
                 $("#fileUploaded").html(pushFile);
 
             },
