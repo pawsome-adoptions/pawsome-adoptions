@@ -1,3 +1,214 @@
 body{
     background-color: #62466b !important;
 }
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-wrapper {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.user__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.user__image {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.icon-small{
+    width: 30px;
+    height: 30px;
+}
+
+.tag {
+    align-self: flex-start;
+    padding: .25em .75em;
+    border-radius: 1em;
+    font-size: .75rem;
+}
+
+/*tags*/
+.tag + .tag {
+    margin-left: .5em;
+}
+
+.tag-blue {
+    background: #56CCF2;
+    background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+    color: #fafafa;
+}
+
+/*user*/
+.user {
+    display: flex;
+    gap: .5rem;
+}
+
+.user__image {
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0.5rem;
+}
+
+@media (max-width: 767px) {
+    .user__image {
+        width: 40px; /* Adjust the desired width for smaller screens */
+        height: 40px; /* Adjust the desired height for smaller screens */
+    }
+}
+
+@media (min-width: 768px) {
+    .user__image {
+        width: 75px; /* Adjust the desired width for larger screens */
+        height: 75px; /* Adjust the desired height for larger screens */
+    }
+}
+
+
+@media (min-width: 320px) and (max-width: 375.99px) {
+    .card {
+        width: 18rem !important;
+    }
+
+    .card-size-comment{
+        width: 13rem !important;
+    }
+}
+
+@media (min-width: 376.99px) and (max-width: 425.99px) {
+    .card {
+        width: 20rem !important;
+    }
+
+    .card-size-comment{
+        width: 15rem !important;
+    }
+}
+
+@media (min-width: 426.99px) and (max-width: 767.99px) {
+    .card {
+        width: 27rem !important;
+        max-height: none !important;
+    }
+
+    .card-size-comment{
+        width: 22rem !important;
+        max-height: none !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .card {
+        max-width: 30rem !important;
+        max-height: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .card {
+        max-width: 40rem !important;
+        max-height: none !important;
+    }
+}
+
+
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.b-example-divider {
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.btn-bd-primary {
+    --bd-violet-bg: #712cf9;
+    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bd-violet-bg);
+    --bs-btn-border-color: var(--bd-violet-bg);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #6528e0;
+    --bs-btn-hover-border-color: #6528e0;
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #5a23c8;
+    --bs-btn-active-border-color: #5a23c8;
+}
+.bd-mode-toggle {
+    z-index: 1500;
+}
+
+.btn-default{
+    background-color: #62466b;
+    color: #FFF;
+    font-family: Roboto, sans-serif;
+}
+.btn-default:hover{
+    background-color: #62466b;
+    color: #FFF;
+    border: 1px solid #efeae1;
+    font-family: "Roboto", sans-serif;
+}

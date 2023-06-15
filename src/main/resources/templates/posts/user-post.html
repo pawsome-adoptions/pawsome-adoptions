@@ -55,6 +55,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="d-flex flex-wrap justify-content-center align-items-center">
         <div th:each="post : ${posts}" class="col-sm-12 col-md-12 col-lg-12">
             <div class="card mx-auto my-4 bg-boxshadow">
@@ -69,7 +71,7 @@
                         </div>
                     </div>
                     <div class="card-img-wrapper">
-                        <img th:src="${post.getImg()}" alt="card__image" class="card-img-top">
+                        <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
                     </div>
                     <h4 th:text="${post.getTitle()}" class="card-title"></h4>
                     <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>

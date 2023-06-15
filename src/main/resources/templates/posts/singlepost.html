@@ -20,7 +20,8 @@
                 </div>
 
                 <div class="card-body">
-                    <img th:if="${currentPost.img != null}" th:src="${currentPost.img}" alt="post image" class="card-img-top" width="600" height="300vh" />
+                    <img th:if="${!currentPost.img.equals('')}" th:src="${currentPost.img}" alt="card__image" class="card-img-top">
+<!--                    <img th:if="${currentPost.img != null}" th:src="${currentPost.img}" alt="post image" class="card-img-top" width="600" height="300vh" />-->
                     <h4 th:text="${currentPost.title}" class="card-title"></h4>
                     <p th:text="${currentPost.description}" class="card-text"></p>
                 </div>
