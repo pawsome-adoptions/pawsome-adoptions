@@ -19,7 +19,7 @@
             <div class="card-body d-flex flex-column align-items-center">
                 <h1 class="card-title text-center font-roboto mb-4">Hello!</h1>
                 <div>
-                    <h4 class="card-subtitle text-center font-roboto-serif">Want to create a post? Click the button down below.</h4>
+                    <h4 class="card-subtitle text-center font-roboto">Want to create a post? Click the button down below.</h4>
                 </div>
                 <div>
                     <button type="button" class="btn btn-lg create-btn mt-4"
@@ -83,7 +83,7 @@
                             <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
                             <div class="user__info">
                                 <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
-                                <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
+                                <small th:text="${post.users.getEmail()}" class="text-muted font-roboto"></small>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
                     </div>
                     <h4 th:text="${post.getTitle()}" class="card-title font-roboto mt-2"></h4>
-                    <p th:text="${post.getDescription()}" class="card-text font-roboto-serif" style="overflow: auto"></p>
+                    <p th:text="${post.getDescription()}" class="card-text font-roboto" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
                 <div class="card-footer">
