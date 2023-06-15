@@ -106,7 +106,7 @@
     <div class="d-flex flex-wrap justify-content-center align-items-center">
         <div th:each="post : ${allUserPosts}"  class="col-sm-12 col-md-12 col-lg-12">
             <div class="card mx-auto my-4 bg-boxshadow">
-                <div class="card-body">
+<!--                <div class="">-->
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
@@ -116,23 +116,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-img-wrapper">
-                        <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
-                    </div>
-                    <h6 th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none">
-                    </h6>
-                    <h4 th:text="${post.title}" class="card-title"></h4>
-                    <p th:text="${post.description}" class="card-text" style="overflow: auto"></p>
-                    <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
-                </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-secondary text-center my-4">Edit Post</a>
-                        <br>
-                        <a class="text-decoration-none btn btn-danger text-center my-4 ms-2" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
-                    </div>
+                    <section class="card-body d-flex row">
+                        <div class="card-img-wrapper col-3">
+                            <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top petImgProfile">
+                        </div>
+                        <div class="col">
+                            <h6 th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none">
+                            </h6>
+                            <h4 th:text="${post.title}" class="card-title"></h4>
+                            <p th:text="${post.description}" class="card-text" style="overflow: auto"></p>
+                            <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
+                        </div>
+                    </section>
+<!--                </div>-->
+                <div class="card-footer d-flex justify-content-center">
+                    <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-secondary text-center my-4">Edit Post</a>
+                    <br>
+                    <a class="text-decoration-none btn btn-danger text-center my-4 ms-2" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
                 </div>
             </div>
         </div>
+    </div>
 <div th:replace="partials/footer :: footer"></div>
 <!--tablets and up -->
 <script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>

@@ -116,7 +116,7 @@ public class UserController {
         userDao.delete(user);
 //        Need to test below: don't want to delete too many users if register is messed up
 
-        return "redirect:/logout"; // Redirect to the logout page after deleting the profile
+        return "redirect:/home"; // Redirect to the logout page after deleting the profile
     }
 
     // method to generate a random password

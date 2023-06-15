@@ -230,3 +230,8 @@ body{
 .error{
     font-size: 1rem !important;
 }
+
+.petImgProfile{
+    height: 180px;
+    width: auto;
+}

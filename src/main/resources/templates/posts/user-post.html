@@ -47,8 +47,14 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <input type="hidden" th:field="*{id}">
-                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">
-                            <p class="text-danger error font-roboto" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+                            <!-- Title -->
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" class="form-control" id="title"placeholder="Title" th:field="*{title}" th:value="*{title}">
+                                <p class="text-danger error font-roboto" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+                            </div>
+<!--                            <input type="text" placeholder="Title" name="title" th:field="*{title}" th:value="*{title}">-->
+<!--                            <p class="text-danger error font-roboto" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>-->
                             <br>
                             <textarea placeholder="Description" name="description" th:field="*{description}" th:value="*{description}" required></textarea>
                             <p class="text-danger error font-roboto" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
