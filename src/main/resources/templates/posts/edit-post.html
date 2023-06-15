@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="~{partials/head :: head}"></head>
-
+<head th:replace="~{partials/head :: head}">
+    <title>Edit Post</title>
+</head>
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <form th:method="post" th:action="@{/posts/submitEdit}" th:object="${postToViewLayer}">
-    <div class="modal-body">
-        <div class="mb-3">
-            <input type="hidden" th:field="*{id}" th:value="*{id}">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" class="form-control form-control-sm" id="title" name="title" th:field="*{title}" th:value="*{title}">
-            <br>
-            <label for="description" class="form-label">Description:</label>
-            <input type="text" class="form-control form-control-sm" id="description" name="description" th:value="*{description}" th:field="*{description}">
-            <br>
-<!--            <input style="display: none" type="text" class="form-control form-control-sm" id="postImg" name="postImg" th:value="*{img}" th:field="*{img}" readonly>-->
-<!--            <br>-->
-            <label for="category" class="form-label">Change Category:</label>
-            <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" id="category">
-                <option selected value="Type">Type</option>
-                <option value="Dog">Dog</option>
-                <option value="Cat">Cat</option>
-            </select>
+    <div class="container-purple vh-75 ml-lg-5">
+        <div class="container d-flex justify-content-center">
+            <div class="col-12 col-md-6 text-center">
+                <div class="p-3">
+                    <div class="mb-3">
+                        <input type="hidden" th:field="*{id}" th:value="*{id}">
+                        <label for="title" class="form-label">Title:</label>
+                        <input type="text" class="form-control form-control-sm" id="title" name="title" th:field="*{title}" th:value="*{title}">
+                        <br>
+                    </div>
+                    <div>
+                        <label for="description" class="form-label">Description:</label>
+                        <input type="text" class="form-control form-control-sm" id="description" name="description" th:value="*{description}" th:field="*{description}">
+                        <br>
+                    </div>
+                    <div>
+                        <label for="category" class="form-label">Change Category:</label>
+                        <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" id="category">
+                            <option selected value="Type">Type</option>
+                            <option value="Dog">Dog</option>
+                            <option value="Cat">Cat</option>
+                        </select>
+                    </div>
+                    <button type="button" id="fileUpload" class="m-5">Add File</button>
+                    <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" value="">
+                    <div id="fileUploaded"></div>
+                </div>
+            </div>
         </div>
-        <button type="button" id="fileUpload" class="m-5">Add File</button>
-        <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" value="">
-        <div id="fileUploaded"></div>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-success text-center">Submit Edit</button>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success text-center">Submit Edit</button>
+        </div>
     </div>
 </form>
+<div th:replace="partials/footer :: footer"></div>
 <script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
 <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossOrigin="anonymous"></script>
 <script th:inline="javascript">

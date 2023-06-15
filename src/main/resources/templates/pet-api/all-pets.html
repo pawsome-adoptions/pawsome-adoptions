@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{partials/adopt-a-pet-header :: head}">
-    <title>Adopt a Pet</title>
+    <title>All Pet</title>
 </head>
 
 <body>
@@ -23,13 +23,13 @@
 
 
 <div class="container">
-<!--    <div class="row">-->
-        <div class="d-flex justify-content-md-center myrow">
+    <div class="row">
+        <div class="col-sm-12">
             <form id="petSearch">
-                <div class="d-flex mb-1">
+                <div class="d-sm-flex justify-content-center">
                     <div class="dropdown-container">
                         <div class="dropdown me-1 ms-1">
-                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn me-1" type="button"
+                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn me-1 mb-2" type="button"
                                     id="filterDropdown1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 Filter by Animal Type
@@ -42,7 +42,7 @@
                     </div>
                     <div class="dropdown-container">
                         <div class="dropdown me-1 ms-1">
-                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn" type="button"
+                            <button class="btn btn-default dropdown-toggle custom-dropdown-btn mb-2" type="button"
                                     id="filterDropdown2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 Filter by Gender
@@ -76,8 +76,7 @@
                 </div>
             </form>
         </div>
-
-<!--    </div>-->
+    </div>
 </div>
 </div>
 
@@ -98,8 +97,7 @@
         </div>
     </div>
 </div>
-
-<!--<div id="pagination"></div>-->
+<div th:replace="partials/footer :: footer"></div>
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

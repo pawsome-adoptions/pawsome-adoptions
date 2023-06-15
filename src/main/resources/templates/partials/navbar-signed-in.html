@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head.html :: head"></head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/home}">
             <img src="/img/pawesome-logo-2.png" class="navbar-logo" alt="Pawesome Adoptions Logo">
@@ -13,26 +13,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active hvr-underline-from-left" aria-current="page" th:href="@{/home}">Home</a>
+                    <a class="nav-link active hvr-underline-from-left font-roboto" aria-current="page" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active hvr-underline-from-left" aria-current="page" th:href="@{/about}">About Us</a>
+                    <a class="nav-link active hvr-underline-from-left font-roboto" aria-current="page" th:href="@{/about}">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active hvr-underline-from-left" aria-current="page" th:href="@{/adopt}">Adopt a Pet</a>
+                    <a class="nav-link active hvr-underline-from-left font-roboto" aria-current="page" th:href="@{/adopt}">Adopt a Pet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active hvr-underline-from-left" aria-current="page" th:href="@{/userpost}">Adoption Stories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active hvr-underline-from-left" aria-current="page" th:href="@{/profile}">Profile</a>
-                </li>
-                <li>
-                    <form id="logoutForm" th:action="@{/logout}" method="post">
-                        <button type="submit">Logout</button>
-                    </form>
+                    <a class="nav-link active hvr-underline-from-left font-roboto" aria-current="page" th:href="@{/userpost}">Adoption Stories</a>
                 </li>
             </ul>
+            <div class="d-flex justify-content-end">
+            <div class="nav-item">
+                <div class="d-flex-inline justify-content-center me-3">
+                <a class="ms-2" aria-current="page" th:href="@{/profile}"><img src="/img/icons/user.png" class="profile-icon" alt="Profile Icon"></a>
+                <a th:href="@{/profile}" class="nav-link active hvr-underline-from-left text-decoration-none font-roboto">Profile</a>
+            </div>
+            </div>
+            <form id="logoutForm" th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-default mt-2 font-roboto">Logout</button>
+            </form>
+        </div>
         </div>
     </div>
 </nav>
