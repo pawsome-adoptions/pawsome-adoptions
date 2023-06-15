@@ -15,14 +15,14 @@
                     <div class="mb-3">
                         <label for="username" class="form-label font-roboto login-sign-up">Username</label>
                         <input type="text" class="form-control form-control-sm" id="username" placeholder="Enter your username" name="username" th:field="*{username}" required>
-                        <div class="invalid-feedback">Please enter a username.</div>
+                        <div class="invalid-feedback font-roboto">Please enter a username.</div>
                         <p class="text-danger error font-roboto" th:if="${usernameError}" th:text="${usernameError}"></p>
                         <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label font-roboto login-sign-up">Email address</label>
                         <input type="email" class="form-control form-control-sm" id="email" placeholder="Enter your email" name="email" th:field="*{email}" required>
-                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                        <div class="invalid-feedback font-roboto">Please enter a valid email address.</div>
                         <p class="text-danger error font-roboto" th:if="${emailError}" th:text="${emailError}"></p>
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
