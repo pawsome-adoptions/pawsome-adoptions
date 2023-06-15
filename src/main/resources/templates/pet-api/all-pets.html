@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{partials/adopt-a-pet-header :: head}">
     <title>All Pet</title>
+
 </head>
 
 <body>
@@ -333,7 +334,7 @@
         //make pet cards (for each) animal and append them to the container
         animals.forEach(animal => {
             const card = document.createElement('div');
-            card.classList.add('card', 'mx-auto', 'my-4', 'col-12', 'col-sm-6', 'col-md-4', 'col-lg-3', 'col-xl-3', 'col-xxl-screens', 'hvr-grow', 'bg-boxshadow', 'bg-petcards', , 'font-roboto');
+            card.classList.add('card', 'mx-auto', 'my-4', 'col-12', 'col-sm-6', 'col-md-4', 'col-lg-3', 'col-xl-3', 'col-xxl-screens', 'hvr-grow', 'bg-boxshadow', 'bg-petcards', 'font-roboto');
             card.style.width = '20rem';
 
             const image = document.createElement('img');

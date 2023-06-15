@@ -94,7 +94,7 @@
                     <p th:text="${post.getDescription()}" class="card-text font-roboto" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer ">
                     <div class="d-flex justify-content-center">
                     <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
                 </div>
