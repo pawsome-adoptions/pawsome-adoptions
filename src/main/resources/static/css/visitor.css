@@ -1,5 +1,6 @@
 body{
-    background-image: url("../img/adoption-stories.svg");
+    background-color: #62466b;
+    /*background-image: url("../img/adoption-stories.svg");*/
     background-size: cover;
     background-repeat: no-repeat;
 }

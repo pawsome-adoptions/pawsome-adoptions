@@ -6,32 +6,32 @@
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
 <div class="container">
-    <div class="row justify-content-center align-items-center m-5">
+    <div class="row justify-content-center align-items-center">
         <div class="col-md-6 card adopt-a-pet-bg p-4">
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <div>
                     <div class="mb-3">
-                        <label for="username" class="form-label font-roboto">Username</label>
+                        <label for="username" class="form-label font-roboto login-sign-up">Username</label>
                         <input type="text" class="form-control form-control-sm" id="username" placeholder="Enter your username" name="username" th:field="*{username}" required>
                         <div class="invalid-feedback">Please enter a username.</div>
-                        <p class="text-danger font-robotor" th:if="${usernameError}" th:text="${usernameError}"></p>
+                        <p class="text-danger error font-roboto" th:if="${usernameError}" th:text="${usernameError}"></p>
                         <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label font-roboto">Email address</label>
+                        <label for="email" class="form-label font-roboto login-sign-up">Email address</label>
                         <input type="email" class="form-control form-control-sm" id="email" placeholder="Enter your email" name="email" th:field="*{email}" required>
                         <div class="invalid-feedback">Please enter a valid email address.</div>
-                        <p class="text-danger font-roboto" th:if="${emailError}" th:text="${emailError}"></p>
+                        <p class="text-danger error font-roboto" th:if="${emailError}" th:text="${emailError}"></p>
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label font-roboto">Password</label>
+                        <label for="password" class="form-label font-roboto login-sign-up">Password</label>
                         <input type="password" class="form-control form-control-sm" id="password" placeholder="Enter your password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" th:field="*{password}" required>
                         <div class="password-indicators">
-                            <p id="eight-character" class="error-text"><span class="check-icon">&#10003;</span> 8 character min</p>
-                            <p id="uppercase" class="error-text"><span class="check-icon">&#10003;</span> A capital (uppercase) letter</p>
-                            <p id="lowercase" class="error-text"><span class="check-icon">&#10003;</span> A lowercase letter</p>
-                            <p id="number" class="error-text"><span class="check-icon">&#10003;</span> A number</p>
+                            <p id="eight-character"><span class="check-icon">&#10003;</span> 8 character min</p>
+                            <p id="uppercase" class="font-roboto"><span class="check-icon">&#10003;</span> A capital (uppercase) letter</p>
+                            <p id="lowercase" class="font-roboto"><span class="check-icon">&#10003;</span> A lowercase letter</p>
+                            <p id="number" class="font-roboto"><span class="check-icon">&#10003;</span> A number</p>
                         </div>
                             <button type="button" id="fileUpload" class="m-5">Add File</button>
                             <input style="display: none" type="text" id="inputURL" name="img" th:field="*{profilePic}" value="">
