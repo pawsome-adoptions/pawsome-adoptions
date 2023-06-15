@@ -16,7 +16,7 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
         '</div>';
     // container.innerHTML = '<img src="/gifs/spinner-2.gif" alt="Loading" class="loading-gif">';
     // convert to Token
-    fetch(`https://api.petfinder.com/v2/oauth2/token`, {
+    fetch(`https://api.petfinder.com/v2/oauth2/token`, { // fetching the oAuth2 token from the Petfinder API
         method: `POST`,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -26,9 +26,9 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
         .then(response => response.json())
         .then(token => {
             // handle the API response here
-            let apiUrl = `https://api.petfinder.com/v2/animals?location=${postalCode}`;
+            let apiUrl = `https://api.petfinder.com/v2/animals?location=${postalCode}`;// updating the API URL based on the parameters
 
-            //make the url based on parameters
+            //appending more paramaters based on users input from dropdowns
             if (genderType && petType && ageType) {
                 apiUrl += `&gender=${genderType}&type=${petType}&age=${ageType}`;
             } else if (genderType && petType) {
@@ -46,7 +46,7 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             }
 
             //fetch data from the api
-            fetch(apiUrl, {
+            fetch(apiUrl, { // getting data from the API using the URL and the access token
                 method: `GET`,
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,27 +55,22 @@ function petsByLocation(postalCode, petType, genderType, ageType) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    // remove loading GIF
-                    container.innerHTML = '';
+                    container.innerHTML = '';// remove loading GIF once the pet cards load
 
-                    //call the cards to display them
-                    petCards(data);
+                    petCards(data);//calling the function to display the pet cards with data
 
-                    //call the pageNums function to display page numbers
-                    pageNums(apiUrl, data);
-
-                    console.log(data);
+                    // //call the pageNums function to display page numbers
+                    // pageNums(apiUrl, data);
                 })
                 .catch(error => {
-                    // handle any errors that occurred during the request
                     console.error(error)
-                    window.location.href = 'error-page2.html';
+                    window.location.href = 'error-page2.html'; //redirecting error-page2 if there is an error
                 });
         })
         .catch(error => {
             // handle any errors that occurred during the request
             console.error(error);
-            window.location.href = '/error-page2.html';
+            window.location.href = '/error-page2.html';//redirecting error-page2 if there is an error
         });
 }
 
@@ -87,25 +82,30 @@ const animalType = document.getElementById('type');
 const genderType = document.getElementById('gender-type');
 const ageType = document.getElementById('age-type');
 
-//event listener for animal type
-animalType.addEventListener('click', e => {
-    e.preventDefault();
+//event listener for animal type(dropdown)
+animalType.addEventListener('click', e => { //added a click event listener
+    e.preventDefault(); //stop default behavior
 
-    let animalPicked = e.target;
+    //the idea is the loop keeps going up the tree until it finds the  element
+
+    let animalPicked = e.target;//retrieves 'data-type' of what the user clicked on and assigns it to animal picked
     while (animalPicked && !animalPicked.classList.contains('dropdown-item')) {
-        animalPicked = animalPicked.parentElement;
+        animalPicked = animalPicked.parentElement; //this moves it up the DOM tree if found
     }
 
-    if (animalPicked) {
-        // const animalType = animalPicked.dataset.type;
 
+    //this is to visually show what was picked from the dropdown
+    //the foreach removes the active class to make sure it's not highlighted
+    //and the dropdown the user picked gets the active class added to it
+
+    if (animalPicked) {// true, if the user clicked something in the dropdown
         animalType.querySelectorAll('.dropdown-item').forEach(option => {
-            option.classList.remove('active');
+            option.classList.remove('active');// remove the class active from each dropdown item
         });
 
-        animalPicked.classList.add('active');
+        animalPicked.classList.add('active');// add the class active to the selected dropdown item
 
-        console.log(animalPicked.dataset.type);
+        // console.log(animalPicked.dataset.type);
     }
 });
 
@@ -153,11 +153,12 @@ ageType.addEventListener('click', e => {
 petSearch.addEventListener('submit', e => {
     e.preventDefault();
 
-    const postalCode = searchInput.value;
-    let petType = null;
-    let genderType = null;
-    let ageType = null;
+    const postalCode = searchInput.value; //gets the value of what the user entered in the search
+    let petType = null; //variable to put the selected type
+    let genderType = null; //variable to put the selected type
+    let ageType = null; //variable to put the selected type
 
+    // gets the active dropdown item from the dropdown menu
     const petTypeElement = document.querySelector('#type .dropdown-item.active');
     if (petTypeElement) {
         petType = petTypeElement.getAttribute('data-type');
@@ -173,7 +174,7 @@ petSearch.addEventListener('submit', e => {
         ageType = ageTypeElement.getAttribute('data-age');
     }
 
-
+    // calls the petsByLocation
     petsByLocation(postalCode, petType, genderType, ageType);
 });
 
@@ -183,15 +184,15 @@ function petCards(data) {
     const container = document.getElementById('animalContainer');
     container.innerHTML = '';
 
-
-    if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
+    // check if the its null, make sure it's an object,  is valid and contains animals
+    if (!data || typeof data !== 'object') {
         const noResults = document.createElement('p');
         noResults.textContent = 'No animals found.';
         container.appendChild(noResults);
         return;
     }
 
-    // Extract the array of animals from the JSON data
+    //gets the array of animals from the JSON data
     const animals = data.animals;
 
     // make sure its an array and the length
@@ -353,29 +354,29 @@ function showModal(animal) {
 }
 
 //function for pageNums
-function pageNums(apiUrl, data) {
-    let paginationElement = document.getElementById('pagination');
-
-    paginationElement.innerHTML = '';
-
-    // get the current page and the # for the rest of the pages
-    const currentPage = data.pagination.current_page;
-    const totalPages = data.pagination.total_pages;
-
-    // create new anchor tags with a for loop
-    for (let i = 1; i <= totalPages; i++) {
-        let anchorElement = document.createElement('a'); //create anchor
-        anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
-        anchorElement.textContent = i; // html text
-        console
-
-        if (i === currentPage) {
-            anchorElement.classList.add('active'); // highlight what page user is on
-        }
-
-        paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
-    }
-}
+// function pageNums(apiUrl, data) {
+//     let paginationElement = document.getElementById('pagination');
+//
+//     paginationElement.innerHTML = '';
+//
+//     // get the current page and the # for the rest of the pages
+//     const currentPage = data.pagination.current_page;
+//     const totalPages = data.pagination.total_pages;
+//
+//     // create new anchor tags with a for loop
+//     for (let i = 1; i <= totalPages; i++) {
+//         let anchorElement = document.createElement('a'); //create anchor
+//         anchorElement.href = `${apiUrl}&page=${i}`; // set the page #
+//         anchorElement.textContent = i; // html text
+//         console
+//
+//         if (i === currentPage) {
+//             anchorElement.classList.add('active'); // highlight what page user is on
+//         }
+//
+//         paginationElement.appendChild(anchorElement); // append the anchor tag to the page element
+//     }
+// }
 
 
 
