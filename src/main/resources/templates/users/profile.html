@@ -58,12 +58,12 @@
                                 <label for="email" class="form-label">Email:</label>
                                 <input type="email" class="form-control form-control-sm" id="email" name="email" th:field="*{email}" th:value="*{email}">
                                 <br>
-                                <label for="password" class="form-label">Password:</label>
-                                <input type="text" class="form-control form-control-sm" id="password" name="password"
+                                <label for="password" class="form-label d-none">Password:</label>
+                                <input type="text" class="form-control form-control-sm d-none" id="password" name="password"
                                        th:field="*{password}" th:value="*{password}">
                                 <br>
-                                <label for="confirm-password" class="form-label">Confirm Password:</label>
-                                <input type="text" class="form-control form-control-sm" id="confirm-password"
+                                <label for="confirm-password" class="form-label d-none">Confirm Password:</label>
+                                <input type="text" class="form-control form-control-sm d-none" id="confirm-password"
                                        name="confirmPassword">
 
 
@@ -130,10 +130,10 @@
                     <p th:text="${post.description}" class="card-text" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
-                    <div class="card-footer">
-                        <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-info text-center mt-2">Edit Post</a>
+                    <div class="card-footer d-flex justify-content-center">
+                        <a th:href="@{/userpost/{id}/edit (id = ${post.id})}" class="text-decoration-none btn btn-default text-center my-4">Edit Post</a>
                         <br>
-                        <a class="text-decoration-none btn btn-danger text-center" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
+                        <a class="text-decoration-none btn btn-danger text-center my-4 ms-2" th:href="@{/userpost/{id}/delete (id = ${post.id})}">Delete Post</a>
                     </div>
                 </div>
             </div>

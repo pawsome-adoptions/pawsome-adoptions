@@ -9,15 +9,12 @@
 
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-8 offset-md-2 text-center">
+        <div class="col-md-12 offset-md-2 text-center">
             <div class="card adopt-a-pet-bg p-4">
                 <div class="card-body">
                     <h1 class="card-title text-center font-roboto mb-4">Want to share your adoption story?</h1>
                     <h4 class="card-subtitle text-center font-roboto-serif">Make an account to start posting and commenting in our <italic>pawesome</italic> community!</h4>
-                    <div class="d-flex justify-content-center mt-4">
-                        <a class="btn btn-primary m-2" th:href="@{/login}" role="button">Login</a>
-                        <a class="btn btn-primary m-2" th:href="@{/sign-up}" role="button">Register</a>
-                    </div>
+                   <h5 class="font-roboto-serif mt-3">Login or Register to start connecting!</h5>
                 </div>
             </div>
         </div>
@@ -34,20 +31,20 @@
                     <div class="d-flex align-items-center">
                       <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
                         <div class="user__info">
-                            <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
-                            <small th:text="${post.users.getEmail()}" class="text-muted"></small>
+                            <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
+                            <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
                         </div>
                     </div>
                 </div>
                 <div class="card-img-wrapper">
                     <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
                 </div>
-                <h4 th:text="${post.getTitle()}" class="card-title"></h4>
-                <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
+                <h4 th:text="${post.getTitle()}" class="card-title font-roboto"></h4>
+                <p th:text="${post.getDescription()}" class="card-text font-roboto-serif" style="overflow: auto"></p>
                 <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
             </div>
             <div class="card-footer">
-                <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
+                <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
