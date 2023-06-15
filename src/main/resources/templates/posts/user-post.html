@@ -13,7 +13,7 @@
 </div>
 <div>
     <!--  Modal Button  -->
-    <button type="button" class="btn btn-secondary btn-sm"
+    <button type="button" class="btn btn-lg create-btn mt-4 ms-4"
             data-bs-toggle="modal" data-bs-target="#createPostModal">Create Post
     </button>
 
@@ -50,7 +50,7 @@
                             <div id="fileUploaded"></div>
                         </div>
                     </div>
-                    <div class="modal-footer"><button type="submit" class="btn btn-primary text-center">Submit</button></div>
+                    <div class="modal-footer"><button type="submit" class="btn btn-default text-center">Submit</button></div>
                 </form>
             </div>
         </div>
@@ -65,20 +65,22 @@
                         <div class="d-flex align-items-center">
                             <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
                             <div class="user__info">
-                                <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
-                                <small th:text="${post.users.getEmail()}" class="text-muted"></small>
+                                <h5 th:text="${post.users.getUsername()}" class="mb-0 font-roboto"></h5>
+                                <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
                             </div>
                         </div>
                     </div>
                     <div class="card-img-wrapper">
                         <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image" class="card-img-top">
                     </div>
-                    <h4 th:text="${post.getTitle()}" class="card-title"></h4>
-                    <p th:text="${post.getDescription()}" class="card-text" style="overflow: auto"></p>
+                    <h4 th:text="${post.getTitle()}" class="card-title font-roboto mt-2"></h4>
+                    <p th:text="${post.getDescription()}" class="card-text font-roboto-serif" style="overflow: auto"></p>
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
                 </div>
                 <div class="card-footer">
-                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-primary btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
+                    <div class="d-flex justify-content-center">
+                    <a th:href="@{/singlepost/{id}(id=${post.getId()})}" class="btn btn-default btn-sm">View more details <i class="fas fa-arrow-right"></i></a>
+                </div>
                 </div>
             </div>
         </div>

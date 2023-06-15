@@ -4,27 +4,28 @@
 <body>
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+
 <div class="container">
     <div class="row justify-content-center align-items-center m-5">
         <div class="col-md-6 card adopt-a-pet-bg p-4">
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <div>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
+                        <label for="username" class="form-label font-roboto">Username</label>
                         <input type="text" class="form-control form-control-sm" id="username" placeholder="Enter your username" name="username" th:field="*{username}" required>
                         <div class="invalid-feedback">Please enter a username.</div>
                         <p class="text-danger font-robotor" th:if="${usernameError}" th:text="${usernameError}"></p>
                         <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
+                        <label for="email" class="form-label font-roboto">Email address</label>
                         <input type="email" class="form-control form-control-sm" id="email" placeholder="Enter your email" name="email" th:field="*{email}" required>
                         <div class="invalid-feedback">Please enter a valid email address.</div>
                         <p class="text-danger font-roboto" th:if="${emailError}" th:text="${emailError}"></p>
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label font-roboto">Password</label>
                         <input type="password" class="form-control form-control-sm" id="password" placeholder="Enter your password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" th:field="*{password}" required>
                         <div class="password-indicators">
                             <p id="eight-character" class="error-text"><span class="check-icon">&#10003;</span> 8 character min</p>
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
     </div>

@@ -55,3 +55,32 @@ footer{
     border: 1rem;
     border-radius: 10px;
 }
+
+.btn-default{
+    background-color: #62466b;
+    color: #FFF;
+    font-family: Roboto, sans-serif;
+}
+.btn-default:hover{
+    background-color: #62466b;
+    color: #FFF;
+    border: 1px solid #efeae1;
+    font-family: "Roboto", sans-serif;
+}
+
+.create-btn{
+    background-color: #babbd2;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.create-btn:hover{
+    background-color: #62466b;
+    color: #efeae1;
+    border: 1px solid #efeae1;
+}
+
+.profile-icon{
+    width: 30px;
+    height: 30px;
+}

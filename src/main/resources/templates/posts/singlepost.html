@@ -14,32 +14,32 @@
                 <div class="card-header d-flex align-items-center">
                     <img th:src="${currentPost.users.profilePic}" alt="user profile picture" class="user__image">
                     <div class="user__info">
-                        <h5 th:text="${currentPost.users.username}" class="mb-0"></h5>
-                        <small th:text="${currentPost.users.email}" class="mb-0"></small>
+                        <h5 th:text="${currentPost.users.username}" class="mb-0 font-roboto"></h5>
+                        <small th:text="${currentPost.users.email}" class="mb-0 font-roboto-serif"></small>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <img th:if="${!currentPost.img.equals('')}" th:src="${currentPost.img}" alt="card__image" class="card-img-top">
 <!--                    <img th:if="${currentPost.img != null}" th:src="${currentPost.img}" alt="post image" class="card-img-top" width="600" height="300vh" />-->
-                    <h4 th:text="${currentPost.title}" class="card-title"></h4>
-                    <p th:text="${currentPost.description}" class="card-text"></p>
+                    <h4 th:text="${currentPost.title}" class="card-title font-roboto"></h4>
+                    <p th:text="${currentPost.description}" class="card-text font-roboto-serif"></p>
                 </div>
 
                 <div class="card-footer rounded">
-                    <h5 class="mb-3">Comments</h5>
+                    <h5 class="mb-3 font-roboto">Comments</h5>
                     <!-- Display comments -->
                     <div th:each="comment : ${currentPost.comments}" class="my-3 mx-3">
                         <div class="card card-size-comment">
                             <div class="card-header d-flex align-items-center">
                                 <img th:src="${comment.user.profilePic}" alt="user profile picture" class="user__image">
                                 <div class="user__info">
-                                    <h5 th:text="${comment.user.username}" class="mb-0"></h5>
-                                    <small th:text="${comment.user.email}" class="mb-0"></small>
+                                    <h5 th:text="${comment.user.username}" class="mb-0 font-roboto"></h5>
+                                    <small th:text="${comment.user.email}" class="mb-0 font-roboto-serif"></small>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p th:text="${comment.commentText}" class="card-text"></p>
+                                <p th:text="${comment.commentText}" class="card-text font-roboto-serif"></p>
                             </div>
                         </div>
                     </div>
@@ -49,10 +49,10 @@
                         <form th:action="@{/comment}" method="post" th:object="${newComment}" class="comment-form">
                             <input type="hidden" name="postId" th:value="${currentPost.id}">
                             <div class="mb-3">
-                                <textarea placeholder="Comment here" name="commentText" th:field="*{commentText}" class="form-control" required></textarea>
+                                <textarea placeholder="Comment here" name="commentText" th:field="*{commentText}" class="form-control font-roboto-serif" required></textarea>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                <button type="submit" class="btn btn-default">Submit Comment</button>
                             </div>
                         </form>
                     </div>
