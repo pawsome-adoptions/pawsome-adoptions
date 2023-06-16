@@ -7,34 +7,35 @@
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <form th:method="post" th:action="@{/posts/submitEdit}" th:object="${postToViewLayer}">
-    <div class="container-purple vh-75 ml-lg-5">
+    <div class="container-purple ml-lg-5">
         <div class="container d-flex justify-content-center">
-            <div class="col-12 col-md-6 text-center adopt-a-pet-bg">
+            <div class="col-12 col-md-6 text-center edit-login-logout">
                 <div class="p-3">
+                    <h1 class="text-dark font-roboto">Edit post</h1>
                     <div class="mb-3">
                         <input type="hidden" th:field="*{id}" th:value="*{id}">
                         <label for="title" class="form-label font-roboto font-size-20px">Title:</label>
-                        <input type="text" class="form-control form-control-sm" id="title" name="title" th:field="*{title}" th:value="*{title}">
+                        <input type="text" class="form-control form-control-sm update-sign-up-font" id="title" name="title" th:field="*{title}" th:value="*{title}">
                         <br>
                     </div>
                     <div>
                         <label for="description" class="form-label font-roboto font-size-20px">Description:</label>
-                        <input type="text" class="form-control form-control-sm" id="description" name="description" th:value="*{description}" th:field="*{description}">
+                        <input type="text" class="form-control form-control-sm update-sign-up-font" id="description" name="description" th:value="*{description}" th:field="*{description}">
                         <br>
                     </div>
                     <div>
                         <label for="category" class="form-label font-roboto font-size-20px">Change Category:</label>
-                        <select class="form-select font-size-20px" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" id="category">
-                            <option selected class="font-roboto font-size-20px" value="Type">Type</option>
-                            <option class="font-roboto font-size-20px" value="Dog">Dog</option>
-                            <option class="font-roboto font-size-20px" value="Cat">Cat</option>
+                        <select class="form-select" aria-label="Default select example" name="category" th:field="*{category}" th:value="*{category}" id="category">
+                            <option selected class="font-roboto" value="Type">Type</option>
+                            <option class="font-roboto" value="Dog">Dog</option>
+                            <option class="font-roboto" value="Cat">Cat</option>
                         </select>
                     </div>
-                    <button type="button" id="fileUpload" class="m-5 font-roboto font-size-20px">Update Profile Picture</button>
+                    <button type="button" id="fileUpload" class="m-5 font-roboto create-btn">Edit Profile Picture</button>
                     <input style="display: none" type="text" id="inputURL" name="img" th:field="*{img}" value="">
                     <div id="fileUploaded"></div>
                 </div>
-                    <button type="submit" class="btn create-btn text-center">Submit Edit</button>
+                    <button type="submit" class="btn font-roboto btn-default text-center">Submit Edit</button>
             </div>
         </div>
     </div>

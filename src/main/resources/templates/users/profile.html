@@ -25,7 +25,7 @@
                             <p th:text="${user.getEmail()}" class="text-muted"></p>
                         </div>
                     </div>
-                    <div class="text-center mt-3">
+                    <div class="text-center mt-3 mb-3">
                         <button type="button" class="btn btn-default btn-sm"><a class="nav-link active" aria-current="page" href="#" th:href="@{/userpost}">View Community Post</a></button>
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile Information</button>
                     </div>
@@ -62,7 +62,7 @@
                                        name="confirmPassword">
 
 
-                                <button type="button" id="fileUpload" class="m-5 btn btn-default">Add File</button>
+                                <button type="button" id="fileUpload" class="btn create-btn">Add File</button>
                                 <div class="input-group mb-3" style="display: none">
                                     <input type="text" id="inputURL" name="img" th:field="*{profilePic}" class="form-control" aria-describedby="fileUploadButton" value="">
                                     <label class="input-group-text" for="inputURL">Choose file</label>
@@ -106,7 +106,6 @@
     <div class="d-flex flex-wrap justify-content-center align-items-center">
         <div th:each="post : ${allUserPosts}"  class="col-sm-12 col-md-12 col-lg-12">
             <div class="card mx-auto my-4 bg-boxshadow">
-<!--                <div class="">-->
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
