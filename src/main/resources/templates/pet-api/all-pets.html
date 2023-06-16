@@ -82,7 +82,7 @@
 </div>
 
 
-<div id="animalContainer" class="row mx-auto mt-5"></div>
+<div id="animalContainer" class="row mx-auto mt-5 mb-5"></div>
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -349,7 +349,7 @@
 
             const title = document.createElement('h5');
             title.classList.add('card-title');
-            title.textContent = animal.name;
+            title.textContent = animal.name ? animal.name : 'Unknown';
 
             const description = document.createElement('p');
             description.classList.add('card-text');
@@ -359,27 +359,27 @@
 
             const id = document.createElement('li');
             id.classList.add('list-group-item');
-            id.textContent = `Id: ${animal.id}`;
+            id.textContent = `Id: ${animal.id ? animal.id : 'Unknown'}`;
 
             const species = document.createElement('li');
             species.classList.add('list-group-item');
-            species.textContent = `Species: ${animal.species}`;
+            species.textContent = `Species: ${animal.species ? animal.species : 'Unknown'}`;
 
             const breed = document.createElement('li');
             breed.classList.add('list-group-item');
-            breed.textContent = `Breed: ${animal.breeds.primary}`;
+            breed.textContent = `Breed: ${animal.breeds.primary ? animal.primary : 'Unknown'}`;
 
             const gender = document.createElement('li');
             gender.classList.add('list-group-item');
-            gender.textContent = `Gender: ${animal.gender}`;
+            gender.textContent = `Gender: ${animal.gender ? animal.gender : 'Unknown'}`;
 
             const age = document.createElement('li');
             age.classList.add('list-group-item');
-            age.textContent = `Age: ${animal.age}`;
+            age.textContent = `Age: ${animal.age ? animal.age : 'Unknown'}`;
 
             const size = document.createElement('li');
             size.classList.add('list-group-item');
-            size.textContent = `Size: ${animal.size}`;
+            size.textContent = `Size: ${animal.size ? animal.size : 'Unknown'}`;
 
             ul.appendChild(id);
             ul.appendChild(species);
@@ -422,63 +422,65 @@
         modalDescription.textContent = '';
         //make modal content
         const title = document.createElement('h5');
-        title.classList.add('card-title' , 'font-roboto');
-        title.textContent = animal.name;
+
+        title.classList.add('card-title', 'font-roboto');
+        title.textContent = animal.name ? animal.name : 'Unknown'
 
         const ul = document.createElement('ul');
         ul.classList.add('list-group', 'list-group-flush' , 'font-roboto');
 
         const id = document.createElement('li');
-        id.classList.add('list-group-item' , 'font-roboto');
-        id.textContent = `Id: ${animal.id}`;
+
+        id.classList.add('list-group-item', 'mt-4');
+        id.textContent = `Id: ${animal.id !== null ? animal.id : 'Unknown'}`;
 
         const species = document.createElement('li');
-        species.classList.add('list-group-item' , 'font-roboto');
-        species.textContent = `Species: ${animal.species}`;
+        species.classList.add('list-group-item');
+        species.textContent = `Species: ${animal.species !== null ? animal.species : 'Unknown'}`;
 
         const breed = document.createElement('li');
-        breed.classList.add('list-group-item' , 'font-roboto');
-        breed.textContent = `Breed: ${animal.breeds.primary}`;
+        breed.classList.add('list-group-item');
+        breed.textContent = `Breed: ${animal.breeds.primary !== null ? animal.breeds.primary : 'Unknown'}`;
 
         const gender = document.createElement('li');
-        gender.classList.add('list-group-item' , 'font-roboto');
-        gender.textContent = `Gender: ${animal.gender}`;
+        gender.classList.add('list-group-item');
+        gender.textContent = `Gender: ${animal.gender !== null ? animal.gender : 'Unknown'}`;
 
         const age = document.createElement('li');
-        age.classList.add('list-group-item' , 'font-roboto');
-        age.textContent = `Age: ${animal.age}`;
+        age.classList.add('list-group-item');
+        age.textContent = `Age: ${animal.age !== null ? animal.age : 'Unknown'}`;
 
         const size = document.createElement('li');
-        size.classList.add('list-group-item' , 'font-roboto');
-        size.textContent = `Size: ${animal.size}`;
+        size.classList.add('list-group-item');
+        size.textContent = `Size: ${animal.size !== null ? animal.size : 'Unknown'}`;
 
         const declawed = document.createElement('li');
-        declawed.classList.add('list-group-item' , 'font-roboto');
-        declawed.textContent = `Declawed: ${animal.attributes.declawed}`;
+        declawed.classList.add('list-group-item');
+        declawed.textContent = `Declawed: ${animal.attributes.declawed ? 'Yes' : 'No'}`;
 
         const house_trained = document.createElement('li');
-        house_trained.classList.add('list-group-item' , 'font-roboto');
-        house_trained.textContent = `House Trained: ${animal.attributes.house_trained}`;
+        house_trained.classList.add('list-group-item');
+        house_trained.textContent = `House Trained: ${animal.attributes.house_trained ? 'Yes' : 'No'}`;
 
         const shots_current = document.createElement('li');
-        shots_current.classList.add('list-group-item' , 'font-roboto');
-        shots_current.textContent = `Shots Current: ${animal.attributes.shots_current}`;
+        shots_current.classList.add('list-group-item');
+        shots_current.textContent = `Shots Current: ${animal.attributes.shots_current ? 'Yes' : 'No'}`;
 
         const spayed_neutered = document.createElement('li');
-        spayed_neutered.classList.add('list-group-item' , 'font-roboto');
-        spayed_neutered.textContent = `Spayed/Neutered: ${animal.attributes.spayed_neutered}`;
+        spayed_neutered.classList.add('list-group-item');
+        spayed_neutered.textContent = `Spayed/Neutered: ${animal.attributes.spayed_neutered ? 'Yes' : 'No'}`;
 
         const special_needs = document.createElement('li');
-        special_needs.classList.add('list-group-item' , 'font-roboto');
-        special_needs.textContent = `Special Needs: ${animal.attributes.special_needs}`;
+        special_needs.classList.add('list-group-item');
+        special_needs.textContent = `Special Needs: ${animal.attributes.special_needs ? 'Yes' : 'No'}`;
 
         const phone = document.createElement('li');
-        phone.classList.add('list-group-item' , 'font-roboto');
-        phone.textContent = `Phone number: ${animal.contact.phone}`;
+        phone.classList.add('list-group-item');
+        phone.textContent = `Phone number: ${animal.contact.phone !== null ? animal.contact.phone : 'Unknown'}`;
 
         const email = document.createElement('li');
-        email.classList.add('list-group-item' , 'font-roboto');
-        email.textContent = `Email: ${animal.contact.email}`;
+        email.classList.add('list-group-item');
+        email.textContent = `Email: ${animal.contact.email !== null ? animal.size : 'Unknown'}`;
 
         const address = document.createElement('li');
         address.classList.add('list-group-item' , 'font-roboto');
@@ -492,7 +494,9 @@
         url.appendChild(anchor);
 
         const published_at = document.createElement('a');
-        published_at.classList.add('list-group-item', 'text-muted' , 'font-roboto');
+
+        published_at.classList.add('list-group-item', 'text-muted', 'mb-4');
+
         published_at.textContent = `${animal.published_at}`;
 
         ul.appendChild(id);
@@ -532,8 +536,8 @@
             document.body.classList.remove('modal-open');
             document.body.style.overflow = 'auto'; // restore scrolling
         });
-    }
 
+    }
     //function for pageNums
     // function pageNums(apiUrl, data) {
     //     let paginationElement = document.getElementById('pagination');

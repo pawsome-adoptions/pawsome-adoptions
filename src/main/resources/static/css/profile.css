@@ -235,3 +235,17 @@ body{
     height: 250px;
     width: auto;
 }
+
+.edit-login-logout{
+    background-color: #efeae1;
+    border-radius: 10px;
+    margin-top: 5%;
+    -webkit-box-shadow: 10px 10px 62px 1px rgba(110,108,110,1);
+    -moz-box-shadow: 10px 10px 62px 1px rgba(110,108,110,1);
+    box-shadow: 10px 10px 62px 1px rgba(110,108,110,1);
+    padding: 2rem;
+}
+
+.update-sign-up-font{
+    font-size: 1rem;
+}
