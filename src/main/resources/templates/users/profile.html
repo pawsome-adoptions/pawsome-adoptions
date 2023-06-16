@@ -126,18 +126,18 @@
                     </div>
                 </div>
             </div>
-            <section class="card-body">
+            <section>
                 <div class="card-img-wrapper d-flex justify-content-center">
                     <img th:if="${!post.img.equals('')}" th:src="${post.img}" alt="card__image"
                          class="card-img-top petImgProfile">
                 </div>
                 <h6 th:href="@{/userpost/{id}(id = ${post.id})}" class="text-decoration-none">
                 </h6>
-                <h4 th:text="${post.title}" class="card-title text-center"></h4>
-                <p th:text="${post.description}" class="card-text text-center" style="overflow: auto"></p>
-                <div class="d-flex justify-content-center">
+                <h4 th:text="${post.title}" class="card-title"></h4>
+                <p th:text="${post.description}" class="card-text" style="overflow: auto"></p>
+
                     <span th:text="${post.getCategory()}" class="tag tag-blue"></span>
-                </div>
+
             </section>
             <div class="card-footer d-flex justify-content-center">
                 <a th:href="@{/userpost/{id}/edit (id = ${post.id})}"
@@ -149,7 +149,7 @@
         </div>
     </div>
 </div>
-<div th:replace="partials/footer :: footer"></div>
+
 <!--tablets and up -->
 <script th:src="@{//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js}"></script>
 <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" crossorigin="anonymous"></script>
