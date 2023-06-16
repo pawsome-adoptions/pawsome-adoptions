@@ -14,11 +14,10 @@
         <div class="card mx-auto my-4 adopt-a-pet-bg bg-boxshadow">
             <div class="card-body d-flex flex-column align-items-center">
                 <h1 class="card-title text-center font-roboto mb-4">Want to share your adoption story?</h1>
-                <h4 class="card-subtitle text-center font-roboto-serif">Make an account and start posting in our
-                    <italic>pawesome</italic>
-                    community!
-                </h4>
-                <h5 class="font-roboto-serif mt-3">Login or Register to start connecting!</h5>
+
+                <h4 class="card-subtitle text-center font-roboto">Make an account and start posting in our <italic>pawesome</italic> community!</h4>
+                <h5 class="font-roboto mt-3">Login or Register to start connecting!</h5>
+
             </div>
         </div>
     </div>
@@ -28,6 +27,7 @@
 <div class="d-flex flex-wrap justify-content-center align-items-center">
     <div th:each="post : ${posts}" class="col-sm-12 col-md-12 col-lg-12">
         <div class="card mx-auto my-4 bg-boxshadow">
+
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
@@ -36,6 +36,7 @@
                         <small th:text="${post.users.getEmail()}" class="text-muted font-roboto-serif"></small>
                     </div>
                 </div>
+
             </div>
             <section class="card-body">
                 <div class="card-img-wrapper d-flex justify-content-center">

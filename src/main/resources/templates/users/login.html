@@ -8,17 +8,17 @@
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div class="container">
-    <div class="row justify-content-center align-items-center m-5">
-        <div class="col-md-6  card adopt-a-pet-bg p-4">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6  card edit-login-logout p-4">
             <form th:action="@{/login}" th:method="post">
                     <div class='input-fields'>
                         <div class="mb-3">
                             <label for="username" class="form-label font-size-20px font-roboto">Username</label>
-                            <input type="text" class="form-control form-control-sm" id="username" placeholder="Enter your username" name="username">
+                            <input type="text" class="form-control form-control-sm update-sign-up-font" id="username" placeholder="Enter your username" name="username">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label font-size-20px font-roboto">Password</label>
-                            <input type='password' class="form-control form-control-sm" id="password" placeholder="Enter your password" name="password">
+                            <input type='password' class="form-control form-control-sm update-sign-up-font" id="password" placeholder="Enter your password" name="password">
                         </div>
                         <div th:if="${param.error}">
                             <p class="text-danger error font-roboto">Invalid Username and Password.</p>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <button type="submit" value="Log In" class="btn btn-default font-roboto">Log In</button>
-                    <a class="btn btn-default m-2" th:href="@{/resetpassword}" role="button">Reset Password</a>
+                    <a class="btn btn-default m-2 font-roboto" th:href="@{/resetpassword}" role="button">Reset Password</a>
             </form>
         </div>
     </div>

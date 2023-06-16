@@ -7,7 +7,7 @@
 <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
 <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 <div class="container marketing mt-5">
-    <div class="row featurette">
+    <div class="row featurette p-4">
         <div class="col-md-7">
             <h1 class="featurette-heading fw-normal lh-1 display-3 font-roboto">Meet the team</h1>
             <hr class="featurette-divider">
@@ -15,19 +15,25 @@
             <p class="lead font-roboto">Through heartwarming adoption stories, we inspire a community of animal lovers to embark on their own journeys of finding love with a new pet. Together, we can make a difference and create a brighter future for animals in need. Join us on this fulfilling adventure!.</p>
         </div>
         <div class="col-md-5">
-            <video class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" controls>
-                <source src="/video/pexels-sam-lion-5729496-2160x3840-24fps.mp4" type="video/mp4"></video>
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto bg-boxshadow mb-4" width="500" height="500" src="/img/cat.jpg">
+            <div class="d-none d-md-block d-lg-none">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto bg-boxshadow mb-5" width="500" height="500" src="/img/pug.jpg">
+            </div>
+
+            <div class="d-none d-md-block d-lg-none">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto bg-boxshadow" width="500" height="500" src="/img/cats-sleeping.jpg">
+            </div>
         </div>
     </div>
 
     <hr class="featurette-divider">
 
-    <div class="d-flex flex-wrap justify-content-evenly m-5 ">
+    <div class="d-flex flex-wrap justify-content-evenly m-3">
                 <!--   CARD   Daniela -->
             <div class="card mb-3 about-us-card" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/img/newimgofme.png" class="img-fluid rounded-star" alt="...">
+                        <img src="/img/newimgofme.png" class="img-fluid about_us_image" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -46,7 +52,7 @@
             <div class="card mb-3 about-us-card" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/img/Jenna-Devora.jpeg" class="img-fluid rounded-start" alt="...">
+                        <img src="/img/Jenna-Devora.jpeg" class="img-fluid about_us_image" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -64,7 +70,7 @@
             <div class="card mb-3 about-us-card" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/img/Profile-Photo.jpeg" class="img-fluid rounded-start" alt="...">
+                        <img src="/img/Profile-Photo.jpeg" class="img-fluid about_us_image" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -83,7 +89,7 @@
             <div class="card mb-3 about-us-card" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/img/oscar-pic.jpg" class="img-fluid rounded-start" alt="...">
+                        <img src="/img/oscar-pic.jpg" class="img-fluid about_us_image" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

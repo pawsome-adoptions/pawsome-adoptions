@@ -89,3 +89,9 @@ body{
     background-color: rgba(240, 231, 216, 0.7);
     border-radius: 10px;
 }
+
+.about_us_image {
+    border-radius: 50%;
+    object-fit: cover;
+    padding: .50rem;
+}

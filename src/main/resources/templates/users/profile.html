@@ -25,14 +25,11 @@
                             <p th:text="${user.getEmail()}" class="text-muted"></p>
                         </div>
                     </div>
-                    <div class="text-center mt-3">
-                        <button type="button" class="btn btn-default btn-sm"><a class="nav-link active"
-                                                                                aria-current="page" href="#"
-                                                                                th:href="@{/userpost}">View Community
-                            Post</a></button>
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#editProfileModal">Edit Profile Information
-                        </button>
+
+                    <div class="text-center mt-3 mb-3">
+                        <button type="button" class="btn btn-default btn-sm"><a class="nav-link active" aria-current="page" href="#" th:href="@{/userpost}">View Community Post</a></button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile Information</button>
+
                     </div>
                 </div>
             </div>
@@ -40,43 +37,40 @@
 </div>
 
 
-<div>
-    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="post" th:action="@{/profile}" th:object="${user}">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <input type="hidden" th:field="*{id}" th:value="*{id}">
-                            <label for="username" class="form-label">Username:</label>
-                            <input type="text" class="form-control form-control-sm" id="username" name="username"
-                                   th:field="*{username}" th:value="*{username}">
-                            <br>
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control form-control-sm" id="email" name="email"
-                                   th:field="*{email}" th:value="*{email}">
-                            <br>
-                            <label for="password" class="form-label d-none">Password:</label>
-                            <input type="text" class="form-control form-control-sm d-none" id="password" name="password"
-                                   th:field="*{password}" th:value="*{password}">
-                            <br>
-                            <label for="confirm-password" class="form-label d-none">Confirm Password:</label>
-                            <input type="text" class="form-control form-control-sm d-none" id="confirm-password"
-                                   name="confirmPassword">
+    <div>
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" th:action="@{/profile}" th:object="${user}">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="hidden" th:field="*{id}" th:value="*{id}">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" class="form-control form-control-sm" id="username" name="username" th:field="*{username}" th:value="*{username}">
+                                <br>
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control form-control-sm" id="email" name="email" th:field="*{email}" th:value="*{email}">
+                                <br>
+                                <label for="password" class="form-label d-none">Password:</label>
+                                <input type="text" class="form-control form-control-sm d-none" id="password" name="password"
+                                       th:field="*{password}" th:value="*{password}">
+                                <br>
+                                <label for="confirm-password" class="form-label d-none">Confirm Password:</label>
+                                <input type="text" class="form-control form-control-sm d-none" id="confirm-password"
+                                       name="confirmPassword">
 
 
-                            <button type="button" id="fileUpload" class="m-5 btn btn-default">Add File</button>
-                            <div class="input-group mb-3" style="display: none">
-                                <input type="text" id="inputURL" name="img" th:field="*{profilePic}"
-                                       class="form-control" aria-describedby="fileUploadButton" value="">
-                                <label class="input-group-text" for="inputURL">Choose file</label>
-                            </div>
-                            <div id="fileUploaded"></div>
+                                <button type="button" id="fileUpload" class="btn create-btn">Add File</button>
+                                <div class="input-group mb-3" style="display: none">
+                                    <input type="text" id="inputURL" name="img" th:field="*{profilePic}" class="form-control" aria-describedby="fileUploadButton" value="">
+                                    <label class="input-group-text" for="inputURL">Choose file</label>
+                                </div>
+                                <div id="fileUploaded"></div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-default text-center">Submit</button>
@@ -114,15 +108,18 @@
 </div>
 
 <!-- BELOW: Displays all cards made by the user  -->
-<div class="d-flex flex-wrap justify-content-center align-items-center">
-    <div th:each="post : ${allUserPosts}" class="col-sm-12 col-md-12 col-lg-12">
-        <div class="card mx-auto my-4 bg-boxshadow">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
-                    <div class="user__info">
-                        <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
-                        <small th:text="${post.users.getEmail()}" class="text-muted"></small>
+    <div class="d-flex flex-wrap justify-content-center align-items-center">
+        <div th:each="post : ${allUserPosts}"  class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card mx-auto my-4 bg-boxshadow">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <img th:src="${post.users.getProfilePic()}" alt="user__image" class="user__image me-2">
+                            <div class="user__info">
+                                <h5 th:text="${post.users.getUsername()}" class="mb-0"></h5>
+                                <small th:text="${post.users.getEmail()}" class="text-muted"></small>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
