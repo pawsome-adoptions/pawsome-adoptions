@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
       xmlns="http://www.w3.org/1999/html">
-    <head th:replace="~{partials/singlepost-header :: head}">
-        <title>Single Post</title>
-    </head>
-    <body>
-    <div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
-    <div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
+<head th:replace="~{partials/singlepost-header :: head}">
+    <title>Single Post</title>
+</head>
+<body>
+<div th:replace="~{partials/navbar-signed-in :: nav}" sec:authorize="isAuthenticated()"></div>
+<div th:replace="~{partials/navbar-signed-out :: nav}" sec:authorize="isAnonymous()"></div>
 
-    <div class="d-flex flex-wrap justify-content-center align-items-center">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <div class="card mx-auto my-4 bg-boxshadow">
-                <div class="card-header d-flex align-items-center">
-                    <img th:src="${currentPost.users.profilePic}" alt="user profile picture" class="user__image">
-                    <div class="user__info">
-                        <h5 th:text="${currentPost.users.username}" class="mb-0 font-roboto"></h5>
-                        <small th:text="${currentPost.users.email}" class="mb-0 font-roboto"></small>
-                    </div>
+<div class="d-flex flex-wrap justify-content-center align-items-center">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="card mx-auto my-4 bg-boxshadow">
+            <div class="card-header d-flex align-items-center">
+                <img th:src="${currentPost.users.profilePic}" alt="user profile picture" class="user__image">
+                <div class="user__info">
+                    <h5 th:text="${currentPost.users.username}" class="mb-0 font-roboto"></h5>
+                    <small th:text="${currentPost.users.email}" class="mb-0 font-roboto"></small>
                 </div>
+            </div>
 
-                <div class="card-body">
-                    <img th:if="${!currentPost.img.equals('')}" th:src="${currentPost.img}" alt="card__image" class="card-img-top">
-<!--                    <img th:if="${currentPost.img != null}" th:src="${currentPost.img}" alt="post image" class="card-img-top" width="600" height="300vh" />-->
+            <div class="card-body">
+                <img th:if="${!currentPost.img.equals('')}" th:src="${currentPost.img}" alt="card__image"
+                     class="card-img-top petImgProfile">
+                <!--                    <img th:if="${currentPost.img != null}" th:src="${currentPost.img}" alt="post image" class="card-img-top" width="600" height="300vh" />-->
+                <div class="p-2">
                     <h4 th:text="${currentPost.title}" class="card-title font-roboto"></h4>
                     <p th:text="${currentPost.description}" class="card-text font-roboto"></p>
                 </div>
+            </div>
 
-                <div class="card-footer rounded">
-                    <h5 class="mb-3 font-roboto">Comments</h5>
-                    <!-- Display comments -->
-                    <div th:each="comment : ${currentPost.comments}" class="my-3 mx-3">
-                        <div class="card card-size-comment">
-                            <div class="card-header d-flex align-items-center">
-                                <img th:src="${comment.user.profilePic}" alt="user profile picture" class="user__image">
-                                <div class="user__info">
-                                    <h5 th:text="${comment.user.username}" class="mb-0 font-roboto"></h5>
-                                    <small th:text="${comment.user.email}" class="mb-0 font-roboto"></small>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p th:text="${comment.commentText}" class="card-text font-roboto"></p>
+            <div class="card-footer rounded">
+                <h5 class="mb-3 font-roboto">Comments</h5>
+                <!-- Display comments -->
+                <div th:each="comment : ${currentPost.comments}" class="my-3 mx-3">
+                    <div class="card card-size-comment">
+                        <div class="card-header d-flex align-items-center">
+                            <img th:src="${comment.user.profilePic}" alt="user profile picture" class="user__image">
+                            <div class="user__info">
+                                <h5 th:text="${comment.user.username}" class="mb-0 font-roboto"></h5>
+                                <small th:text="${comment.user.email}" class="mb-0 font-roboto"></small>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <p th:text="${comment.commentText}" class="card-text font-roboto"></p>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Comment form -->
-                    <div>
-                        <form th:action="@{/comment}" method="post" th:object="${newComment}" class="comment-form">
-                            <input type="hidden" name="postId" th:value="${currentPost.id}">
-                            <div class="mb-3">
-                                <textarea placeholder="Comment here" name="commentText" th:field="*{commentText}" class="form-control font-roboto" required></textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-default">Submit Comment</button>
-                            </div>
-                        </form>
-                    </div>
+                <!-- Comment form -->
+                <div>
+                    <form th:action="@{/comment}" method="post" th:object="${newComment}" class="comment-form">
+                        <input type="hidden" name="postId" th:value="${currentPost.id}">
+                        <div class="mb-3">
+                            <textarea placeholder="Comment here" name="commentText" th:field="*{commentText}"
+                                      class="form-control font-roboto" required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-default">Submit Comment</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div th:replace="partials/footer :: footer"></div>
-<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</div>
+
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

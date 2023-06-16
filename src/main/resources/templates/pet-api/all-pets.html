@@ -480,7 +480,7 @@
 
         const email = document.createElement('li');
         email.classList.add('list-group-item');
-        email.textContent = `Email: ${animal.contact.email !== null ? animal.size : 'Unknown'}`;
+        email.textContent = `Email: ${animal.contact.email !== null ? animal.contact.email : 'Unknown'}`;
 
         const address = document.createElement('li');
         address.classList.add('list-group-item' , 'font-roboto');
